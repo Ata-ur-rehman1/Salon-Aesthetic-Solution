@@ -1,0 +1,10 @@
+.slick-prev, .slick-next {
+  
+  font-size: 40px; /* Increase arrow size */
+  z-index: 1;
+  color: black; /* Change arrow color */
+}
+
+.slick-prev:hover, .slick-next:hover {
+  color: darkgray; /* Change arrow color on hover */
+}

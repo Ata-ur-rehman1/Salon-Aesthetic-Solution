@@ -1,0 +1,78 @@
+/* Larger arrow styling */
+.slick-slide {
+  padding: 0;
+}
+
+.slick-slider, .slick-list, .slick-track {
+  touch-action: pan-y !important;
+}
+
+.slick-prev,
+.slick-next {
+  width: 45px !important;
+  height: 45px !important;
+  z-index: 10;
+  background: rgba(255, 245, 248, 0.9) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* Removed transition animation */
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: white !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  /* Removed hover scale */
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 20px !important;
+  color: #4b5563 !important;
+  opacity: 0.9 !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
+}
+
+.slick-prev {
+  left: -55px !important;
+}
+
+.slick-next {
+  right: -55px !important;
+}
+
+.slick-dots li button:before {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #4b5563;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+
+  .slick-prev,
+  .slick-next {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 24px !important;
+  }
+
+  .slick-prev {
+    left: 15px !important;
+  }
+
+  .slick-next {
+    right: 15px !important;
+  }
+}

@@ -1,0 +1,49 @@
+/* Zoom Effect Styles */
+.zoom-container {
+  transition: transform 0.3s ease;
+  perspective: 1000px;
+}
+
+.zoom-content {
+  transition: all 0.3s ease;
+  transform-origin: center center;
+}
+
+.zoom-container:hover .zoom-content {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* Smooth transitions for existing elements */
+.category-checkbox,
+.brand-radio {
+  transition: all 0.2s ease;
+}
+
+.category-checkbox:hover,
+.brand-radio:hover {
+  transform: scale(1.1);
+}
+
+.price-input {
+  transition: all 0.3s ease;
+}
+
+.price-input:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Maintain original layout while adding subtle enhancements */
+.product-selection {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.categories,
+.brands {
+  margin-bottom: 20px;
+}
