@@ -24,17 +24,17 @@ const UserOrder = () => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -189,7 +189,7 @@ const UserOrder = () => {
           </motion.p>
           <motion.button
             onClick={() => window.location.reload()}
-            className="px-6 py-2 text-xs uppercase tracking-wider font-medium border hover:bg-pink-500 hover:border-pink-500 hover:text-white transition-colors"
+            className="px-6 py-2 text-xs uppercase tracking-wider font-medium border hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors"
             style={{ borderColor: colors.accent }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -379,7 +379,7 @@ const UserOrder = () => {
                 </motion.p>
                 <Link to="/products">
                   <motion.button
-                    className="px-8 py-4 text-xs uppercase tracking-[0.3em] font-bold bg-pink-500 text-white hover:bg-pink-600 transition-colors shadow-lg" style={{ backgroundImage: 'linear-gradient(135deg, #ec4899, #f472b6)', boxShadow: '0 4px 14px 0 rgba(236, 72, 153, 0.39)' }}
+                    className="px-8 py-4 text-xs uppercase tracking-[0.3em] font-bold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg" style={{ backgroundImage: 'linear-gradient(135deg, #2563eb, #38bdf8)', boxShadow: '0 4px 14px 0 rgba(37, 99, 235, 0.39)' }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -505,7 +505,7 @@ const UserOrder = () => {
                             <motion.button
                               whileHover={{ scale: 1.02, backgroundColor: colors.background, color: colors.textPrimary }}
                               whileTap={{ scale: 0.98 }}
-                              className="w-full flex items-center justify-center gap-2 py-4 text-[11px] uppercase tracking-[0.2em] font-bold rounded-lg border border-pink-500 transition-all bg-pink-500 text-white hover:bg-pink-600" style={{ backgroundImage: 'linear-gradient(135deg, #ec4899, #f472b6)', boxShadow: '0 4px 14px 0 rgba(236, 72, 153, 0.39)' }}
+                              className="w-full flex items-center justify-center gap-2 py-4 text-[11px] uppercase tracking-[0.2em] font-bold rounded-lg border border-blue-600 transition-all bg-blue-600 text-white hover:bg-blue-700" style={{ backgroundImage: 'linear-gradient(135deg, #2563eb, #38bdf8)', boxShadow: '0 4px 14px 0 rgba(37, 99, 235, 0.39)' }}
                             >
                               VIEW DETAILS <FiArrowRight />
                             </motion.button>

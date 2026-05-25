@@ -191,7 +191,7 @@ const OrderList = () => {
           </motion.p>
           <motion.button
             onClick={() => window.location.reload()}
-            className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-pink-500 hover:border-pink-500 hover:text-white transition-colors"
+            className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors"
             style={{ borderColor: colors.accent }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -387,7 +387,7 @@ const OrderList = () => {
                   </motion.p>
                   <motion.button
                     onClick={() => window.location.reload()}
-                    className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-pink-500 hover:border-pink-500 hover:text-white transition-colors"
+                    className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors"
                     style={{ borderColor: colors.accent, color: colors.accent }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -422,7 +422,7 @@ const OrderList = () => {
                   </motion.p>
                   <Link to="/">
                     <motion.button
-                      className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-pink-500 hover:border-pink-500 hover:text-white transition-colors"
+                      className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors"
                       style={{ borderColor: colors.accent, color: colors.accent }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}

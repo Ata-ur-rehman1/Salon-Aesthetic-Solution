@@ -28,17 +28,17 @@ const Shipping = () => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -159,7 +159,7 @@ const Shipping = () => {
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-pink-300/20 rounded-full blur-3xl opacity-60" />
+        <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-blue-400/20 rounded-full blur-3xl opacity-60" />
         <div className="absolute top-[40%] -right-[10%] w-[600px] h-[600px] bg-rose-300/20 rounded-full blur-3xl opacity-60" />
       </div>
 
@@ -176,7 +176,7 @@ const Shipping = () => {
             Shipping Details
           </motion.h1>
           <motion.div
-            className="h-1 w-12 md:w-24 bg-pink-500 mx-auto mt-6" style={{ opacity: 0.8 }}
+            className="h-1 w-12 md:w-24 bg-blue-600 mx-auto mt-6" style={{ opacity: 0.8 }}
           />
         </div>
       </motion.div>
@@ -379,7 +379,7 @@ const Shipping = () => {
                   >
                     <div className="flex items-center gap-4">
                       <motion.div
-                        className={`border ${paymentMethod === "Whatsapp" ? 'bg-pink-500 text-white border-pink-500' : 'border-pink-200 text-gray-500'} p-3`}
+                        className={`border ${paymentMethod === "Whatsapp" ? 'bg-blue-600 text-white border-blue-600' : 'border-blue-300 text-gray-500'} p-3`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                       >
                         <FaWhatsapp className={getTextSize('text-2xl', 'text-3xl', 'text-4xl')} />
@@ -452,7 +452,7 @@ const Shipping = () => {
                       animate="visible"
                     >
                       <motion.div
-                        className={`w-10 h-10 flex items-center justify-center border ${item.status === 'complete' ? 'bg-pink-500 text-white border-pink-500' : item.status === 'current' ? 'border-pink-500 text-pink-500 scale-110' : 'border-pink-200 text-pink-300'}`}
+                        className={`w-10 h-10 flex items-center justify-center border ${item.status === 'complete' ? 'bg-blue-600 text-white border-blue-600' : item.status === 'current' ? 'border-blue-600 text-blue-600 scale-110' : 'border-blue-300 text-blue-400'}`}
                         whileHover={{ scale: 1.1 }}
                       >
                         {item.status === 'complete' ? '✓' : item.step}

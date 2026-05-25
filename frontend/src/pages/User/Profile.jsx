@@ -17,11 +17,11 @@ const Profile = () => {
     background: "#ffffff",      // Pure white
     textPrimary: "#333333",     // Soft dark gray
     textSecondary: "#888888",   // Lighter gray
-    accent: "#ec4899",          // Beautiful Pink (Tailwind pink-500)
-    border: "#fce7f3",          // Very light pink borders
-    surface: "#fdf2f8",         // Surface pink
-    surfaceHover: "#fdf2f8",    // Light pink hover state
-    shadow: "rgba(236, 72, 153, 0.1)", // Soft pink shadow
+    accent: "#2563eb",          // Beautiful Pink (Tailwind blue-600)
+    border: "#dbeafe",          // Very light pink borders
+    surface: "#eff6ff",         // Surface pink
+    surfaceHover: "#eff6ff",    // Light pink hover state
+    shadow: "rgba(37, 99, 235, 0.1)", // Soft pink shadow
     success: "#10b981",
     error: "#ef4444"
   };
@@ -244,7 +244,7 @@ const Profile = () => {
           </motion.p>
           <motion.button
             onClick={() => window.location.reload()}
-            className="inline-block px-4 md:px-8 py-2 md:py-3 text-[7px] md:text-xs uppercase tracking-[0.2em] font-medium border hover:bg-pink-500 hover:text-white transition-all shadow-sm"
+            className="inline-block px-4 md:px-8 py-2 md:py-3 text-[7px] md:text-xs uppercase tracking-[0.2em] font-medium border hover:bg-blue-600 hover:text-white transition-all shadow-sm"
             style={{
               borderColor: colors.accent,
               color: colors.accent
@@ -286,7 +286,7 @@ const Profile = () => {
             Profile Archive
           </motion.h1>
           <motion.div
-            className="h-1 w-12 md:w-24 bg-pink-500 mx-auto mt-6" style={{ opacity: 0.8 }}
+            className="h-1 w-12 md:w-24 bg-blue-600 mx-auto mt-6" style={{ opacity: 0.8 }}
           />
         </motion.div>
 
@@ -404,7 +404,7 @@ const Profile = () => {
                     borderColor: colors.accent,
                     color: isEditing ? colors.accent : 'white',
                     backgroundColor: isEditing ? 'white' : colors.accent,
-                    boxShadow: isEditing ? '' : '0 4px 14px 0 rgba(236, 72, 153, 0.39)'
+                    boxShadow: isEditing ? '' : '0 4px 14px 0 rgba(37, 99, 235, 0.39)'
                   }}
                   whileHover={{
                     scale: 1.02,
@@ -661,8 +661,8 @@ const Profile = () => {
                           borderColor: colors.accent,
                           color: 'white',
                           backgroundColor: colors.accent,
-                          backgroundImage: 'linear-gradient(135deg, #ec4899, #f472b6)',
-                          boxShadow: '0 4px 14px 0 rgba(236, 72, 153, 0.39)'
+                          backgroundImage: 'linear-gradient(135deg, #2563eb, #38bdf8)',
+                          boxShadow: '0 4px 14px 0 rgba(37, 99, 235, 0.39)'
                         }}
                         whileHover={{
                           scale: 1.02,

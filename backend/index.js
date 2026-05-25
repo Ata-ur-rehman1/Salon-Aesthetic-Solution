@@ -26,6 +26,7 @@ import productRoutes from "./routes/productRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import videoRoutes from "./routes/videoRoutes.js";
+import cjRoutes from "./routes/cjRoutes.js";
 
 // Initialize Express app
 const app = express();
@@ -168,6 +169,7 @@ app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/cj", cjRoutes);
 
 // Base route
 app.get("/", (req, res) => {

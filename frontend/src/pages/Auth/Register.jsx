@@ -17,11 +17,11 @@ const Register = () => {
     background: "#ffffff",      // Pure white
     textPrimary: "#333333",     // Soft dark gray
     textSecondary: "#888888",   // Lighter gray
-    accent: "#ec4899",          // Beautiful Pink (Tailwind pink-500)
-    border: "#fce7f3",          // Very light pink borders
-    surface: "#fdf2f8",         // Surface pink
-    surfaceHover: "#fdf2f8",    // Light pink hover state
-    shadow: "rgba(236, 72, 153, 0.1)", // Soft pink shadow
+    accent: "#2563eb",          // Beautiful Pink (Tailwind blue-600)
+    border: "#dbeafe",          // Very light pink borders
+    surface: "#eff6ff",         // Surface pink
+    surfaceHover: "#eff6ff",    // Light pink hover state
+    shadow: "rgba(37, 99, 235, 0.1)", // Soft pink shadow
     success: "#10b981",
     error: "#ef4444"
   };
@@ -358,7 +358,7 @@ const Register = () => {
                 <motion.button
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full ${getPadding('px-6 py-3', 'px-8 py-4', 'px-8 py-4')} bg-pink-500 text-white ${getTextSize('text-xs', 'text-sm', 'text-sm')} uppercase tracking-[0.2em] font-medium rounded-lg disabled:opacity-50 shadow-lg`}
+                  className={`w-full ${getPadding('px-6 py-3', 'px-8 py-4', 'px-8 py-4')} bg-blue-600 text-white ${getTextSize('text-xs', 'text-sm', 'text-sm')} uppercase tracking-[0.2em] font-medium rounded-lg disabled:opacity-50 shadow-lg`}
                   whileHover={{ backgroundColor: colors.textPrimary, scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                   whileDisabled={{ opacity: 0.6 }}
@@ -434,7 +434,7 @@ const Register = () => {
                 <motion.button
                   type="submit"
                   disabled={isVerifyingEmail}
-                  className={`w-full ${getPadding('px-6 py-3', 'px-8 py-4', 'px-8 py-4')} bg-pink-500 text-white ${getTextSize('text-xs', 'text-sm', 'text-sm')} uppercase tracking-[0.2em] font-medium rounded-lg`}
+                  className={`w-full ${getPadding('px-6 py-3', 'px-8 py-4', 'px-8 py-4')} bg-blue-600 text-white ${getTextSize('text-xs', 'text-sm', 'text-sm')} uppercase tracking-[0.2em] font-medium rounded-lg`}
                   whileHover={{ backgroundColor: colors.textPrimary, scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                   whileDisabled={{ opacity: 0.6 }}

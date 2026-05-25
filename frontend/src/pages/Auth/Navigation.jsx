@@ -25,17 +25,17 @@ const colors = {
   textPrimary: "#111827",
   textSecondary: "#6b7280",
   textTertiary: "#9ca3af",
-  accent: "#ec4899", // Primary Pink
-  accentLight: "#fce7f3",
-  accentDeep: "#be185d",
+  accent: "#2563eb", // Primary Pink
+  accentLight: "#dbeafe",
+  accentDeep: "#1d4ed8",
   roseGold: "#b76e79", // Elegant rose gold
   roseGoldLight: "#e0bfb8",
-  border: "rgba(252, 231, 243, 0.8)",
+  border: "rgba(219, 234, 254, 0.8)",
   glass: "rgba(255, 255, 255, 0.85)",
-  ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-  softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+  ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+  softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
   surface: "#ffffff",
-  surfaceHover: "#fdf2f8",
+  surfaceHover: "#eff6ff",
   success: "#10b981",
   error: "#ef4444"
 };
@@ -77,7 +77,7 @@ const CartIconWithBadge = memo(({ size = 20 }) => {
   );
 });
 
-import Logo1 from "./salonlogo.png"
+import Logo1 from "./logo.png"
 
 const SaloonLogo = () => (
   <Link to="/" className="flex items-center">

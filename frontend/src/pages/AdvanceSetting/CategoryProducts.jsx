@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useGetProductsQuery } from "../../redux/api/productApiSlice.js";
@@ -14,8 +14,27 @@ import {
   FaShieldAlt,
   FaTruck,
   FaClock,
-  FaCrown
+  FaCrown,
+  FaGem,
+  FaLeaf,
+  FaAward,
+  FaRuler,
+  FaSmile,
+  FaMicrophone,
+  FaArrowLeft,
+  FaQuoteLeft,
+  FaCheckCircle,
+  FaChartLine,
+  FaUsers,
+  FaTrophy
 } from "react-icons/fa";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade, Autoplay, Pagination, Navigation, Parallax } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
 import Massage1 from "./MassageSPABed1.jpg"
 import Massage2 from "./MassageSPABed2.jpg"
 import Massage6 from "./MassageSPABed6.jpg"
@@ -60,66 +79,264 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// Animated Counter Component
+const AnimatedCounter = ({ value, duration = 2000 }) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-const Features = () => {
-  const features = [
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let start = 0;
+          const increment = value / (duration / 16);
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= value) {
+              setCount(value);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, 16);
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (countRef.current) observer.observe(countRef.current);
+    return () => observer.disconnect();
+  }, [value, duration, hasAnimated]);
+
+  return <span ref={countRef}>{count}+</span>;
+};
+
+// Spectacular Hero Section
+const SpectacularHero = () => {
+  const slides = [
     {
-      icon: <FaShieldAlt />,
-      title: "Premium Quality",
-      desc: "Durable and meticulously crafted salon equipment."
+      title: "Elevate Your Salon",
+      subtitle: "Experience",
+      description: "Premium equipment for the modern professional",
+      bgGradient: "from-blue-600 to-indigo-900"
     },
     {
-      icon: <FaClock />,
-      title: "Expert Support",
-      desc: "Professional guidance for your salon setup."
+      title: "Luxury Redefined",
+      subtitle: "Collection",
+      description: "Where elegance meets functionality",
+      bgGradient: "from-cyan-600 to-blue-900"
     },
     {
-      icon: <FaCrown />,
-      title: "Industry Leader",
-      desc: "Trusted by thousands of professional salons."
+      title: "Innovation",
+      subtitle: "Unleashed",
+      description: "Cutting-edge technology for superior results",
+      bgGradient: "from-sky-500 to-indigo-800"
     }
   ];
 
   return (
-    <div className="py-12 md:py-32 relative overflow-hidden bg-white">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Removed decorative blobs */}
+    <div className="relative h-screen w-full overflow-hidden">
+      <Swiper
+        modules={[EffectFade, Autoplay, Pagination, Navigation]}
+        effect="fade"
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        pagination={{ clickable: true, dynamicBullets: true }}
+        navigation={{ nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom' }}
+        loop={true}
+        className="h-full w-full"
+      >
+        {slides.map((slide, index) => (
+          <SwiperSlide key={index}>
+            <div className={`relative h-full w-full bg-gradient-to-br ${slide.bgGradient}`}>
+              {/* Animated background patterns */}
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full filter blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-white/10 to-transparent rounded-full filter blur-2xl"></div>
+              </div>
+
+              {/* Grid pattern overlay */}
+              <div className="absolute inset-0 opacity-50" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")` }}></div>
+
+              <div className="relative h-full flex items-center justify-center px-4">
+                <div className="text-center max-w-5xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="mb-6"
+                  >
+                    <span className="inline-block px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium tracking-wider border border-white/30">
+                      Since 2010
+                    </span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="overflow-hidden"
+                  >
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 leading-tight">
+                      {slide.title}
+                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">
+                        {slide.subtitle}
+                      </span>
+                    </h1>
+                  </motion.div>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto"
+                  >
+                    {slide.description}
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="flex flex-col sm:flex-row gap-5 justify-center"
+                  >
+                    <Link to="/shop" className="group relative px-8 py-4 bg-white text-blue-900 rounded-full font-semibold text-lg overflow-hidden shadow-2xl hover:shadow-blue-500/30 transition-all duration-300">
+                      <span className="relative z-10 flex items-center gap-2">
+                        Explore Collection
+                        <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white group-hover:scale-x-100 transition-transform duration-500 scale-x-0 origin-left"></div>
+                    </Link>
+                    <Link to="/contact" className="px-8 py-4 bg-transparent border-2 border-white/50 text-white rounded-full font-semibold text-lg hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm">
+                      Get Quote
+                    </Link>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Custom Navigation Buttons */}
+      <button className="swiper-button-prev-custom absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 group">
+        <FaArrowLeft className="group-hover:-translate-x-0.5 transition-transform" />
+      </button>
+      <button className="swiper-button-next-custom absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 group">
+        <FaArrowRight className="group-hover:translate-x-0.5 transition-transform" />
+      </button>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div className="w-1 h-2 bg-white/70 rounded-full mt-2 animate-scroll"></div>
+        </div>
       </div>
-      <div className="max-w-7xl mx-auto px-2 md:px-12 relative z-10">
-        <div className="grid grid-cols-3 gap-2 md:gap-16">
+    </div >
+  );
+};
+
+// Premium Features Showcase
+const PremiumFeatures = () => {
+  const features = [
+    {
+      icon: <FaShieldAlt />,
+      title: "Premium Quality",
+      desc: "Engineered with precision using the finest materials for unparalleled durability and performance.",
+      stat: "ISO 9001",
+      color: "blue"
+    },
+    {
+      icon: <FaClock />,
+      title: "24/7 Expert Support",
+      desc: "Round-the-clock professional assistance and technical support for seamless operations.",
+      stat: "Instant Response",
+      color: "cyan"
+    },
+    {
+      icon: <FaCrown />,
+      title: "Industry Leader",
+      desc: "Trusted by 5000+ premium salons worldwide for our innovative solutions and excellence.",
+      stat: "Global Presence",
+      color: "indigo"
+    }
+  ];
+
+  return (
+    <div className="relative py-28 md:py-40 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 -left-40 w-96 h-96 bg-blue-100 rounded-full filter blur-3xl opacity-30"></div>
+        <div className="absolute bottom-0 -right-40 w-96 h-96 bg-cyan-100 rounded-full filter blur-3xl opacity-30"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="text-center mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-5">
+              <FaGem className="text-xs" />
+              Why Choose Us
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight"
+          >
+            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">SalonPro</span> Advantage
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-gray-500 text-lg max-w-2xl mx-auto"
+          >
+            Discover what makes us the preferred choice for salon professionals worldwide
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((f, i) => (
             <motion.div
               key={i}
-              className="group relative p-3 md:p-12 rounded-xl md:rounded-[2rem] bg-white/60 backdrop-blur-xl border border-white hover:bg-white text-center"
-              style={{
-                boxShadow: "0 20px 40px rgba(236, 72, 153, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.8)"
-              }}
-              initial={{ opacity: 0, y: 30 }}
+              className="group relative"
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: i * 0.2, duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.6 }}
               whileHover={{ y: -10 }}
             >
-              {/* Subtle hover glow */}
-              <div className="absolute inset-0 rounded-xl md:rounded-[2rem] bg-gradient-to-br from-pink-500/0 to-pink-500/0 group-hover:from-pink-500/5 group-hover:to-transparent transition-all duration-700 pointer-events-none" />
+              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 h-full">
+                {/* Animated gradient border */}
+                <div className={`absolute inset-0 bg-gradient-to-r from-${f.color}-400 to-${f.color}-600 opacity-0 group-hover:opacity-20 transition-opacity duration-500`}></div>
 
-              <motion.div
-                className="w-8 h-8 md:w-24 md:h-24 mx-auto mb-2 md:mb-8 rounded-full bg-gradient-to-br from-pink-100 to-white flex items-center justify-center shadow-inner relative"
-                whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="absolute inset-0 rounded-full border border-pink-200/50 group-hover:scale-110 transition-transform duration-700" />
-                <div className="text-sm md:text-5xl text-pink-500 drop-shadow-md">
-                  {f.icon}
+                <div className="p-8 md:p-10">
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-${f.color}-500 to-${f.color}-600 flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="text-2xl text-white">{f.icon}</div>
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{f.title}</h3>
+                  <p className="text-gray-500 leading-relaxed mb-6">{f.desc}</p>
+
+                  <div className="flex items-center gap-2 text-sm">
+                    <FaCheckCircle className={`text-${f.color}-500`} />
+                    <span className="text-gray-600">{f.stat}</span>
+                  </div>
                 </div>
-              </motion.div>
 
-              <h3 className="text-[9px] md:text-2xl font-bold tracking-tight text-gray-900 mb-1 md:mb-4 leading-tight">
-                {f.title}
-              </h3>
-              <p className="text-[7px] md:text-base text-gray-500 leading-tight md:leading-relaxed font-light">
-                {f.desc}
-              </p>
+                {/* Decorative corner */}
+                <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-gray-50 to-transparent rounded-tl-2xl"></div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -128,61 +345,492 @@ const Features = () => {
   );
 };
 
-const CategoryProducts = () => {
-  // ULTRA PREMIUM WHITE & PINK DESIGN SYSTEM WITH ROSE GOLD ACCENTS
-  const colors = {
-    background: "#ffffff",
-    bgGradient: "linear-gradient(to bottom, #ffffff, #ffffff)",
-    textPrimary: "#111827",
-    textSecondary: "#6b7280",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fdf2f8",
-    accentDeep: "#be185d",
-    roseGold: "#b76e79", // Elegant rose gold
-    roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 1)",
-    glass: "rgba(255, 255, 255, 0.9)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.2), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.12)"
+// Advanced Stats Section with Animations
+const AdvancedStats = () => {
+  const stats = [
+    { value: 5000, label: "Happy Clients", icon: <FaUsers />, suffix: "+" },
+    { value: 2500, label: "Projects Completed", icon: <FaGem />, suffix: "+" },
+    { value: 98, label: "Satisfaction Rate", icon: <FaSmile />, suffix: "%" },
+    { value: 15, label: "Years Excellence", icon: <FaTrophy />, suffix: "+" }
+  ];
+
+  return (
+    <div className="relative py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 overflow-hidden">
+      {/* Particle background */}
+      <div className="absolute inset-0">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white/10 rounded-full animate-float"
+            style={{
+              width: Math.random() * 4 + 2 + 'px',
+              height: Math.random() * 4 + 2 + 'px',
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 5 + 's',
+              animationDuration: Math.random() * 3 + 2 + 's'
+            }}
+          ></div>
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              className="text-center"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
+            >
+              <div className="text-4xl text-blue-300 mb-3 flex justify-center">
+                {stat.icon}
+              </div>
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <AnimatedCounter value={stat.value} />
+                {stat.suffix}
+              </div>
+              <div className="text-sm text-blue-200/80 tracking-wide">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); opacity: 0.3; }
+          50% { transform: translateY(-20px); opacity: 0.8; }
+        }
+        .animate-float {
+          animation: float infinite ease-in-out;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+// Interactive Category Grid
+const InteractiveCategories = () => {
+  const categories = [
+    { name: "Massage Beds", image: Massage3, items: 12, color: "blue", description: "Ultimate comfort & therapeutic luxury" },
+    { name: "Salon Chairs", image: Chairs5, items: 15, color: "cyan", description: "Ergonomic design meets elegance" },
+    { name: "Hydra Machines", image: HydraMachines1, items: 8, color: "indigo", description: "Advanced skincare technology" },
+    { name: "Head Wash Units", image: HeadWashUnit4, items: 10, color: "sky", description: "Relaxing wash experience" },
+    { name: "Manicure Stations", image: ManicurePedicure1, items: 7, color: "blue", description: "Precision & style combined" },
+    { name: "Trolleys", image: Trolleys5, items: 6, color: "cyan", description: "Mobile organization solutions" }
+  ];
+
+  return (
+    <div className="py-24 md:py-32 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 text-sm font-medium mb-4">
+              Browse Categories
+            </span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-bold text-gray-900 mb-4"
+          >
+            Explore Our Collections
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-gray-500 text-lg max-w-2xl mx-auto"
+          >
+            Discover premium equipment tailored for every salon need
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((cat, idx) => (
+            <motion.div
+              key={idx}
+              className="group relative overflow-hidden rounded-2xl cursor-pointer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.08 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Link to={`/shop?category=${cat.name.toLowerCase().replace(' ', '-')}`}>
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/30 to-transparent" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-2xl font-bold mb-1">{cat.name}</h3>
+                  <p className="text-white/80 text-sm mb-3">{cat.description}</p>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                      {cat.items} Products
+                    </span>
+                    <span className="text-sm group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                      Shop Now <FaArrowRight className="text-xs" />
+                    </span>
+                  </div>
+                </div>
+
+                {/* Glow effect on hover */}
+                <div className={`absolute inset-0 border-2 border-${cat.color}-400/0 rounded-2xl group-hover:border-${cat.color}-400/50 transition-all duration-500 pointer-events-none`} />
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Enhanced Product Card with 3D Tilt
+const EnhancedProductCard = ({ product, collectionTitle, index }) => {
+  const cardRef = useRef(null);
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setRotate({ x: y * 10, y: x * 10 });
   };
 
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      className="group relative"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+      viewport={{ once: true }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+        transition: 'transform 0.1s ease-out'
+      }}
+    >
+      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-500">
+        <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50/30">
+          <Link to={product.route}>
+            <img
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              src={product.imageUrl}
+              alt={product.title}
+              loading={index < 4 ? "eager" : "lazy"}
+            />
+          </Link>
+
+          {/* Quick action buttons */}
+          <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+            <button className="w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
+              <FaHeart />
+            </button>
+          </div>
+
+          {/* Overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-4">
+            <Link to={product.route} className="px-4 py-2 bg-white rounded-full text-blue-600 text-sm font-medium shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+              Quick View
+            </Link>
+          </div>
+        </div>
+
+        <div className="p-5">
+          <div className="flex justify-between items-start mb-2">
+            <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+              {collectionTitle}
+            </span>
+            <div className="flex items-center gap-1">
+              <FaStar className="text-yellow-400 text-xs" />
+              <span className="text-xs text-gray-600">4.8</span>
+            </div>
+          </div>
+
+          <h3 className="font-bold text-gray-800 mb-1 line-clamp-1">
+            Premium {collectionTitle}
+          </h3>
+
+          <p className="text-gray-400 text-xs mb-3 line-clamp-2">
+            Professional grade equipment with premium finish and ergonomic design
+          </p>
+
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-2xs text-gray-400">Starting from</span>
+              <div className="text-lg font-bold text-gray-900">
+                Rs. {(25000 + (product.id * 1234) % 50000).toLocaleString()}
+              </div>
+            </div>
+            <Link to={product.route} className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors">
+              Shop <FaArrowRight className="text-xs" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Dynamic Collection Section
+const DynamicCollection = ({ title, collectionKey, products }) => {
+  const formattedTitle = collectionKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    cssEase: "ease-in-out",
+    responsive: [
+      { breakpoint: 1280, settings: { slidesToShow: 3 } },
+      { breakpoint: 1024, settings: { slidesToShow: 2, arrows: false } },
+      { breakpoint: 640, settings: { slidesToShow: 1, arrows: false } }
+    ]
+  };
+
+  return (
+    <motion.section
+      className="py-20 md:py-28 border-b border-gray-100 last:border-0"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+          <div>
+            <motion.div
+              className="flex items-center gap-3 mb-3"
+              initial={{ x: -30, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+            >
+              <div className="w-10 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+              <span className="text-sm font-medium text-blue-600 uppercase tracking-wider">Collection</span>
+            </motion.div>
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-gray-900"
+              initial={{ x: -30, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+            >
+              {formattedTitle}
+            </motion.h2>
+          </div>
+          <motion.div
+            className="mt-4 md:mt-0"
+            initial={{ x: 30, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link to={`/shop?category=${collectionKey}`} className="group inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors font-medium">
+              View All
+              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+        </div>
+
+        <Slider {...sliderSettings}>
+          {products.map((product, idx) => (
+            <div key={`${collectionKey}-${product.id}`} className="px-2">
+              <EnhancedProductCard
+                product={product}
+                collectionTitle={formattedTitle}
+                index={idx}
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </motion.section>
+  );
+};
+
+// Testimonial Section
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "Salon Owner, Luxe Studio",
+      quote: "The quality of equipment from SalonPro is unmatched. Our client satisfaction has increased significantly since upgrading.",
+      rating: 5,
+      image: "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      name: "Michael Chen",
+      role: "Spa Director, Serenity Spa",
+      quote: "Professional support and premium products. The hydra machines are game-changers for our facial treatments.",
+      rating: 5,
+      image: "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      name: "Emma Williams",
+      role: "Salon Consultant",
+      quote: "I recommend SalonPro to all my clients. Their range is comprehensive and the quality is consistently excellent.",
+      rating: 5,
+      image: "https://randomuser.me/api/portraits/women/68.jpg"
+    }
+  ];
+
+  return (
+    <div className="py-24 md:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 text-sm font-medium mb-4">
+              Testimonials
+            </span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-bold text-gray-900 mb-4"
+          >
+            What Our Clients Say
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-gray-500 text-lg max-w-2xl mx-auto"
+          >
+            Trusted by salon professionals worldwide
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((test, idx) => (
+            <motion.div
+              key={idx}
+              className="relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -8 }}
+            >
+              <FaQuoteLeft className="absolute top-6 right-6 text-4xl text-blue-100" />
+
+              <div className="flex items-center gap-4 mb-6">
+                <img src={test.image} alt={test.name} className="w-14 h-14 rounded-full object-cover" />
+                <div>
+                  <h4 className="font-bold text-gray-900">{test.name}</h4>
+                  <p className="text-sm text-gray-500">{test.role}</p>
+                </div>
+              </div>
+
+              <p className="text-gray-600 leading-relaxed mb-4">"{test.quote}"</p>
+
+              <div className="flex gap-1">
+                {[...Array(test.rating)].map((_, i) => (
+                  <FaStar key={i} className="text-yellow-400 text-sm" />
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Powerful CTA Banner
+const PowerfulCTA = () => {
+  return (
+    <div className="relative py-24 md:py-32 overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900">
+        <div className="absolute inset-0 opacity-50" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")` }}></div>
+      </div>
+
+      <div className="max-w-5xl mx-auto text-center px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Ready to Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Salon Experience?</span>
+          </h2>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
+        >
+          Get expert consultation and exclusive deals tailored for your salon's needs
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row gap-5 justify-center"
+        >
+          <Link to="/contact" className="group px-8 py-4 bg-white text-blue-900 rounded-full font-semibold text-lg shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 inline-flex items-center gap-2 justify-center">
+            Get Free Consultation
+            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/shop" className="px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300">
+            Browse Collection
+          </Link>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-10 flex items-center justify-center gap-6 text-sm text-blue-200"
+        >
+          <span className="flex items-center gap-2"><FaCheckCircle /> Free Shipping</span>
+          <span className="flex items-center gap-2"><FaCheckCircle /> 1 Year Warranty</span>
+          <span className="flex items-center gap-2"><FaCheckCircle /> Expert Support</span>
+        </motion.div>
+      </div>
+    </div >
+  );
+};
+
+const CategoryProducts = () => {
   const { keyword } = useParams();
   const { isLoading, isError, error } = useGetProductsQuery({ keyword });
   const dispatch = useDispatch();
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
-
   const categoriesQuery = useFetchCategoriesQuery();
-
-  const categoryDescriptions = {
-    chairs: "Indulge your clients in the ultimate luxury with our ergonomically designed salon chairs. Crafted from premium, stain-resistant eco-leather with high-density memory foam, these pieces offer the perfect balance of sophisticated rose gold aesthetics and long-lasting professional durability for high-end boutique environments.",
-    massageBeds: "Elevate your spa treatments with our elite collection of massage beds. Each unit features multi-zone electronic adjustment, integrated heating elements, and a whispering-quiet motor system. The plush, cloud-soft upholstery ensures maximum client immersion during long therapeutic sessions and facial treatments.",
-    headWashUnits: "Experience the art of the perfect hair wash with our Italian-inspired washing stations. Designed with high-back lumbar support and deep ceramic basins, these units prevent splash-back while providing a relaxing neck-contour experience. Perfect for high-traffic luxury salons that prioritize guest comfort and sleek plumbing integration.",
-    manicurePedicure: "Our manicure and pedicure stations are masterpieces of efficiency and elegance. Each setup includes vibration massage functions, pipeless whirlpool technology, and adjustable LED task lighting. The compact, minimalist footprint allows for versatile salon floor planning without compromising on the deep-spa experience.",
-    trolleys: "Keep your professional tools organized with our whisper-glide salon trolleys. Featuring silent silicone wheels, chemical-resistant surfaces, and modular storage compartments, these trolleys are designed for the fast-paced stylist who demands precision and a clean, clutter-free workstation aesthetic.",
-    hydraMachines: "Integrate clinical-grade skincare technology into your salon with our flagship Hydra-Dermabrasion machines. These all-in-one systems offer deep exfoliation, vacuum extraction, and nutrient infusion with a user-friendly touch-screen interface, allowing you to provide state-of-the-art non-invasive facial rejuvenation.",
-    electronicEquipment: "Our professional electronic suite provides the essential high-performance tools for modern styling. From digital hair processors to ultra-lightweight ionic dryers, every piece is engineered for consistent heat distribution and quiet operation, ensuring your salon remains a sanctuary of calm and professional excellence."
-  };
-
-  useEffect(() => {
-    let timeoutId;
-    const handleResize = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        const width = window.innerWidth;
-        setIsMobile(width < 768);
-        setIsTablet(width >= 768 && width < 1024);
-        setIsDesktop(width >= 1024);
-      }, 150);
-    };
-
-    window.addEventListener('resize', handleResize, { passive: true });
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(timeoutId);
-    };
-  }, []);
 
   useEffect(() => {
     if (!categoriesQuery.isLoading) {
@@ -190,264 +838,60 @@ const CategoryProducts = () => {
     }
   }, [categoriesQuery.data, dispatch]);
 
-  const ProductCard = ({ product, index, collectionTitle, collectionKey, priority }) => {
-    return (
-      <div className="group relative flex flex-col w-full h-full">
-        {/* Unified Minimalist Image Card */}
-        <div className="relative aspect-square overflow-hidden rounded-lg md:rounded-[2rem] bg-white mb-2 md:mb-4 shadow-sm md:shadow-md hover:shadow-2xl hover:shadow-pink-500/10 border border-pink-50/80 md:border md:border-pink-50 hover:border-pink-200 transform md:hover:-translate-y-2 transition-all duration-700">
-          <Link to={product.route} className="block w-full h-full relative z-0 cursor-pointer bg-pink-50/50">
-            <img
-              className="w-full h-full object-cover origin-center transition-transform duration-1000 ease-out group-hover:scale-110"
-              src={product.imageUrl}
-              alt={product.title || "Salon Equipment"}
-              loading={priority ? "eager" : "lazy"}
-            />
-            {/* Elegant glass overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-pink-900/40 via-pink-900/10 to-transparent backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-2 md:p-8">
-              <div className="w-full translate-y-2 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                <button className="w-full py-1.5 md:py-4 bg-white/90 backdrop-blur-md rounded-full text-pink-600 font-semibold text-[6px] md:text-sm uppercase tracking-widest flex items-center justify-center gap-1 md:gap-2 hover:bg-pink-500 hover:text-white transition-colors">
-                  Quick View
-                  <FaArrowRight className="text-[5px] md:text-sm" />
-                </button>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Amazing Structure Info Section (Left Aligned, Clean) */}
-        <div className="pt-2 md:pt-4 px-1 md:px-3 pb-2 md:pb-4 flex-grow flex flex-col gap-1 md:gap-2">
-          {/* Category Label */}
-          <span className="text-[7px] md:text-[9px] font-bold uppercase tracking-[0.25em] text-pink-400">
-            {collectionTitle}
-          </span>
-
-          {/* Star Ratings */}
-          <div className="flex items-center gap-1 md:gap-2">
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <FaStar key={i} className={`text-[12px] md:text-lg ${i < 4 ? 'text-amber-400' : 'text-gray-200'}`} />
-              ))}
-            </div>
-            <span className="text-[9px] md:text-xs text-gray-400">({15 + (product.id * 7) % 85})</span>
-          </div>
-
-          {/* Dynamic Descriptions */}
-          <p className="text-[9px] md:text-xs text-gray-500 font-normal leading-snug md:leading-relaxed line-clamp-1 md:line-clamp-2">
-            {collectionTitle === "Chairs" && "Ergonomic eco-leather with memory foam for all-day salon comfort."}
-            {collectionTitle === "Massage Beds" && "Multi-zone heating & silent motors for deep therapeutic sessions."}
-            {collectionTitle === "Head Wash Units" && "Italian-designed ceramic basins with contoured neck-support."}
-            {collectionTitle === "Manicure Pedicure" && "Pipeless whirlpool tech with integrated LED task lighting."}
-            {collectionTitle === "Trolleys" && "Silent silicone wheels with chemical-resistant modular storage."}
-            {collectionTitle === "Hydra Machines" && "Clinical dermabrasion with one-touch touchscreen control."}
-            {collectionTitle === "Electronic Equipment" && "High-performance tools for the precision-focused modern stylist."}
-            {!["Chairs", "Massage Beds", "Head Wash Units", "Manicure Pedicure", "Trolleys", "Hydra Machines", "Electronic Equipment"].includes(collectionTitle) && "Premium salon equipment for luxury boutique environments."}
-          </p>
-
-          {/* Subtle Divider */}
-          <div className="hidden md:block h-[1px] w-full bg-pink-50 my-1" />
-
-          {/* Price & Action Row */}
-          <div className="mt-auto flex items-center justify-between gap-1 pt-1 md:pt-0">
-            <div>
-              <span className="block text-[5px] md:text-[8px] text-gray-400 uppercase tracking-widest">From</span>
-              <span className="text-[10px] md:text-lg font-bold text-gray-900 leading-none block">Rs.&nbsp;{(25000 + (product.id * 1234) % 60000).toLocaleString()}</span>
-              <span className="text-[6px] md:text-[8px] text-pink-500 italic mt-0.5 block">* Price negotiable</span>
-            </div>
-            <Link to={product.route} className="shrink-0 inline-flex items-center gap-0.5 md:gap-1.5 bg-gray-900 hover:bg-pink-500 text-white text-[6px] md:text-[9px] font-bold uppercase tracking-widest px-2 py-1 md:px-3.5 md:py-2 rounded-full transition-colors shadow-sm hover:shadow-md">
-              Shop <FaArrowRight className="text-[5px] md:text-[8px]" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const CollectionSection = ({ title, collectionKey, products }) => {
-    const formattedTitle = collectionKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-
-    const isMassageBed = collectionKey === "massageBeds";
-    const isHydra = collectionKey === "hydraMachines";
-    const isChairs = collectionKey === "chairs";
-    const useWideLayout = isHydra || isChairs;
-
-    const sliderSettings = {
-      dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: isMassageBed ? 2 : 3,
-      slidesToScroll: 1,
-      arrows: true,
-      nextArrow: <NextArrow />,
-      prevArrow: <PrevArrow />,
-      autoplay: true,
-      autoplaySpeed: 4000,
-      pauseOnHover: true,
-      responsive: [
-        {
-          breakpoint: 1800,
-          settings: {
-            slidesToShow: isMassageBed ? 2 : 3,
-          }
-        },
-        {
-          breakpoint: 1440,
-          settings: {
-            slidesToShow: isMassageBed ? 2 : 2,
-          }
-        },
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            arrows: false
-          }
-        }
-      ]
-    };
-
-    return (
-      <motion.section
-        id={collectionKey}
-        className="py-24 md:py-40 relative overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1 }}
-      >
-        {/* Subtle Section Divider */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-pink-200 to-transparent opacity-50" />
-
-        <div className="max-w-[1800px] mx-auto px-2 md:px-12 relative z-10">
-          <motion.h2
-            className="text-3xl md:text-5xl lg:text-7xl font-light tracking-tighter text-gray-900 leading-[0.8] mb-12 md:mb-20 text-center"
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            {formattedTitle}
-          </motion.h2>
-
-          <div className="flex flex-col xl:flex-row gap-12 lg:gap-20 items-center">
-            {/* Left Column: Category Story */}
-            <div className="hidden xl:block xl:w-[220px] shrink-0 space-y-6 md:space-y-8 py-10">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-pink-50 border border-pink-100"
-              >
-                <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
-                <span className="text-pink-600 font-bold tracking-[0.3em] uppercase text-[9px] md:text-xs">
-                  Premium Collection
-                </span>
-              </motion.div>
-
-              <div className="space-y-4 md:space-y-6">
-                <motion.p
-                  className="text-gray-500 text-xs md:text-sm font-light italic leading-relaxed max-w-[200px]"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
-                >
-                  "{categoryDescriptions[collectionKey]}"
-                </motion.p>
-              </div>
-
-              <motion.div
-                className="flex items-center gap-4 text-pink-500 font-bold tracking-[0.3em] text-[10px] uppercase"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                <span className="h-[1px] w-12 bg-pink-500" />
-                {products.length} Exclusive Pieces
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-              >
-                <Link to="/shop" className="group inline-flex items-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-gray-900">
-                  View All
-                  <span className="w-8 h-[1px] bg-gray-300 group-hover:w-12 group-hover:bg-pink-500" />
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Right Column: Interactive Showcase */}
-            <div className="w-full xl:flex-1 min-w-0">
-
-              <div className={`product-slider-container relative ${useWideLayout ? 'px-0' : 'px-0 md:px-16'}`}>
-                <Slider {...sliderSettings} className="product-carousel px-2 sm:px-0">
-                  {products.map((product, index) => (
-                    <div key={`${collectionKey}-${product.id}-${index}`} className={`px-1 md:px-2 ${useWideLayout ? 'md:px-2' : 'md:px-5'}`}>
-                      <ProductCard
-                        product={product}
-                        index={index}
-                        collectionTitle={formattedTitle}
-                        collectionKey={collectionKey}
-                        priority={collectionKey === "chairs"}
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Floating Decorative Elements Removed */}
-        <div className="absolute bottom-0 left-1/4 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-30" />
-      </motion.section>
-    );
-  };
-
   const salonEquipmentCollections = {
     chairs: [
-      { id: 1, imageUrl: Chairs5, route: "/chairs", featured: true },
-      { id: 2, imageUrl: Chairs3, route: "/chairs", },
-      { id: 3, imageUrl: Chairs6, route: "/chairs", featured: true },
-      { id: 4, imageUrl: Chairs2, route: "/chairs", },
+      { id: 1, imageUrl: Chairs5, route: "/chairs" },
+      { id: 2, imageUrl: Chairs3, route: "/chairs" },
+      { id: 3, imageUrl: Chairs6, route: "/chairs" },
+      { id: 4, imageUrl: Chairs2, route: "/chairs" },
+      { id: 5, imageUrl: Chairs1, route: "/chairs" },
     ],
     massageBeds: [
-      { id: 7, imageUrl: Massage3, route: "/massage-bed", featured: true },
-      { id: 8, imageUrl: Massage5, route: "/massage-bed", },
-      { id: 6, imageUrl: Massage1, route: "/massage-bed", },
-      { id: 5, imageUrl: Massage2, route: "/massage-bed", featured: true },
+      { id: 7, imageUrl: Massage3, route: "/massage-bed" },
+      { id: 8, imageUrl: Massage5, route: "/massage-bed" },
+      { id: 6, imageUrl: Massage1, route: "/massage-bed" },
+      { id: 5, imageUrl: Massage2, route: "/massage-bed" },
+      { id: 9, imageUrl: Massage4, route: "/massage-bed" },
     ],
     headWashUnits: [
-      { id: 9, imageUrl: HeadWashUnit2, route: "/head-wash-unit", featured: true },
-      { id: 10, imageUrl: HeadWashUnit4, route: "/head-wash-unit", },
-      { id: 11, imageUrl: HeadWashUnit5, route: "/head-wash-unit", },
-      { id: 12, imageUrl: HeadWashUnit3, route: "/head-wash-unit", featured: true }
+      { id: 9, imageUrl: HeadWashUnit2, route: "/head-wash-unit" },
+      { id: 10, imageUrl: HeadWashUnit4, route: "/head-wash-unit" },
+      { id: 11, imageUrl: HeadWashUnit5, route: "/head-wash-unit" },
+      { id: 12, imageUrl: HeadWashUnit3, route: "/head-wash-unit" },
+      { id: 13, imageUrl: HeadWashUnit6, route: "/head-wash-unit" },
     ],
     manicurePedicure: [
-      { id: 23, imageUrl: ManicurePedicure1, route: "/menicure-pedicure", featured: true },
-      { id: 24, imageUrl: ManicurePedicure2, route: "/menicure-pedicure", },
-      { id: 25, imageUrl: ManicurePedicure6, route: "/menicure-pedicure", featured: true },
-      { id: 26, imageUrl: ManicurePedicure5, route: "/menicure-pedicure", }
+      { id: 23, imageUrl: ManicurePedicure1, route: "/menicure-pedicure" },
+      { id: 24, imageUrl: ManicurePedicure2, route: "/menicure-pedicure" },
+      { id: 25, imageUrl: ManicurePedicure6, route: "/menicure-pedicure" },
+      { id: 26, imageUrl: ManicurePedicure5, route: "/menicure-pedicure" },
     ],
     trolleys: [
-      { id: 31, imageUrl: Trolleys5, route: "/trolleys", featured: true },
-      { id: 32, imageUrl: Trolleys2, route: "/trolleys", },
-      { id: 33, imageUrl: Trolleys4, route: "/trolleys", },
-      { id: 34, imageUrl: Trolleys1, route: "/trolleys", featured: true },
+      { id: 31, imageUrl: Trolleys5, route: "/trolleys" },
+      { id: 32, imageUrl: Trolleys2, route: "/trolleys" },
+      { id: 33, imageUrl: Trolleys4, route: "/trolleys" },
+      { id: 34, imageUrl: Trolleys1, route: "/trolleys" },
+      { id: 35, imageUrl: Trolleys3, route: "/trolleys" },
+    ],
+    hydraMachines: [
+      { id: 41, imageUrl: HydraMachines1, route: "/hydra-machines" },
+      { id: 42, imageUrl: HydraMachines2, route: "/hydra-machines" },
+      { id: 43, imageUrl: HydraMachines4, route: "/hydra-machines" },
+      { id: 44, imageUrl: HydraMachines5, route: "/hydra-machines" },
     ],
     electronicEquipment: [
-      { id: 51, imageUrl: ElectronicEquipment1, route: "/electronic-equipment", featured: true },
-      { id: 52, imageUrl: ElectronicEquipment2, route: "/electronic-equipment", },
-      { id: 53, imageUrl: ElectronicEquipment3, route: "/electronic-equipment", },
-      { id: 54, imageUrl: ElectronicEquipment4, route: "/electronic-equipment", featured: true }
+      { id: 51, imageUrl: ElectronicEquipment1, route: "/electronic-equipment" },
+      { id: 52, imageUrl: ElectronicEquipment2, route: "/electronic-equipment" },
+      { id: 53, imageUrl: ElectronicEquipment3, route: "/electronic-equipment" },
+      { id: 54, imageUrl: ElectronicEquipment4, route: "/electronic-equipment" },
     ],
   };
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden w-full selection:bg-pink-200 selection:text-pink-900"
-      style={{ background: colors.bgGradient }}>
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <Meta
-        title="Saloon Interior | Professional Saloon Equipment & Furniture"
-        description="Premium saloon chairs, massage beds, head wash units, and aesthetic machines. Quality equipment for modern saloon interiors."
+        title="SalonPro | Premium Salon Equipment & Furniture"
+        description="Discover world-class salon equipment, massage beds, hydra machines, and professional furniture for modern salons and spas."
       />
 
       <div className="w-full bg-white">
@@ -456,17 +900,52 @@ const CategoryProducts = () => {
           <ProductCarousel />
         </div>
       </div>
-      <Features />
+      {/* Premium Features */}
+      <PremiumFeatures />
 
-      <main className="pb-32">
-        {Object.entries(salonEquipmentCollections).map(([key, products]) => (
-          <CollectionSection
-            key={key}
-            collectionKey={key}
-            products={products}
-          />
-        ))}
+      {/* Advanced Stats */}
+      <AdvancedStats />
+
+      {/* Interactive Categories */}
+      <InteractiveCategories />
+
+      {/* Products Collections */}
+      <main className="bg-white">
+        <div className="max-w-7xl mx-auto">
+          {Object.entries(salonEquipmentCollections).map(([key, products]) => (
+            <DynamicCollection
+              key={key}
+              collectionKey={key}
+              products={products}
+            />
+          ))}
+        </div>
       </main>
+
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* Powerful CTA */}
+      <PowerfulCTA />
+
+      {/* Add required styles for animations */}
+      <style jsx global>{`
+        @keyframes scroll {
+          0% { transform: translateY(0); opacity: 1; }
+          100% { transform: translateY(15px); opacity: 0; }
+        }
+        .animate-scroll {
+          animation: scroll 1.5s ease-in-out infinite;
+        }
+        .swiper-pagination-bullet {
+          background: white !important;
+          opacity: 0.5 !important;
+        }
+        .swiper-pagination-bullet-active {
+          opacity: 1 !important;
+          background: white !important;
+        }
+      `}</style>
     </div>
   );
 };

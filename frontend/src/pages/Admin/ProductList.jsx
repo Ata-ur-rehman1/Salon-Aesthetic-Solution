@@ -23,11 +23,11 @@ const ProductList = () => {
     background: "#ffffff",      // Pure white
     textPrimary: "#333333",     // Soft dark gray
     textSecondary: "#888888",   // Lighter gray
-    accent: "#ec4899",          // Beautiful Pink (Tailwind pink-500)
-    border: "#fce7f3",          // Very light pink borders
-    surface: "#fdf2f8",         // Surface pink
-    surfaceHover: "#fdf2f8",    // Light pink hover state
-    shadow: "rgba(236, 72, 153, 0.1)", // Soft pink shadow
+    accent: "#2563eb",          // Beautiful Pink (Tailwind blue-600)
+    border: "#dbeafe",          // Very light pink borders
+    surface: "#eff6ff",         // Surface pink
+    surfaceHover: "#eff6ff",    // Light pink hover state
+    shadow: "rgba(37, 99, 235, 0.1)", // Soft pink shadow
     success: "#10b981"
   };
 

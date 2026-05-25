@@ -232,7 +232,7 @@ const AdminProductUpdate = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-pink-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-600">Loading product data...</p>
         </div>
       </div>
@@ -264,7 +264,7 @@ const AdminProductUpdate = () => {
             {/* Image Upload */}
             <div className="bg-white rounded-lg border border-gray-300 p-6">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
                   <FaImage className="text-white" />
                 </div>
                 <h2 className="text-lg font-bold text-gray-900">Product Image</h2>
@@ -297,7 +297,7 @@ const AdminProductUpdate = () => {
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                     <FaImage className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-600 mb-4">Upload Main Image</p>
-                    <label className="inline-block bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors cursor-pointer shadow-lg" style={{ boxShadow: '0 4px 14px 0 rgba(236, 72, 153, 0.39)' }}>
+                    <label className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors cursor-pointer shadow-lg" style={{ boxShadow: '0 4px 14px 0 rgba(37, 99, 235, 0.39)' }}>
                       {isUploading ? "Uploading..." : "Choose Image 1"}
                       <input
                         type="file"
@@ -335,7 +335,7 @@ const AdminProductUpdate = () => {
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                     <FaImage className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-600 mb-4">Upload Image 2</p>
-                    <label className="inline-block bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors cursor-pointer shadow-lg" style={{ boxShadow: '0 4px 14px 0 rgba(236, 72, 153, 0.39)' }}>
+                    <label className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors cursor-pointer shadow-lg" style={{ boxShadow: '0 4px 14px 0 rgba(37, 99, 235, 0.39)' }}>
                       {isUploading2 ? "Uploading..." : "Choose Image 2"}
                       <input
                         type="file"
@@ -373,7 +373,7 @@ const AdminProductUpdate = () => {
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                     <FaImage className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-600 mb-4">Upload Image 3</p>
-                    <label className="inline-block bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors cursor-pointer shadow-lg" style={{ boxShadow: '0 4px 14px 0 rgba(236, 72, 153, 0.39)' }}>
+                    <label className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors cursor-pointer shadow-lg" style={{ boxShadow: '0 4px 14px 0 rgba(37, 99, 235, 0.39)' }}>
                       {isUploading3 ? "Uploading..." : "Choose Image 3"}
                       <input
                         type="file"
@@ -390,7 +390,7 @@ const AdminProductUpdate = () => {
             {/* Delete Section */}
             <div className="bg-white rounded-lg border border-gray-300 p-6">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
                   <FaTrash className="text-white" />
                 </div>
                 <h2 className="text-lg font-bold text-gray-900">Danger Zone</h2>
@@ -416,7 +416,7 @@ const AdminProductUpdate = () => {
               {/* Form Header */}
               <div className="border-b border-gray-300 p-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
                     <FaEdit className="text-white" />
                   </div>
                   <div>
@@ -553,7 +553,7 @@ const AdminProductUpdate = () => {
                         <div key={index} className="border border-gray-300 rounded p-4">
                           <div className="flex justify-between items-start mb-4">
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center">
+                              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
                                 <span className="text-white text-sm font-bold">{index + 1}</span>
                               </div>
                               <span className="font-medium text-gray-900">Detail #{index + 1}</span>
@@ -622,7 +622,7 @@ const AdminProductUpdate = () => {
                       </button>
                       <button
                         type="submit"
-                        className="bg-pink-500 text-white px-8 py-3 rounded hover:bg-pink-600 transition-colors shadow-lg" style={{ backgroundImage: 'linear-gradient(135deg, #ec4899, #f472b6)', boxShadow: '0 4px 14px 0 rgba(236, 72, 153, 0.39)' }}
+                        className="bg-blue-600 text-white px-8 py-3 rounded hover:bg-blue-700 transition-colors shadow-lg" style={{ backgroundImage: 'linear-gradient(135deg, #2563eb, #38bdf8)', boxShadow: '0 4px 14px 0 rgba(37, 99, 235, 0.39)' }}
                       >
                         Update Product
                       </button>

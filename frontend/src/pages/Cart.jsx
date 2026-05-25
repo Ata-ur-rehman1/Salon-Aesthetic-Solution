@@ -22,17 +22,17 @@ const Cart = () => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -171,7 +171,7 @@ const Cart = () => {
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-pink-300/20 rounded-full blur-3xl opacity-60" />
+        <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-blue-400/20 rounded-full blur-3xl opacity-60" />
         <div className="absolute top-[40%] -right-[10%] w-[600px] h-[600px] bg-rose-300/20 rounded-full blur-3xl opacity-60" />
       </div>
 
@@ -340,7 +340,7 @@ const Cart = () => {
                                 {/* Remove Button */}
                                 <motion.button
                                   onClick={() => removeFromCartHandler(item._id, item.name)}
-                                  className="text-sm md:text-lg lg:text-xl uppercase tracking-[0.3em] font-bold hover:text-red-500 transition-all text-pink-300 hover:scale-110"
+                                  className="text-sm md:text-lg lg:text-xl uppercase tracking-[0.3em] font-bold hover:text-red-500 transition-all text-blue-400 hover:scale-110"
                                   whileTap={{ scale: 0.95 }}
                                 >
                                   <FaTrash />
@@ -404,7 +404,7 @@ const Cart = () => {
 
                     <div className="flex flex-col gap-1 py-2">
                       <div className="flex items-center gap-2">
-                        <FaWhatsapp className="text-pink-500 text-sm" />
+                        <FaWhatsapp className="text-blue-600 text-sm" />
                         <span className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: colors.accent }}>
                           Settlement WhatsApp Concierge
                         </span>

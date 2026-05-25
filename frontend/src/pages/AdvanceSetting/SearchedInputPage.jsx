@@ -53,17 +53,17 @@ const SearchInputPage = () => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -369,7 +369,7 @@ const ProductCard = ({ product, onAddToCart, colors, index }) => {
                 exit={{ opacity: 0 }}
               >
                 <motion.button
-                  className="w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center border border-pink-100"
+                  className="w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center border border-blue-200"
                   whileHover={{ scale: 1.1, backgroundColor: colors.accent, color: "#fff" }}
                   whileTap={{ scale: 0.9 }}
                   onClick={(e) => {
@@ -427,7 +427,7 @@ const ProductCard = ({ product, onAddToCart, colors, index }) => {
 
             <motion.button
               onClick={() => onAddToCart(product)}
-              className="flex items-center justify-center gap-1 text-[6px] md:text-[8px] uppercase tracking-[0.15em] font-medium border py-1.5 px-2 hover:bg-pink-600 hover:text-white transition-all hover:border-pink-600 text-pink-500 border-pink-200"
+              className="flex items-center justify-center gap-1 text-[6px] md:text-[8px] uppercase tracking-[0.15em] font-medium border py-1.5 px-2 hover:bg-blue-700 hover:text-white transition-all hover:border-blue-700 text-blue-600 border-blue-300"
               style={{ borderColor: colors.border, color: colors.accent, backgroundColor: colors.surface }}
               whileHover={{ scale: 1.05, gap: "0.5rem" }}
               whileTap={{ scale: 0.95 }}
@@ -487,7 +487,7 @@ const NoResultsFound = ({ searchTerm, colors }) => (
       >
         <Link
           to="/shop"
-          className="inline-block px-4 md:px-8 py-2 md:py-3 text-[7px] md:text-xs uppercase tracking-[0.2em] font-medium border hover:bg-pink-600 hover:text-white transition-all hover:border-pink-600 text-pink-500 border-pink-200 shadow-sm"
+          className="inline-block px-4 md:px-8 py-2 md:py-3 text-[7px] md:text-xs uppercase tracking-[0.2em] font-medium border hover:bg-blue-700 hover:text-white transition-all hover:border-blue-700 text-blue-600 border-blue-300 shadow-sm"
           style={{
             borderColor: colors.border,
             color: colors.accent,
@@ -537,7 +537,7 @@ const EmptySearchState = ({ colors }) => (
       <motion.div variants={itemVariants}>
         <Link
           to="/shop"
-          className="inline-block px-4 md:px-8 py-2 md:py-3 text-[7px] md:text-xs uppercase tracking-[0.2em] font-medium border hover:bg-pink-600 hover:text-white transition-all hover:border-pink-600 text-pink-500 border-pink-200 shadow-sm"
+          className="inline-block px-4 md:px-8 py-2 md:py-3 text-[7px] md:text-xs uppercase tracking-[0.2em] font-medium border hover:bg-blue-700 hover:text-white transition-all hover:border-blue-700 text-blue-600 border-blue-300 shadow-sm"
           style={{
             borderColor: colors.border,
             color: colors.accent,
@@ -586,7 +586,7 @@ const ErrorMessage = ({ message, colors }) => (
       </motion.p>
       <motion.button
         onClick={() => window.location.reload()}
-        className="inline-block px-4 md:px-8 py-2 md:py-3 text-[7px] md:text-xs uppercase tracking-[0.2em] font-medium border hover:bg-pink-600 hover:text-white transition-all hover:border-pink-600 text-pink-500 border-pink-200"
+        className="inline-block px-4 md:px-8 py-2 md:py-3 text-[7px] md:text-xs uppercase tracking-[0.2em] font-medium border hover:bg-blue-700 hover:text-white transition-all hover:border-blue-700 text-blue-600 border-blue-300"
         style={{
           borderColor: colors.border,
           color: colors.accent,

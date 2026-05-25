@@ -37,17 +37,17 @@ const Order = () => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -193,7 +193,7 @@ const Order = () => {
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-pink-300/20 rounded-full blur-3xl opacity-60" />
+        <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-blue-400/20 rounded-full blur-3xl opacity-60" />
         <div className="absolute top-[40%] -right-[10%] w-[600px] h-[600px] bg-rose-300/20 rounded-full blur-3xl opacity-60" />
       </div>
 
@@ -210,7 +210,7 @@ const Order = () => {
             Order Manifest
           </motion.h1>
           <motion.div
-            className="h-1 w-12 md:w-24 bg-pink-500 mx-auto mt-6" style={{ opacity: 0.8 }}
+            className="h-1 w-12 md:w-24 bg-blue-600 mx-auto mt-6" style={{ opacity: 0.8 }}
           />
           <motion.p
             className={`${getTextSize('text-xs', 'text-sm', 'text-base')} font-mono mt-4 text-stone-400 uppercase tracking-[0.4em] break-all px-4 max-w-3xl mx-auto`}
@@ -365,7 +365,7 @@ const Order = () => {
                     whileHover={{ scale: 1.02 }}
                   >
                     <motion.div
-                      className={`${getPadding('p-2', 'p-3', 'p-4')} bg-pink-500 text-white`}
+                      className={`${getPadding('p-2', 'p-3', 'p-4')} bg-blue-600 text-white`}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
                       <FaWhatsapp className={getTextSize('text-base', 'text-lg', 'text-xl')} />
@@ -650,8 +650,8 @@ const Order = () => {
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center shrink-0 border border-pink-100">
-                      <FaWhatsapp className="text-pink-500 text-lg" />
+                    <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0 border border-blue-200">
+                      <FaWhatsapp className="text-blue-600 text-lg" />
                     </div>
                     <div>
                       <h4 className="text-sm font-bold uppercase tracking-widest mb-1">WhatsApp Concierge</h4>
@@ -665,9 +665,9 @@ const Order = () => {
                     href={`https://wa.me/+923701498826?text=Order%20Update%20Request:%20${order._id}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center justify-center gap-3 w-full ${getPadding('px-4 py-3', 'px-6 py-4', 'px-8 py-4')} bg-pink-500 text-white ${getTextSize('text-xs', 'text-sm', 'text-sm')} uppercase tracking-[0.3em] font-bold rounded-xl shadow-lg`}
-                    style={{ backgroundImage: 'linear-gradient(135deg, #ec4899, #f472b6)' }}
-                    whileHover={{ scale: 1.02, boxShadow: '0 10px 20px rgba(236, 72, 153, 0.3)' }}
+                    className={`flex items-center justify-center gap-3 w-full ${getPadding('px-4 py-3', 'px-6 py-4', 'px-8 py-4')} bg-blue-600 text-white ${getTextSize('text-xs', 'text-sm', 'text-sm')} uppercase tracking-[0.3em] font-bold rounded-xl shadow-lg`}
+                    style={{ backgroundImage: 'linear-gradient(135deg, #2563eb, #38bdf8)' }}
+                    whileHover={{ scale: 1.02, boxShadow: '0 10px 20px rgba(37, 99, 235, 0.3)' }}
                     whileTap={{ scale: 0.98 }}
                   >
                     Message Concierge
@@ -728,7 +728,7 @@ const StatusItem = ({ icon, label, value, done, colors, isMobile }) => {
       variants={itemVariants}
     >
       <motion.div
-        className={`${isMobile ? 'w-8 h-8 text-xs' : 'w-10 h-10 text-sm'} flex items-center justify-center border ${done ? 'bg-pink-500 text-white border-pink-500 scale-110 shadow-lg' : 'border-pink-200 text-pink-300'}`}
+        className={`${isMobile ? 'w-8 h-8 text-xs' : 'w-10 h-10 text-sm'} flex items-center justify-center border ${done ? 'bg-blue-600 text-white border-blue-600 scale-110 shadow-lg' : 'border-blue-300 text-blue-400'}`}
         whileHover={{ scale: 1.1 }}
       >
         {icon}

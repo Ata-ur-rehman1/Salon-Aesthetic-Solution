@@ -14,17 +14,17 @@ const AboutUs = () => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -161,7 +161,7 @@ const AboutUs = () => {
             className={`${getTextSize('text-3xl', 'text-5xl', 'text-7xl')} font-light tracking-tighter leading-tight mb-8`}
             style={{ color: colors.textPrimary, letterSpacing: '-0.02em' }}
           >
-            <span className="text-pink-500 font-serif italic">Saloon Interior</span> Excellence
+            <span className="text-blue-600 font-serif italic">Saloon Interior</span> Excellence
           </motion.h1>
           <motion.div
             className="h-1 w-12 md:w-24 mx-auto mb-10"
@@ -215,8 +215,8 @@ const AboutUs = () => {
                   className="flex items-start gap-6 group p-4 rounded-xl hover:bg-white transition-all hover:shadow-lg"
                   whileHover={{ x: 4 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border border-pink-100 group-hover:bg-pink-500 transition-all shadow-sm">
-                    <s.icon className="w-5 h-5 text-pink-400 group-hover:text-white transition-colors" />
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border border-blue-200 group-hover:bg-blue-600 transition-all shadow-sm">
+                    <s.icon className="w-5 h-5 text-blue-500 group-hover:text-white transition-colors" />
                   </div>
                   <div className="mt-1">
                     <h4 className="text-lg font-light mb-1 tracking-tight" style={{ color: colors.textPrimary }}>{s.title}</h4>
@@ -231,7 +231,7 @@ const AboutUs = () => {
         {/* Core Values */}
         <motion.div
           className="text-white p-12 md:p-20 rounded-[3rem] mb-24 text-center shadow-2xl relative overflow-hidden"
-          style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #f472b6)` }}
+          style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
           variants={sectionVariants}
           custom={3}
         >
@@ -239,7 +239,7 @@ const AboutUs = () => {
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
           
           <div className="relative z-10">
-            <motion.span className="text-[10px] uppercase tracking-[0.4em] text-pink-100 font-bold block mb-6 opacity-80">
+            <motion.span className="text-[10px] uppercase tracking-[0.4em] text-blue-200 font-bold block mb-6 opacity-80">
               OUR CORE VALUES
             </motion.span>
             <h2 className="text-4xl md:text-6xl font-light tracking-tighter mb-16" style={{ letterSpacing: '-0.02em' }}>The Saloon Interior Standard</h2>
@@ -247,11 +247,11 @@ const AboutUs = () => {
             <div className="grid md:grid-cols-3 gap-12">
               {values.map((v, i) => (
                 <motion.div key={i} className="space-y-6" variants={iconVariants}>
-                  <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mx-auto mb-8 hover:scale-110 transition-all shadow-lg text-pink-500">
+                  <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mx-auto mb-8 hover:scale-110 transition-all shadow-lg text-blue-600">
                     <v.icon className="w-8 h-8" />
                   </div>
                   <h3 className="text-xl font-light tracking-tight">{v.title}</h3>
-                  <p className="text-pink-100 font-light text-sm leading-relaxed opacity-90">{v.desc}</p>
+                  <p className="text-blue-200 font-light text-sm leading-relaxed opacity-90">{v.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -267,7 +267,7 @@ const AboutUs = () => {
             custom={4}
             whileHover={{ scale: 1.01, boxShadow: "0 20px 40px rgba(0,0,0,0.04)" }}
           >
-            <Instagram className="w-10 h-10 mb-8 opacity-40 text-pink-400" />
+            <Instagram className="w-10 h-10 mb-8 opacity-40 text-blue-500" />
             <h3 className="text-2xl font-light mb-4" style={{ color: colors.textPrimary }}>Social Inspiration</h3>
             <p className="font-light mb-8 max-w-sm" style={{ color: colors.textSecondary }}>Explore our latest projects and behind-the-scenes content on Instagram and TikTok.</p>
             <div className="flex gap-4">
@@ -278,14 +278,14 @@ const AboutUs = () => {
 
           <motion.div
             className="p-12 text-center text-white flex flex-col items-center justify-center rounded-[2rem] shadow-xl"
-            style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #f472b6)` }}
+            style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
             variants={sectionVariants}
             custom={5}
             whileHover={{ scale: 1.01 }}
           >
             <MessageCircle className="w-10 h-10 mb-8 opacity-80" />
             <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-tighter">Direct Consultation</h3>
-            <p className="text-pink-100 font-light mb-8 max-w-sm opacity-90">Message Abdullah directly on WhatsApp for personalized quotes and design discussions.</p>
+            <p className="text-blue-200 font-light mb-8 max-w-sm opacity-90">Message Abdullah directly on WhatsApp for personalized quotes and design discussions.</p>
             <a href={salonDetails.whatsapp} className="px-10 py-5 bg-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-gray-50 transition-all flex items-center gap-3 rounded-full hover:shadow-lg" style={{ color: colors.accent }}>
               <Phone className="w-4 h-4" /> Direct Console
             </a>

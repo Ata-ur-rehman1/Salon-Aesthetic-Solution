@@ -45,17 +45,17 @@ const ProductDetails = () => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -238,7 +238,7 @@ const ProductDetails = () => {
         </motion.p>
         <motion.button
           onClick={() => window.location.reload()}
-          className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-pink-500 hover:border-pink-500 hover:text-white transition-colors"
+          className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors"
           style={{ borderColor: colors.accent, color: colors.accent }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -337,7 +337,7 @@ const ProductDetails = () => {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   onLoad={() => setImageLoaded(true)}
                 />
-                <div className="absolute inset-0 bg-pink-500/0 group-hover:bg-pink-500/10 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-colors duration-500" />
 
                 <div className="absolute top-6 left-6 flex flex-col gap-3">
                   {product.countInStock > 0 ? (
@@ -383,7 +383,7 @@ const ProductDetails = () => {
                       onClick={() => setSelectedImage(img)}
                       className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[16px] overflow-hidden border-2 transition-all duration-300 ${
                         (selectedImage || product.image) === img 
-                          ? 'border-pink-500 scale-105 shadow-md' 
+                          ? 'border-blue-600 scale-105 shadow-md' 
                           : 'border-transparent opacity-70 hover:opacity-100 hover:scale-105'
                       }`}
                     >
@@ -467,7 +467,7 @@ const ProductDetails = () => {
 
                       <button
                         onClick={addToCartHandler}
-                        className="w-full sm:flex-1 h-14 text-white rounded-full font-bold uppercase tracking-[0.2em] text-[11px] shadow-xl transition-all duration-300 flex items-center justify-center gap-3 hover:-translate-y-1 hover:shadow-pink-500/30 active:scale-[0.98]"
+                        className="w-full sm:flex-1 h-14 text-white rounded-full font-bold uppercase tracking-[0.2em] text-[11px] shadow-xl transition-all duration-300 flex items-center justify-center gap-3 hover:-translate-y-1 hover:shadow-blue-600/30 active:scale-[0.98]"
                         style={{ background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentDeep} 100%)` }}
                       >
                         <FiShoppingCart size={16} />
@@ -508,7 +508,7 @@ const ProductDetails = () => {
           {/* Specifications Section */}
           <div className="mt-24 pt-24 border-t relative" style={{ borderColor: colors.border }}>
             {/* Subtle background element for the whole section */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-pink-50/50 rounded-full blur-[100px] pointer-events-none -translate-y-1/2" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-[100px] pointer-events-none -translate-y-1/2" />
 
             <div className="flex flex-col md:flex-row gap-16 lg:gap-24 relative z-10">
               <div className="md:w-1/3 relative">
@@ -521,22 +521,22 @@ const ProductDetails = () => {
                     <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border mb-8 shadow-sm bg-white/80 backdrop-blur-md"
                       style={{ borderColor: colors.border }}>
                       <div className="relative flex items-center justify-center">
-                        <span className="absolute w-3 h-3 rounded-full bg-pink-400 animate-ping opacity-40" />
-                        <span className="relative w-1.5 h-1.5 rounded-full bg-pink-500" />
+                        <span className="absolute w-3 h-3 rounded-full bg-blue-500 animate-ping opacity-40" />
+                        <span className="relative w-1.5 h-1.5 rounded-full bg-blue-600" />
                       </div>
-                      <span className="text-pink-600 font-extrabold tracking-[0.3em] uppercase text-[9px]">
+                      <span className="text-blue-700 font-extrabold tracking-[0.3em] uppercase text-[9px]">
                         Engineering
                       </span>
                     </div>
 
                     <h2 className="text-5xl lg:text-[64px] font-light tracking-tight mb-8 leading-[1.1]" style={{ color: colors.textPrimary }}>
                       Technical<br />
-                      <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-400">
+                      <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-rose-400">
                         Specifications
                       </span>
                     </h2>
 
-                    <div className="w-12 h-1 bg-gradient-to-r from-pink-400 to-rose-300 rounded-full mb-8" />
+                    <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-rose-300 rounded-full mb-8" />
 
                     <p className="text-base leading-relaxed max-w-sm font-light" style={{ color: colors.textSecondary }}>
                       Discover the meticulous craftsmanship and precision engineering that makes this piece a cornerstone of any high-end saloon environment. Every detail is optimized for professional performance and enduring luxury.
@@ -572,8 +572,8 @@ const ProductDetails = () => {
                             >
                               <th className="block md:table-cell py-5 md:py-8 px-6 md:px-12 align-top md:w-2/5 font-normal pb-2 md:pb-8">
                                 <div className="flex items-center gap-4">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-pink-200 group-hover:scale-150 group-hover:bg-rose-400 transition-all duration-500 shadow-sm shrink-0" />
-                                  <span className="text-[10px] md:text-[11px] uppercase font-bold tracking-[0.25em] transition-colors duration-500 group-hover:text-pink-600 leading-tight"
+                                  <div className="w-1.5 h-1.5 rounded-full bg-blue-300 group-hover:scale-150 group-hover:bg-rose-400 transition-all duration-500 shadow-sm shrink-0" />
+                                  <span className="text-[10px] md:text-[11px] uppercase font-bold tracking-[0.25em] transition-colors duration-500 group-hover:text-blue-700 leading-tight"
                                     style={{ color: colors.textSecondary }}>
                                     {product[nameKey]}
                                   </span>
@@ -600,9 +600,9 @@ const ProductDetails = () => {
           <div className="mt-16 pt-16 border-t" style={{ borderColor: colors.border }}>
             <div className="flex flex-col lg:flex-row gap-20">
               <div className="lg:w-1/3 space-y-8">
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-pink-50 border border-pink-100 shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
-                  <span className="text-pink-600 font-bold tracking-[0.25em] uppercase text-[9px]">
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                  <span className="text-blue-700 font-bold tracking-[0.25em] uppercase text-[9px]">
                     Verified Ratings
                   </span>
                 </div>

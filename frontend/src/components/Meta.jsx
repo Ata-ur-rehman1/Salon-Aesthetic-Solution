@@ -9,9 +9,9 @@ const Meta = ({ title, description, keywords }) => {
       <meta name="keyword" content={keywords} />
 
       {/* Favicons */}
-      <link rel="icon" type="image/png" href="/saloon-logo.png?v=5" />
-      <link rel="shortcut icon" href="/saloon-logo.png?v=5" type="image/png" />
-      <link rel="apple-touch-icon" href="/saloon-logo.png?v=5" />
+      <link rel="icon" type="image/png" href="/logo.png?v=6" />
+      <link rel="shortcut icon" href="/logo.png?v=6" type="image/png" />
+      <link rel="apple-touch-icon" href="/logo.png?v=6" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />

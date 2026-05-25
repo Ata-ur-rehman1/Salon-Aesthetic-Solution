@@ -15,17 +15,17 @@ const ContactUs = () => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -184,7 +184,7 @@ const ContactUs = () => {
             className={`${getTextSize('text-3xl', 'text-5xl', 'text-7xl')} font-light tracking-tighter leading-tight mb-8`}
             style={{ color: colors.textPrimary, letterSpacing: '-0.02em' }}
           >
-            Connect With <span className="text-pink-500 font-serif italic">Saloon Interior</span>
+            Connect With <span className="text-blue-600 font-serif italic">Saloon Interior</span>
           </motion.h1>
           <motion.div
             className="h-1 w-12 md:w-24 mx-auto mb-10"
@@ -216,11 +216,11 @@ const ContactUs = () => {
                   custom={index + 2}
                 >
                   <div className="flex items-start gap-6">
-                    <div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all text-pink-500" style={{ borderColor: colors.border }}>
+                    <div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all text-blue-600" style={{ borderColor: colors.border }}>
                       <span className="text-xs font-bold">0{index + 1}</span>
                     </div>
                     <div>
-                      <h4 className="text-lg md:text-xl font-light mb-3 group-hover:translate-x-1 transition-transform tracking-tight text-pink-500">{item.q}</h4>
+                      <h4 className="text-lg md:text-xl font-light mb-3 group-hover:translate-x-1 transition-transform tracking-tight text-blue-600">{item.q}</h4>
                       <p className="leading-relaxed font-light opacity-80" style={{ color: colors.textSecondary }}>{item.a}</p>
                     </div>
                   </div>
@@ -230,18 +230,18 @@ const ContactUs = () => {
 
             <motion.div
               className="mt-12 p-8 text-white rounded-[2rem] text-center shadow-xl relative overflow-hidden"
-              style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #f472b6)` }}
+              style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
               whileHover={{ scale: 1.02 }}
             >
               <h4 className="text-lg font-light mb-4 relative z-10">Still have questions?</h4>
-              <p className="text-pink-100 text-sm mb-8 font-light leading-relaxed relative z-10">
+              <p className="text-blue-200 text-sm mb-8 font-light leading-relaxed relative z-10">
                 Connect with us on WhatsApp for faster response times and direct consultation.
               </p>
               <a
                 href={contactInfo.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-5 bg-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-pink-50 transition-colors rounded-full relative z-10 shadow-lg"
+                className="inline-flex items-center gap-3 px-8 py-5 bg-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-blue-50 transition-colors rounded-full relative z-10 shadow-lg"
                 style={{ color: colors.accent }}
               >
                 <MessageCircle className="w-4 h-4" /> Direct Console
@@ -259,7 +259,7 @@ const ContactUs = () => {
                 whileHover="hover"
               >
                 <div className="p-12 text-center">
-                  <Award className="w-12 h-12 mx-auto mb-8 opacity-40 text-pink-400" />
+                  <Award className="w-12 h-12 mx-auto mb-8 opacity-40 text-blue-500" />
                   <h2 className="text-3xl font-light mb-6 tracking-tight" style={{ color: colors.textPrimary }}>Our Digital Studio</h2>
                   <p className="mb-12 font-light leading-relaxed" style={{ color: colors.textSecondary }}>
                     Follow our latest saloon interior projects, design inspirations, and client transformations on social media.
@@ -281,7 +281,7 @@ const ContactUs = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3 p-5 text-white font-bold text-[10px] uppercase tracking-widest transition-all rounded-full"
-                      style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #f472b6)` }}
+                      style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
                       whileHover={{ y: -2, opacity: 0.9 }}
                     >
                       TikTok

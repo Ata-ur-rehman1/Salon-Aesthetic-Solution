@@ -24,17 +24,17 @@ const HeadWashUnit = ({ categoryId }) => {
     textPrimary: "#111827",
     textSecondary: "#6b7280",
     textTertiary: "#9ca3af",
-    accent: "#ec4899", // Primary Pink
-    accentLight: "#fce7f3",
-    accentDeep: "#be185d",
+    accent: "#2563eb", // Primary Pink
+    accentLight: "#dbeafe",
+    accentDeep: "#1d4ed8",
     roseGold: "#b76e79", // Elegant rose gold
     roseGoldLight: "#e0bfb8",
-    border: "rgba(252, 231, 243, 0.8)",
+    border: "rgba(219, 234, 254, 0.8)",
     glass: "rgba(255, 255, 255, 0.85)",
-    ultraShadow: "0 40px 80px -15px rgba(236, 72, 153, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
-    softShadow: "0 15px 35px -5px rgba(236, 72, 153, 0.08)",
+    ultraShadow: "0 40px 80px -15px rgba(37, 99, 235, 0.15), 0 20px 40px -20px rgba(0, 0, 0, 0.1)",
+    softShadow: "0 15px 35px -5px rgba(37, 99, 235, 0.08)",
     surface: "#ffffff",
-    surfaceHover: "#fdf2f8",
+    surfaceHover: "#eff6ff",
     success: "#10b981",
     error: "#ef4444"
   };
@@ -96,7 +96,7 @@ const HeadWashUnit = ({ categoryId }) => {
               Head Wash Units
             </h1>
             <motion.div
-              className="h-1 w-12 md:w-24 bg-pink-500 mx-auto mt-6" style={{ opacity: 0.8 }}
+              className="h-1 w-12 md:w-24 bg-blue-600 mx-auto mt-6" style={{ opacity: 0.8 }}
             />
           </motion.div>
         </div>
@@ -107,7 +107,7 @@ const HeadWashUnit = ({ categoryId }) => {
         {error ? (
           <div className="text-center py-16 sm:py-24">
             <div className="inline-flex items-center gap-3 px-6 py-4 border rounded-lg" style={{ borderColor: colors.border }}>
-              <div className="w-3 h-3 rounded-full bg-pink-500 opacity-80"></div>
+              <div className="w-3 h-3 rounded-full bg-blue-600 opacity-80"></div>
               <p className="text-sm" style={{ color: colors.textSecondary }}>{error}</p>
             </div>
           </div>
@@ -242,7 +242,7 @@ const HeadWashUnit = ({ categoryId }) => {
                         </span>
                         <motion.button
                           onClick={() => addToCartHandler(product)}
-                          className="flex items-center gap-2 px-3 py-2 bg-pink-500 text-white text-xs uppercase tracking-widest whitespace-nowrap border-none hover:bg-pink-600 transition-all shadow-lg" style={{ backgroundImage: 'linear-gradient(135deg, #ec4899, #f472b6)', boxShadow: '0 4px 14px 0 rgba(236, 72, 153, 0.39)' }}
+                          className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white text-xs uppercase tracking-widest whitespace-nowrap border-none hover:bg-blue-700 transition-all shadow-lg" style={{ backgroundImage: 'linear-gradient(135deg, #2563eb, #38bdf8)', boxShadow: '0 4px 14px 0 rgba(37, 99, 235, 0.39)' }}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
@@ -294,7 +294,7 @@ const HeadWashUnit = ({ categoryId }) => {
                     borderColor: colors.border
                   }}>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-pink-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-blue-600"></div>
                     <span className="text-xs uppercase tracking-[0.2em] font-medium"
                       style={{ color: colors.textSecondary }}>
                       Showing {products.length} Professional Head Wash Units

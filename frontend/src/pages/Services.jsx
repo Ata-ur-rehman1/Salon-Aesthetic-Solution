@@ -9,7 +9,7 @@ const colors = {
   textPrimary: "#333333",     // Soft dark gray
   textSecondary: "#888888",   // Lighter gray
   textTertiary: "#999999",
-  accent: "#ec4899",          // Beautiful Pink (Tailwind pink-500)
+  accent: "#2563eb",          // Beautiful Pink (Tailwind blue-600)
   border: "#f3f4f6",          // Neutral light gray borders
   surface: "#fafafa",         // Neutral surface
   surfaceHover: "#f5f5f5",    // Light gray hover state
@@ -294,7 +294,7 @@ const TabletServices = memo(() => {
           >
             <motion.div
               className="absolute top-0 right-0 text-white text-[8px] tracking-[0.2em] px-3 py-1.5 uppercase"
-              style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #f472b6)` }}
+              style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
@@ -603,7 +603,7 @@ const DesktopServices = memo(() => {
           >
             <motion.div
               className="absolute top-0 right-0 text-white text-[8px] tracking-[0.3em] px-4 py-2 uppercase"
-              style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #f472b6)` }}
+              style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, type: "spring" }}

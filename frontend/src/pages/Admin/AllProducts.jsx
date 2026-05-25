@@ -15,11 +15,11 @@ const AllProducts = () => {
     background: "#ffffff",      // Pure white
     textPrimary: "#333333",     // Soft dark gray
     textSecondary: "#888888",   // Lighter gray
-    accent: "#ec4899",          // Beautiful Pink (Tailwind pink-500)
-    border: "#fce7f3",          // Very light pink borders
-    surface: "#fdf2f8",         // Surface pink
-    surfaceHover: "#fdf2f8",    // Light pink hover state
-    shadow: "rgba(236, 72, 153, 0.1)", // Soft pink shadow
+    accent: "#2563eb",          // Beautiful Pink (Tailwind blue-600)
+    border: "#dbeafe",          // Very light pink borders
+    surface: "#eff6ff",         // Surface pink
+    surfaceHover: "#eff6ff",    // Light pink hover state
+    shadow: "rgba(37, 99, 235, 0.1)", // Soft pink shadow
     success: "#10b981"
   };
 
@@ -140,7 +140,7 @@ const AllProducts = () => {
           </motion.p>
           <motion.button
             onClick={() => window.location.reload()}
-            className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-pink-500 hover:text-white hover:border-pink-500 transition-colors"
+            className="px-6 py-3 text-xs uppercase tracking-wider font-medium border hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors"
             style={{ borderColor: colors.accent, color: colors.accent }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -206,7 +206,7 @@ const AllProducts = () => {
             Product Collection
           </motion.h1>
           <motion.div
-            className="h-1 w-12 md:w-24 bg-pink-500 mx-auto mt-6" style={{ opacity: 0.8 }}
+            className="h-1 w-12 md:w-24 bg-blue-600 mx-auto mt-6" style={{ opacity: 0.8 }}
           />
         </motion.div>
 

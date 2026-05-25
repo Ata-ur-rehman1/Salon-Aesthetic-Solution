@@ -26,7 +26,7 @@ function generateSignature(method: string, params: Record<string, string>): stri
   }
 
   // Common + Business params
-  const allParams = {
+  const allParams: Record<string, string> = {
     ...params,
     method,
     app_key: APP_KEY,
