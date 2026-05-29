@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useGetProductsQuery } from "../../redux/api/productApiSlice.js";
+import { useGetProductsQuery, useAllProductsQuery } from "../../redux/api/productApiSlice.js";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import { setCategories } from "../../redux/features/shop/shopSlice";
 import {
@@ -516,6 +516,14 @@ const EnhancedProductCard = ({ product, collectionTitle, index }) => {
     setRotate({ x: 0, y: 0 });
   };
 
+  // Resolve properties for both real-time database products and mock products
+  const route = product.route || `/product/${product._id}`;
+  const imageUrl = product.image || product.imageUrl;
+  const name = product.name || `Premium ${collectionTitle}`;
+  const description = product.description || "Professional grade equipment with premium finish and ergonomic design";
+  const price = product.price || (25000 + (product.id * 1234) % 50000);
+  const rating = (product.rating !== undefined && product.rating !== null) ? product.rating : 4.8;
+
   return (
     <motion.div
       ref={cardRef}
@@ -533,11 +541,11 @@ const EnhancedProductCard = ({ product, collectionTitle, index }) => {
     >
       <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-500">
         <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50/30">
-          <Link to={product.route}>
+          <Link to={route}>
             <img
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-              src={product.imageUrl}
-              alt={product.title}
+              src={imageUrl}
+              alt={name}
               loading={index < 4 ? "eager" : "lazy"}
             />
           </Link>
@@ -551,7 +559,7 @@ const EnhancedProductCard = ({ product, collectionTitle, index }) => {
 
           {/* Overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-4">
-            <Link to={product.route} className="px-4 py-2 bg-white rounded-full text-blue-600 text-sm font-medium shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+            <Link to={route} className="px-4 py-2 bg-white rounded-full text-blue-600 text-sm font-medium shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
               Quick View
             </Link>
           </div>
@@ -564,26 +572,26 @@ const EnhancedProductCard = ({ product, collectionTitle, index }) => {
             </span>
             <div className="flex items-center gap-1">
               <FaStar className="text-yellow-400 text-xs" />
-              <span className="text-xs text-gray-600">4.8</span>
+              <span className="text-xs text-gray-600">{rating}</span>
             </div>
           </div>
 
-          <h3 className="font-bold text-gray-800 mb-1 line-clamp-1">
-            Premium {collectionTitle}
+          <h3 className="font-bold text-gray-800 mb-1 line-clamp-1" title={name}>
+            {name}
           </h3>
 
-          <p className="text-gray-400 text-xs mb-3 line-clamp-2">
-            Professional grade equipment with premium finish and ergonomic design
+          <p className="text-gray-400 text-xs mb-3 line-clamp-2" title={description}>
+            {description}
           </p>
 
           <div className="flex items-center justify-between">
             <div>
               <span className="text-2xs text-gray-400">Starting from</span>
               <div className="text-lg font-bold text-gray-900">
-                Rs. {(25000 + (product.id * 1234) % 50000).toLocaleString()}
+                Rs. {price.toLocaleString()}
               </div>
             </div>
-            <Link to={product.route} className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors">
+            <Link to={route} className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors">
               Shop <FaArrowRight className="text-xs" />
             </Link>
           </div>
@@ -829,6 +837,7 @@ const PowerfulCTA = () => {
 const CategoryProducts = () => {
   const { keyword } = useParams();
   const { isLoading, isError, error } = useGetProductsQuery({ keyword });
+  const { data: realTimeProducts, isLoading: productsLoading } = useAllProductsQuery();
   const dispatch = useDispatch();
   const categoriesQuery = useFetchCategoriesQuery();
 
@@ -838,53 +847,143 @@ const CategoryProducts = () => {
     }
   }, [categoriesQuery.data, dispatch]);
 
+  // Premium fallback mock collections to ensure at least 6 products in each category
+  const mockChairs = [
+    { id: 1, imageUrl: Chairs5, route: "/chairs", name: "Premium Salon Chair", price: 35000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 2, imageUrl: Chairs3, route: "/chairs", name: "Executive Styling Chair", price: 38000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 3, imageUrl: Chairs6, route: "/chairs", name: "Luxury Reclining Chair", price: 42000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 4, imageUrl: Chairs2, route: "/chairs", name: "Ergonomic Cutting Chair", price: 32000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 5, imageUrl: Chairs1, route: "/chairs", name: "Classic Barber Chair", price: 29000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 6, imageUrl: Chairs6, route: "/chairs", name: "Pro Hydraulic Chair", price: 45000, description: "Professional grade equipment with premium finish and ergonomic design" }
+  ];
+
+  const mockMassageBeds = [
+    { id: 7, imageUrl: Massage3, route: "/massage-bed", name: "Therapeutic Massage Bed", price: 65000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 8, imageUrl: Massage5, route: "/massage-bed", name: "Deluxe Spa Massage Bed", price: 72000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 6, imageUrl: Massage1, route: "/massage-bed", name: "Classic Facial Bed", price: 58000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 5, imageUrl: Massage2, route: "/massage-bed", name: "Portable Folding Bed", price: 49000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 9, imageUrl: Massage4, route: "/massage-bed", name: "Adjustable Electric Bed", price: 85000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 10, imageUrl: Massage6, route: "/massage-bed", name: "Ultra-Luxury Wellness Bed", price: 92000, description: "Professional grade equipment with premium finish and ergonomic design" }
+  ];
+
+  const mockHeadWashUnits = [
+    { id: 9, imageUrl: HeadWashUnit2, route: "/head-wash-unit", name: "Ergonomic Head Wash Unit", price: 75000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 10, imageUrl: HeadWashUnit4, route: "/head-wash-unit", name: "Luxury Backwash System", price: 82000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 11, imageUrl: HeadWashUnit5, route: "/head-wash-unit", name: "Premium Shampoo Chair", price: 68000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 12, imageUrl: HeadWashUnit3, route: "/head-wash-unit", name: "Classic Wash Station", price: 79000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 13, imageUrl: HeadWashUnit6, route: "/head-wash-unit", name: "Deluxe Hydro-Therapy Unit", price: 88000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 14, imageUrl: HeadWashUnit1, route: "/head-wash-unit", name: "Comfort Backwash Station", price: 72000, description: "Professional grade equipment with premium finish and ergonomic design" }
+  ];
+
+  const mockManicurePedicure = [
+    { id: 23, imageUrl: ManicurePedicure1, route: "/menicure-pedicure", name: "Premium Manicure Station", price: 85000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 24, imageUrl: ManicurePedicure2, route: "/menicure-pedicure", name: "Sleek Pedicure Spa Setup", price: 92000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 25, imageUrl: ManicurePedicure6, route: "/menicure-pedicure", name: "Luxury Nail Tech Table", price: 78000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 26, imageUrl: ManicurePedicure5, route: "/menicure-pedicure", name: "Comfort Pedicure Lounge", price: 88000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 27, imageUrl: ManicurePedicure1, route: "/menicure-pedicure", name: "Dual-Sided Manicure Table", price: 95000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 28, imageUrl: ManicurePedicure2, route: "/menicure-pedicure", name: "Premium Foot Bath Sofa", price: 89000, description: "Professional grade equipment with premium finish and ergonomic design" }
+  ];
+
+  const mockTrolleys = [
+    { id: 31, imageUrl: Trolleys5, route: "/trolleys", name: "Premium Salon Trolley", price: 18000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 32, imageUrl: Trolleys2, route: "/trolleys", name: "Mobile Storage Cart", price: 19500, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 33, imageUrl: Trolleys4, route: "/trolleys", name: "Sleek Utility Organizer", price: 16500, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 34, imageUrl: Trolleys1, route: "/trolleys", name: "Lockable Equipment Trolley", price: 15000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 35, imageUrl: Trolleys3, route: "/trolleys", name: "Compact Beauty Cart", price: 17500, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 36, imageUrl: Trolley6, route: "/trolleys", name: "Metal-Frame Heavy Duty Trolley", price: 21000, description: "Professional grade equipment with premium finish and ergonomic design" }
+  ];
+
+  const mockHydraMachines = [
+    { id: 41, imageUrl: HydraMachines1, route: "/hydra-machines", name: "Premium Hydra Skincare Machine", price: 120000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 42, imageUrl: HydraMachines2, route: "/hydra-machines", name: "Multi-Function Facial System", price: 135000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 43, imageUrl: HydraMachines4, route: "/hydra-machines", name: "Advanced Skincare Processor", price: 110000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 44, imageUrl: HydraMachines5, route: "/hydra-machines", name: "Hydro-Dermabrasion Machine", price: 145000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 45, imageUrl: HydraMachines3, route: "/hydra-machines", name: "Professional Glow Machine", price: 125000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 46, imageUrl: HydraMachines6, route: "/hydra-machines", name: "Ultimate Spa Hydra System", price: 155000, description: "Professional grade equipment with premium finish and ergonomic design" }
+  ];
+
+  const mockElectronicEquipment = [
+    { id: 51, imageUrl: ElectronicEquipment1, route: "/electronic-equipment", name: "Premium Hair Steamer", price: 45000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 52, imageUrl: ElectronicEquipment2, route: "/electronic-equipment", name: "Electronic Sterilizer Unit", price: 55000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 53, imageUrl: ElectronicEquipment3, route: "/electronic-equipment", name: "Multi-Functional Hair Dryer", price: 38000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 54, imageUrl: ElectronicEquipment4, route: "/electronic-equipment", name: "Digital Hot Towel Cabinet", price: 49000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 55, imageUrl: ElectronicEquipment1, route: "/electronic-equipment", name: "Infrared Hair Processor", price: 42000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 56, imageUrl: ElectronicEquipment2, route: "/electronic-equipment", name: "Pro UV Sanitizer System", price: 58000, description: "Professional grade equipment with premium finish and ergonomic design" }
+  ];
+
+  // Helper to extract category name from a product
+  const getProductCategoryName = (product, categoriesList) => {
+    if (!product.category) return "";
+    if (typeof product.category === "object" && product.category.name) {
+      return product.category.name.toLowerCase();
+    }
+    const categoryId = product.category.toString();
+    const matchedCat = categoriesList?.find(c => c._id.toString() === categoryId);
+    return matchedCat ? matchedCat.name.toLowerCase() : "";
+  };
+
+  // Group real-time database products dynamically
+  const groupedRealTimeProducts = {
+    chairs: [],
+    massageBeds: [],
+    headWashUnits: [],
+    manicurePedicure: [],
+    trolleys: [],
+    hydraMachines: [],
+    electronicEquipment: []
+  };
+
+  if (realTimeProducts) {
+    realTimeProducts.forEach(product => {
+      const catName = getProductCategoryName(product, categoriesQuery.data);
+      const prodName = product.name ? product.name.toLowerCase() : "";
+
+      if (catName.includes("massage") || catName.includes("bed") || prodName.includes("massage") || prodName.includes("bed")) {
+        groupedRealTimeProducts.massageBeds.push(product);
+      } else if (catName.includes("chair") || catName.includes("stool") || catName.includes("seat") || prodName.includes("chair") || prodName.includes("stool")) {
+        groupedRealTimeProducts.chairs.push(product);
+      } else if (catName.includes("hydra") || catName.includes("facial") || catName.includes("machine") || prodName.includes("hydra") || prodName.includes("machine")) {
+        groupedRealTimeProducts.hydraMachines.push(product);
+      } else if (catName.includes("head") || catName.includes("wash") || catName.includes("shampoo") || prodName.includes("head wash") || prodName.includes("shampoo")) {
+        groupedRealTimeProducts.headWashUnits.push(product);
+      } else if (catName.includes("manicure") || catName.includes("pedicure") || catName.includes("nail") || catName.includes("sofa") || prodName.includes("manicure") || prodName.includes("pedicure") || prodName.includes("nail")) {
+        groupedRealTimeProducts.manicurePedicure.push(product);
+      } else if (catName.includes("trolley") || catName.includes("cart") || prodName.includes("trolley") || prodName.includes("cart")) {
+        groupedRealTimeProducts.trolleys.push(product);
+      } else if (catName.includes("electronic") || catName.includes("appliance") || catName.includes("steamer") || prodName.includes("electronic") || prodName.includes("steamer")) {
+        groupedRealTimeProducts.electronicEquipment.push(product);
+      }
+    });
+  }
+
+  // Combine real-time database products with fallbacks, ensuring at least 6 products in each collection
+  // and forcing all product routes to map directly to their category page
+  const combineWithFallback = (realProducts, mockProducts, categoryRoute) => {
+    const realMapped = (realProducts || []).map(p => ({
+      ...p,
+      route: categoryRoute
+    }));
+    const mockMapped = (mockProducts || []).map(p => ({
+      ...p,
+      route: categoryRoute
+    }));
+
+    const list = [...realMapped];
+    if (list.length >= 6) {
+      return list;
+    }
+    const needed = 6 - list.length;
+    return [...list, ...mockMapped.slice(0, needed)];
+  };
+
   const salonEquipmentCollections = {
-    chairs: [
-      { id: 1, imageUrl: Chairs5, route: "/chairs" },
-      { id: 2, imageUrl: Chairs3, route: "/chairs" },
-      { id: 3, imageUrl: Chairs6, route: "/chairs" },
-      { id: 4, imageUrl: Chairs2, route: "/chairs" },
-      { id: 5, imageUrl: Chairs1, route: "/chairs" },
-    ],
-    massageBeds: [
-      { id: 7, imageUrl: Massage3, route: "/massage-bed" },
-      { id: 8, imageUrl: Massage5, route: "/massage-bed" },
-      { id: 6, imageUrl: Massage1, route: "/massage-bed" },
-      { id: 5, imageUrl: Massage2, route: "/massage-bed" },
-      { id: 9, imageUrl: Massage4, route: "/massage-bed" },
-    ],
-    headWashUnits: [
-      { id: 9, imageUrl: HeadWashUnit2, route: "/head-wash-unit" },
-      { id: 10, imageUrl: HeadWashUnit4, route: "/head-wash-unit" },
-      { id: 11, imageUrl: HeadWashUnit5, route: "/head-wash-unit" },
-      { id: 12, imageUrl: HeadWashUnit3, route: "/head-wash-unit" },
-      { id: 13, imageUrl: HeadWashUnit6, route: "/head-wash-unit" },
-    ],
-    manicurePedicure: [
-      { id: 23, imageUrl: ManicurePedicure1, route: "/menicure-pedicure" },
-      { id: 24, imageUrl: ManicurePedicure2, route: "/menicure-pedicure" },
-      { id: 25, imageUrl: ManicurePedicure6, route: "/menicure-pedicure" },
-      { id: 26, imageUrl: ManicurePedicure5, route: "/menicure-pedicure" },
-    ],
-    trolleys: [
-      { id: 31, imageUrl: Trolleys5, route: "/trolleys" },
-      { id: 32, imageUrl: Trolleys2, route: "/trolleys" },
-      { id: 33, imageUrl: Trolleys4, route: "/trolleys" },
-      { id: 34, imageUrl: Trolleys1, route: "/trolleys" },
-      { id: 35, imageUrl: Trolleys3, route: "/trolleys" },
-    ],
-    hydraMachines: [
-      { id: 41, imageUrl: HydraMachines1, route: "/hydra-machines" },
-      { id: 42, imageUrl: HydraMachines2, route: "/hydra-machines" },
-      { id: 43, imageUrl: HydraMachines4, route: "/hydra-machines" },
-      { id: 44, imageUrl: HydraMachines5, route: "/hydra-machines" },
-    ],
-    electronicEquipment: [
-      { id: 51, imageUrl: ElectronicEquipment1, route: "/electronic-equipment" },
-      { id: 52, imageUrl: ElectronicEquipment2, route: "/electronic-equipment" },
-      { id: 53, imageUrl: ElectronicEquipment3, route: "/electronic-equipment" },
-      { id: 54, imageUrl: ElectronicEquipment4, route: "/electronic-equipment" },
-    ],
+    chairs: combineWithFallback(groupedRealTimeProducts.chairs, mockChairs, "/chairs"),
+    massageBeds: combineWithFallback(groupedRealTimeProducts.massageBeds, mockMassageBeds, "/massage-bed"),
+    headWashUnits: combineWithFallback(groupedRealTimeProducts.headWashUnits, mockHeadWashUnits, "/head-wash-unit"),
+    manicurePedicure: combineWithFallback(groupedRealTimeProducts.manicurePedicure, mockManicurePedicure, "/menicure-pedicure"),
+    trolleys: combineWithFallback(groupedRealTimeProducts.trolleys, mockTrolleys, "/trolleys"),
+    hydraMachines: combineWithFallback(groupedRealTimeProducts.hydraMachines, mockHydraMachines, "/hydra-machines"),
+    electronicEquipment: combineWithFallback(groupedRealTimeProducts.electronicEquipment, mockElectronicEquipment, "/electronic-equipment"),
   };
 
   return (
