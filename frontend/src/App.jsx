@@ -1,15 +1,17 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import TopTicker from "./components/TopTicker";
-import Navigation from "./pages/Auth/Navigation";
+import Navigation from "./components/Navigation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import Services from "./pages/Services";
+
 const App = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col bg-white">
       <TopTicker />
+      <Navigation />
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -24,19 +26,10 @@ const App = () => {
         toastClassName="text-white"
         progressClassName="bg-gradient-to-r from-black to-white"
       />
-      <div className="relative mx-auto overflow-hidden mt-[85px] md:mt-[125px]">
-        <div className="w-full h-full overflow-y-auto scroll-smooth">
-          <div id="main-content-wrapper" className="relative z-10 transition-all duration-500">
-
-            <Navigation
-              className="sticky top-[35px] z-40 backdrop-blur-md bg-black/30 border-b border-cyan-500/20"
-            />
-
-            <main className="py-6 lg:py-8">
-              <Outlet />
-            </main>
-          </div>
-        </div>
+      <div id="main-content-wrapper" className="flex-grow mt-[85px] md:mt-[125px] transition-all duration-500 flex flex-col">
+        <main className="flex-grow py-6 lg:py-8">
+          <Outlet />
+        </main>
       </div>
       <Services />
     </div>
