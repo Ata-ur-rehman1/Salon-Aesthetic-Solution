@@ -847,14 +847,15 @@ const CategoryProducts = () => {
     }
   }, [categoriesQuery.data, dispatch]);
 
-  // Premium fallback mock collections to ensure at least 6 products in each category
+  // Premium fallback mock collections to ensure at least 7 products in each category
   const mockChairs = [
     { id: 1, imageUrl: Chairs5, route: "/chairs", name: "Premium Salon Chair", price: 35000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 2, imageUrl: Chairs3, route: "/chairs", name: "Executive Styling Chair", price: 38000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 3, imageUrl: Chairs6, route: "/chairs", name: "Luxury Reclining Chair", price: 42000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 4, imageUrl: Chairs2, route: "/chairs", name: "Ergonomic Cutting Chair", price: 32000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 5, imageUrl: Chairs1, route: "/chairs", name: "Classic Barber Chair", price: 29000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 6, imageUrl: Chairs6, route: "/chairs", name: "Pro Hydraulic Chair", price: 45000, description: "Professional grade equipment with premium finish and ergonomic design" }
+    { id: 6, imageUrl: Chairs6, route: "/chairs", name: "Pro Hydraulic Chair", price: 45000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 7, imageUrl: Chairs5, route: "/chairs", name: "VIP Recliner Styling Chair", price: 52000, description: "Professional grade equipment with premium finish and ergonomic design" }
   ];
 
   const mockMassageBeds = [
@@ -863,7 +864,8 @@ const CategoryProducts = () => {
     { id: 6, imageUrl: Massage1, route: "/massage-bed", name: "Classic Facial Bed", price: 58000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 5, imageUrl: Massage2, route: "/massage-bed", name: "Portable Folding Bed", price: 49000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 9, imageUrl: Massage4, route: "/massage-bed", name: "Adjustable Electric Bed", price: 85000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 10, imageUrl: Massage6, route: "/massage-bed", name: "Ultra-Luxury Wellness Bed", price: 92000, description: "Professional grade equipment with premium finish and ergonomic design" }
+    { id: 10, imageUrl: Massage6, route: "/massage-bed", name: "Ultra-Luxury Wellness Bed", price: 92000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 11, imageUrl: Massage3, route: "/massage-bed", name: "Pro Heated Therapy Bed", price: 98000, description: "Professional grade equipment with premium finish and ergonomic design" }
   ];
 
   const mockHeadWashUnits = [
@@ -872,7 +874,8 @@ const CategoryProducts = () => {
     { id: 11, imageUrl: HeadWashUnit5, route: "/head-wash-unit", name: "Premium Shampoo Chair", price: 68000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 12, imageUrl: HeadWashUnit3, route: "/head-wash-unit", name: "Classic Wash Station", price: 79000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 13, imageUrl: HeadWashUnit6, route: "/head-wash-unit", name: "Deluxe Hydro-Therapy Unit", price: 88000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 14, imageUrl: HeadWashUnit1, route: "/head-wash-unit", name: "Comfort Backwash Station", price: 72000, description: "Professional grade equipment with premium finish and ergonomic design" }
+    { id: 14, imageUrl: HeadWashUnit1, route: "/head-wash-unit", name: "Comfort Backwash Station", price: 72000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 15, imageUrl: HeadWashUnit2, route: "/head-wash-unit", name: "Royal Spa Wash Unit", price: 95000, description: "Professional grade equipment with premium finish and ergonomic design" }
   ];
 
   const mockManicurePedicure = [
@@ -881,7 +884,8 @@ const CategoryProducts = () => {
     { id: 25, imageUrl: ManicurePedicure6, route: "/menicure-pedicure", name: "Luxury Nail Tech Table", price: 78000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 26, imageUrl: ManicurePedicure5, route: "/menicure-pedicure", name: "Comfort Pedicure Lounge", price: 88000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 27, imageUrl: ManicurePedicure1, route: "/menicure-pedicure", name: "Dual-Sided Manicure Table", price: 95000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 28, imageUrl: ManicurePedicure2, route: "/menicure-pedicure", name: "Premium Foot Bath Sofa", price: 89000, description: "Professional grade equipment with premium finish and ergonomic design" }
+    { id: 28, imageUrl: ManicurePedicure2, route: "/menicure-pedicure", name: "Premium Foot Bath Sofa", price: 89000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 29, imageUrl: ManicurePedicure6, route: "/menicure-pedicure", name: "VIP Pedicure Throne Chair", price: 105000, description: "Professional grade equipment with premium finish and ergonomic design" }
   ];
 
   const mockTrolleys = [
@@ -890,7 +894,8 @@ const CategoryProducts = () => {
     { id: 33, imageUrl: Trolleys4, route: "/trolleys", name: "Sleek Utility Organizer", price: 16500, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 34, imageUrl: Trolleys1, route: "/trolleys", name: "Lockable Equipment Trolley", price: 15000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 35, imageUrl: Trolleys3, route: "/trolleys", name: "Compact Beauty Cart", price: 17500, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 36, imageUrl: Trolley6, route: "/trolleys", name: "Metal-Frame Heavy Duty Trolley", price: 21000, description: "Professional grade equipment with premium finish and ergonomic design" }
+    { id: 36, imageUrl: Trolley6, route: "/trolleys", name: "Metal-Frame Heavy Duty Trolley", price: 21000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 37, imageUrl: Trolleys5, route: "/trolleys", name: "Executive Aluminum Trolley", price: 23500, description: "Professional grade equipment with premium finish and ergonomic design" }
   ];
 
   const mockHydraMachines = [
@@ -899,7 +904,8 @@ const CategoryProducts = () => {
     { id: 43, imageUrl: HydraMachines4, route: "/hydra-machines", name: "Advanced Skincare Processor", price: 110000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 44, imageUrl: HydraMachines5, route: "/hydra-machines", name: "Hydro-Dermabrasion Machine", price: 145000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 45, imageUrl: HydraMachines3, route: "/hydra-machines", name: "Professional Glow Machine", price: 125000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 46, imageUrl: HydraMachines6, route: "/hydra-machines", name: "Ultimate Spa Hydra System", price: 155000, description: "Professional grade equipment with premium finish and ergonomic design" }
+    { id: 46, imageUrl: HydraMachines6, route: "/hydra-machines", name: "Ultimate Spa Hydra System", price: 155000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 47, imageUrl: HydraMachines1, route: "/hydra-machines", name: "Diamond Tip Infusion Machine", price: 168000, description: "Professional grade equipment with premium finish and ergonomic design" }
   ];
 
   const mockElectronicEquipment = [
@@ -908,7 +914,8 @@ const CategoryProducts = () => {
     { id: 53, imageUrl: ElectronicEquipment3, route: "/electronic-equipment", name: "Multi-Functional Hair Dryer", price: 38000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 54, imageUrl: ElectronicEquipment4, route: "/electronic-equipment", name: "Digital Hot Towel Cabinet", price: 49000, description: "Professional grade equipment with premium finish and ergonomic design" },
     { id: 55, imageUrl: ElectronicEquipment1, route: "/electronic-equipment", name: "Infrared Hair Processor", price: 42000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 56, imageUrl: ElectronicEquipment2, route: "/electronic-equipment", name: "Pro UV Sanitizer System", price: 58000, description: "Professional grade equipment with premium finish and ergonomic design" }
+    { id: 56, imageUrl: ElectronicEquipment2, route: "/electronic-equipment", name: "Pro UV Sanitizer System", price: 58000, description: "Professional grade equipment with premium finish and ergonomic design" },
+    { id: 57, imageUrl: ElectronicEquipment3, route: "/electronic-equipment", name: "Smart Hair Colour Processor", price: 62000, description: "Professional grade equipment with premium finish and ergonomic design" }
   ];
 
   // Helper to extract category name from a product
@@ -969,10 +976,10 @@ const CategoryProducts = () => {
     }));
 
     const list = [...realMapped];
-    if (list.length >= 6) {
+    if (list.length >= 7) {
       return list;
     }
-    const needed = 6 - list.length;
+    const needed = 7 - list.length;
     return [...list, ...mockMapped.slice(0, needed)];
   };
 
