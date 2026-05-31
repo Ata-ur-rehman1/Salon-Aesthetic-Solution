@@ -35,10 +35,11 @@ const app = express();
 // Single source of truth for allowed origins
 const allowedOrigins = [
   'https://ultra-e-store-salon-aesthetic-solution-com.vercel.app',
-  'https://store-abdullah-nadeem.vercel.app',
-  'https://salooninterior.com',
-  'http://localhost:3000', // For local development
-  'http://localhost:5000'  // For local development
+  'https://salon-aesthetic-solution.com',
+    'http://localhost:3000', // For local development (React dev server on some setups)
+  'http://localhost:5000', // For local development (if frontend served via backend)
+  'http://localhost:5173', // Vite dev server (default)
+  'http://127.0.0.1:5173'  // Vite on IPv4 loopback
 ];
 
 // CORS configuration - FIXED VERSION
