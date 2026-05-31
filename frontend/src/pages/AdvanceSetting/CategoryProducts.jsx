@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useGetProductsQuery, useAllProductsQuery } from "../../redux/api/productApiSlice.js";
+import { useAllProductsQuery } from "../../redux/api/productApiSlice.js";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
+import { useGetTotalOrdersQuery } from "../../redux/api/orderApiSlice";
 import { setCategories } from "../../redux/features/shop/shopSlice";
 import {
   FaChevronRight,
@@ -177,14 +178,7 @@ const PremiumFeatures = () => {
 };
 
 // Advanced Stats Section with Animations
-const AdvancedStats = () => {
-  const stats = [
-    { value: 5000, label: "Happy Clients", icon: <FaUsers />, suffix: "+" },
-    { value: 2500, label: "Projects Completed", icon: <FaGem />, suffix: "+" },
-    { value: 98, label: "Satisfaction Rate", icon: <FaSmile />, suffix: "%" },
-    { value: 15, label: "Years Excellence", icon: <FaTrophy />, suffix: "+" }
-  ];
-
+const AdvancedStats = ({ stats, loading }) => {
   return (
     <div className="relative py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 overflow-hidden">
       {/* Particle background */}
@@ -206,27 +200,37 @@ const AdvancedStats = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              className="text-center"
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
-            >
-              <div className="text-4xl text-blue-300 mb-3 flex justify-center">
-                {stat.icon}
-              </div>
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                <AnimatedCounter value={stat.value} />
-                {stat.suffix}
-              </div>
-              <div className="text-sm text-blue-200/80 tracking-wide">{stat.label}</div>
-            </motion.div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="py-20 text-center text-white">
+            <p className="text-lg">Loading live stats...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                className="text-center"
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
+              >
+                <div className="text-4xl text-blue-300 mb-3 flex justify-center">
+                  {stat.icon}
+                </div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                  {typeof stat.value === "number" ? (
+                    <AnimatedCounter value={stat.value} />
+                  ) : (
+                    stat.value
+                  )}
+                  {stat.suffix}
+                </div>
+                <div className="text-sm text-blue-200/80 tracking-wide">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
 
       <style jsx>{`
@@ -492,9 +496,8 @@ const PowerfulCTA = () => {
 };
 
 const CategoryProducts = () => {
-  const { keyword } = useParams();
-  const { isLoading, isError, error } = useGetProductsQuery({ keyword });
   const { data: realTimeProducts, isLoading: productsLoading } = useAllProductsQuery();
+  const { data: totalOrdersData, isLoading: ordersLoading } = useGetTotalOrdersQuery();
   const dispatch = useDispatch();
   const categoriesQuery = useFetchCategoriesQuery();
 
@@ -549,6 +552,22 @@ const CategoryProducts = () => {
     });
   }
 
+  const totalOrders = totalOrdersData?.totalOrders ?? 0;
+  const totalProducts = realTimeProducts?.length ?? 0;
+  const totalCategories = categoriesQuery.data?.length ?? 0;
+  const averageRating = totalProducts
+    ? (realTimeProducts.reduce((sum, product) => sum + (product.rating ?? 0), 0) / totalProducts).toFixed(1)
+    : 0;
+
+  const stats = [
+    { value: totalOrders, label: "Orders Completed", icon: <FaUsers />, suffix: "" },
+    { value: totalProducts, label: "Products Available", icon: <FaGem />, suffix: "" },
+    { value: averageRating ? `${averageRating}/5` : "N/A", label: "Avg Rating", icon: <FaSmile />, suffix: "" },
+    { value: totalCategories, label: "Categories", icon: <FaTrophy />, suffix: "" },
+  ];
+
+  const statsLoading = productsLoading || categoriesQuery.isLoading || ordersLoading;
+
   // Map real-time products with their category routes
   const mapWithRoute = (realProducts, categoryRoute) =>
     (realProducts || []).map(p => ({ ...p, route: categoryRoute }));
@@ -587,7 +606,7 @@ const CategoryProducts = () => {
       <PremiumFeatures />
 
       {/* Advanced Stats */}
-      <AdvancedStats />
+      <AdvancedStats stats={stats} loading={statsLoading} />
 
       {/* Products Collections from Database */}
       <main className="bg-white">

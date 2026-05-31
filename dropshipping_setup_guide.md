@@ -47,7 +47,7 @@ To enable the Antigravity agent to discover and invoke the AliExpress dropshippi
     "aliexpress-dropshipper": {
       "command": "node",
       "args": [
-        "c:/Users/Experttech.pk/Desktop/Salon Aesthetic Solution/aliexpress-mcp-server/build/index.js"
+        "backend/aliexpress-mcp-server/build/index.js"
       ],
       "env": {
         "ALIEXPRESS_APP_KEY": "your_aliexpress_app_key",
@@ -60,7 +60,7 @@ To enable the Antigravity agent to discover and invoke the AliExpress dropshippi
 ```
 
 > [!NOTE]
-> Make sure you run `npm run build` in the `aliexpress-mcp-server` directory before registering so the build files in `build/index.js` exist.
+> Make sure you run `npm run build` in the `backend/aliexpress-mcp-server` directory before registering so the build files in `build/index.js` exist.
 
 ---
 
