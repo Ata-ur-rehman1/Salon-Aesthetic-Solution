@@ -6,7 +6,7 @@
 // Prefer VITE_API_BASE_URL (baked at build time). If it's not set, fall back to
 // the known backend deployment so RTK Query (which reads these constants) and
 // code using `BASE_URL` will still contact the live backend.
-export const BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').trim();
+export const BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://store-salon-aesthetic-solution.vercel.app').trim();
 export const USERS_URL = `${BASE_URL}/api/users`;
 export const CATEGORY_URL = `${BASE_URL}/api/category`;
 export const PRODUCT_URL = `${BASE_URL}/api/products`;
