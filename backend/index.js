@@ -34,10 +34,10 @@ const app = express();
 // ==================== CORS FIX ====================
 // Single source of truth for allowed origins
 const allowedOrigins = [
-  'https://ultra-e-store-salon-aesthetic-solution-com.vercel.app',
+  'https://ultra-salon-aesthetic-solution.vercel.app',
   'https://salon-aesthetic-solution.com',
     'http://localhost:3000',
-  'http://localhost:5000', 
+  'http://localhost:5000',
   'http://localhost:5173', 
   'http://127.0.0.1:5173',
 ];
