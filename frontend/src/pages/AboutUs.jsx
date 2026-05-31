@@ -30,13 +30,14 @@ const AboutUs = () => {
   };
 
   const salonDetails = {
-    businessName: "Saloon Interior",
+    businessName: "Salon Aesthetic Solution",
     owner: "Abdullah Nadeem",
     location: "Lahore, Pakistan",
-    phone: "+92 370 1498826",
-    whatsapp: "https://wa.me/+923701498826",
-    instagram: "https://www.instagram.com/saloon_interior_?igsh=dnppeDIwMHFld3Vj",
-    tiktok: "https://www.tiktok.com/@saloon_interior_?_r=1&_t=ZS-92XdfyRzcQc",
+    website: "https://www.facebook.com/SalonAestheticsolution",
+    facebook: "https://www.facebook.com/SalonAestheticsolution",
+    whatsapp: "https://wa.me/923210939988",
+    instagram: "https://www.facebook.com/SalonAestheticsolution",
+    tiktok: "https://www.facebook.com/SalonAestheticsolution",
     description: "Specializing in premium salon interior solutions with a focus on elegance, functionality, and timeless design.",
     yearEstablished: "1995"
   };
@@ -271,8 +272,8 @@ const AboutUs = () => {
             <h3 className="text-2xl font-light mb-4" style={{ color: colors.textPrimary }}>Social Inspiration</h3>
             <p className="font-light mb-8 max-w-sm" style={{ color: colors.textSecondary }}>Explore our latest projects and behind-the-scenes content on Instagram and TikTok.</p>
             <div className="flex gap-4">
-              <a href={salonDetails.instagram} className="px-6 py-3 border-2 text-[10px] uppercase tracking-widest font-bold hover:text-white transition-all rounded-full" style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>Instagram</a>
-              <a href={salonDetails.tiktok} className="px-6 py-3 border-2 text-[10px] uppercase tracking-widest font-bold hover:text-white transition-all rounded-full" style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>TikTok</a>
+              <a href={salonDetails.facebook} className="px-6 py-3 border-2 text-[10px] uppercase tracking-widest font-bold hover:text-white transition-all rounded-full" style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>Facebook</a>
+              <a href={salonDetails.facebook} className="px-6 py-3 border-2 text-[10px] uppercase tracking-widest font-bold hover:text-white transition-all rounded-full" style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>Facebook</a>
             </div>
           </motion.div>
 
@@ -286,8 +287,8 @@ const AboutUs = () => {
             <MessageCircle className="w-10 h-10 mb-8 opacity-80" />
             <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-tighter">Direct Consultation</h3>
             <p className="text-blue-200 font-light mb-8 max-w-sm opacity-90">Message Abdullah directly on WhatsApp for personalized quotes and design discussions.</p>
-            <a href={salonDetails.whatsapp} className="px-10 py-5 bg-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-gray-50 transition-all flex items-center gap-3 rounded-full hover:shadow-lg" style={{ color: colors.accent }}>
-              <Phone className="w-4 h-4" /> Direct Console
+            <a href={salonDetails.facebook} className="px-10 py-5 bg-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-gray-50 transition-all flex items-center gap-3 rounded-full hover:shadow-lg" style={{ color: colors.accent }}>
+              <Phone className="w-4 h-4" /> Visit Facebook
             </a>
           </motion.div>
         </div>

@@ -31,15 +31,14 @@ const ContactUs = () => {
   };
 
   const contactInfo = {
-    businessName: "Saloon Interior",
+    businessName: "Salon Aesthetic Solution",
     owner: "Abdullah Nadeem",
     location: "Lahore, Pakistan",
-    email: "salooninterior@gmail.com",
-    phone: "+92 370 1498826",
-    whatsapp: "https://wa.me/+923701498826",
-    instagram: "https://www.instagram.com/saloon_interior_?igsh=dnppeDIwMHFld3Vj",
-    tiktok: "https://www.tiktok.com/@saloon_interior_?_r=1&_t=ZS-92XdfyRzcQc",
-    businessHours: "Mon - Sun: 10:00 AM - 8:00 PM"
+    website: "https://www.facebook.com/SalonAestheticsolution",
+    facebook: "https://www.facebook.com/SalonAestheticsolution",
+    whatsapp: "https://wa.me/923210939988",
+    instagram: "https://www.facebook.com/SalonAestheticsolution",
+    tiktok: "https://www.facebook.com/SalonAestheticsolution",
   };
 
   // Responsive State
@@ -184,7 +183,7 @@ const ContactUs = () => {
             className={`${getTextSize('text-3xl', 'text-5xl', 'text-7xl')} font-light tracking-tighter leading-tight mb-8`}
             style={{ color: colors.textPrimary, letterSpacing: '-0.02em' }}
           >
-            Connect With <span className="text-blue-600 font-serif italic">Saloon Interior</span>
+            Connect With <span className="text-blue-600 font-serif italic">Salon Aesthetic Solution</span>
           </motion.h1>
           <motion.div
             className="h-1 w-12 md:w-24 mx-auto mb-10"
@@ -192,7 +191,7 @@ const ContactUs = () => {
           />
           <motion.p className={`${getTextSize('text-lg', 'text-xl', 'text-2xl')} text-gray-600 max-w-3xl mx-auto leading-relaxed font-light italic opacity-60`}>
             Planning a new salon or upgrading your space? We're here to bring your vision to life.
-            Direct communication with {contactInfo.owner}.
+            Connect with us on Facebook for the latest updates and design inspiration.
           </motion.p>
         </div>
       </motion.div>
@@ -235,16 +234,16 @@ const ContactUs = () => {
             >
               <h4 className="text-lg font-light mb-4 relative z-10">Still have questions?</h4>
               <p className="text-blue-200 text-sm mb-8 font-light leading-relaxed relative z-10">
-                Connect with us on WhatsApp for faster response times and direct consultation.
+                Visit our Facebook page for the latest updates and direct support.
               </p>
               <a
-                href={contactInfo.whatsapp}
+                href={contactInfo.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-5 bg-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-blue-50 transition-colors rounded-full relative z-10 shadow-lg"
                 style={{ color: colors.accent }}
               >
-                <MessageCircle className="w-4 h-4" /> Direct Console
+                <MessageCircle className="w-4 h-4" /> Visit Facebook
               </a>
             </motion.div>
           </motion.div>
@@ -261,30 +260,27 @@ const ContactUs = () => {
                 <div className="p-12 text-center">
                   <Award className="w-12 h-12 mx-auto mb-8 opacity-40 text-blue-500" />
                   <h2 className="text-3xl font-light mb-6 tracking-tight" style={{ color: colors.textPrimary }}>Our Digital Studio</h2>
-                  <p className="mb-12 font-light leading-relaxed" style={{ color: colors.textSecondary }}>
-                    Follow our latest saloon interior projects, design inspirations, and client transformations on social media.
-                  </p>
-
+                    Follow our latest studio updates and design inspirations on Facebook.
                   <div className="grid grid-cols-2 gap-4">
                     <motion.a
-                      href={contactInfo.instagram}
+                      href={contactInfo.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3 p-5 border-2 font-bold text-[10px] uppercase tracking-widest hover:text-white transition-all rounded-full"
                       style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
                       whileHover={{ y: -2 }}
                     >
-                      <Instagram className="w-4 h-4" /> Instagram
+                      <Instagram className="w-4 h-4" /> Facebook
                     </motion.a>
                     <motion.a
-                      href={contactInfo.tiktok}
+                      href={contactInfo.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3 p-5 text-white font-bold text-[10px] uppercase tracking-widest transition-all rounded-full"
                       style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
                       whileHover={{ y: -2, opacity: 0.9 }}
                     >
-                      TikTok
+                      Facebook
                     </motion.a>
                   </div>
                 </div>
@@ -292,7 +288,6 @@ const ContactUs = () => {
                 <div className="aspect-square flex items-center justify-center border-t" style={{ borderColor: colors.border, backgroundColor: colors.surface }}>
                   <div className="text-center p-12">
                     <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold mb-3" style={{ color: colors.accent }}>CONSULTATION HOURS</h4>
-                    <p className="font-light text-2xl mb-4 tracking-tighter" style={{ color: colors.textPrimary }}>{contactInfo.businessHours}</p>
                     <p className="text-[10px] uppercase tracking-widest font-bold opacity-50" style={{ color: colors.textSecondary }}>Site Visits & Design Sessions</p>
                   </div>
                 </div>

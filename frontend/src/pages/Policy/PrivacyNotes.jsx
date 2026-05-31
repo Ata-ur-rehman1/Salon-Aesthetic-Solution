@@ -33,12 +33,12 @@ const PrivacyPolicy = () => {
   };
 
   const businessInfo = {
-    businessName: "Saloon Interior",
-    owner: "Abdullah Nadeem",
+    businessName: "Salon Aesthetic Solution",
+    owner: "Salon Aesthetic Solution",
     location: "Lahore, Pakistan",
-    email: "info@saloonstudio.pk",
-    phone: "+92 370 1498826",
-    whatsapp: "https://wa.me/+923701498826 ",
+    email: "contact@salonaestheticsolution.com",
+    phone: "Salon Aesthetic Solution",
+    whatsapp: "https://wa.me/923210939988",
     effectiveDate: "January 1, 2024",
     lastUpdated: "January 1, 2024"
   };

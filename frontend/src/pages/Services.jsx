@@ -174,23 +174,23 @@ const MobileServices = memo(() => {
               whileHover={{ x: 4 }}
             >
               <FaWhatsapp style={{ color: colors.success }} />
-              <span style={{ color: colors.textPrimary }}>+92 370 1498826</span>
+              <span style={{ color: colors.textPrimary }}>Salon Aesthetic Solution</span>
             </motion.p>
             <motion.p
               variants={itemVariants}
               whileHover={{ x: 4 }}
               style={{ color: colors.textPrimary }}
             >
-              salooninterior@gmail.com
+              Salon Aesthetic Solution
             </motion.p>
             <motion.div
               className="flex gap-4 mt-2"
               variants={itemVariants}
             >
-              <a href="https://www.instagram.com/saloon_interior_?igsh=dnppeDIwMHFld3Vj" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
                 <FaInstagram style={{ color: colors.accent, fontSize: '16px' }} />
               </a>
-              <a href="https://www.tiktok.com/@saloon_interior_?_r=1&_t=ZS-92ecluCYlzL" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
                 <FaTiktok style={{ color: colors.accent, fontSize: '16px' }} />
               </a>
             </motion.div>
@@ -473,23 +473,23 @@ const TabletServices = memo(() => {
                 whileHover={{ x: 4 }}
               >
                 <FaWhatsapp style={{ color: colors.success }} />
-                <span style={{ color: colors.textPrimary }}>+92 370 1498826</span>
+                <span style={{ color: colors.textPrimary }}>Salon Aesthetic Solution</span>
               </motion.p>
               <motion.p
                 variants={itemVariants}
                 whileHover={{ x: 4 }}
                 style={{ color: colors.textPrimary }}
               >
-                salooninterior@gmail.com
+                Salon Aesthetic Solution
               </motion.p>
               <motion.div
                 className="flex gap-4 mt-2"
                 variants={itemVariants}
               >
-                <a href="https://www.instagram.com/saloon_interior_?igsh=dnppeDIwMHFld3Vj" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
                   <FaInstagram style={{ color: colors.accent, fontSize: '18px' }} />
                 </a>
-                <a href="https://www.tiktok.com/@saloon_interior_?_r=1&_t=ZS-92ecluCYlzL" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
                   <FaTiktok style={{ color: colors.accent, fontSize: '18px' }} />
                 </a>
               </motion.div>
@@ -782,23 +782,23 @@ const DesktopServices = memo(() => {
                 whileHover={{ x: 4 }}
               >
                 <FaWhatsapp style={{ color: colors.success }} />
-                <span style={{ color: colors.textPrimary }}>+92 370 1498826</span>
+                <span style={{ color: colors.textPrimary }}>Salon Aesthetic Solution</span>
               </motion.p>
               <motion.p
                 variants={itemVariants}
                 whileHover={{ x: 4 }}
                 style={{ color: colors.textPrimary }}
               >
-                salooninterior@gmail.com
+                Salon Aesthetic Solution
               </motion.p>
               <motion.div
                 className="flex gap-4 mt-2"
                 variants={itemVariants}
               >
-                <a href="https://www.instagram.com/saloon_interior_?igsh=dnppeDIwMHFld3Vj" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
                   <FaInstagram style={{ color: colors.accent, fontSize: '20px' }} />
                 </a>
-                <a href="https://www.tiktok.com/@saloon_interior_?_r=1&_t=ZS-92ecluCYlzL" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
                   <FaTiktok style={{ color: colors.accent, fontSize: '20px' }} />
                 </a>
               </motion.div>

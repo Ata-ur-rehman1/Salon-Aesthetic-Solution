@@ -504,12 +504,12 @@ const Shipping = () => {
                   Personal Concierge
                 </p>
                 <motion.a
-                  href="mailto:saloninterior@gmail.com"
+                  href="https://www.facebook.com/SalonAestheticsolution"
                   className={`${getTextSize('text-sm', 'text-base', 'text-lg')} font-light`}
                   style={{ color: colors.accent }}
                   whileHover={{ x: 4 }}
                 >
-                  salooninterior@gmail.com
+                  Salon Aesthetic Solution
                 </motion.a>
               </motion.div>
             </motion.div>
