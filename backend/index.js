@@ -36,10 +36,10 @@ const app = express();
 const allowedOrigins = [
   'https://ultra-e-store-salon-aesthetic-solution-com.vercel.app',
   'https://salon-aesthetic-solution.com',
-    'http://localhost:3000', // For local development (React dev server on some setups)
-  'http://localhost:5000', // For local development (if frontend served via backend)
-  'http://localhost:5173', // Vite dev server (default)
-  'http://127.0.0.1:5173'  // Vite on IPv4 loopback
+    'http://localhost:3000',
+  'http://localhost:5000', 
+  'http://localhost:5173', 
+  'http://127.0.0.1:5173',
 ];
 
 // CORS configuration - FIXED VERSION
