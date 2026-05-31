@@ -37,7 +37,7 @@ const ContactUs = () => {
     website: "https://www.facebook.com/SalonAestheticsolution",
     facebook: "https://www.facebook.com/SalonAestheticsolution",
     whatsapp: "https://wa.me/923210939988",
-    instagram: "https://www.facebook.com/SalonAestheticsolution",
+    instagram: "https://www.instagram.com/salon_aesthetics_solutions?fbclid=IwY2xjawSJaOJleHRuA2FlbQIxMABicmlkETFBdGM2Vk1rWEJncTFrNzg1c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjHl-lYGZPS-QC0adOrRIoXLZkAkh1Tv-_2yz7lfwLlQsXcagCMLyijNmU4O_aem_a-2vKyjxcM9q_ddUckmQCg",
     tiktok: "https://www.facebook.com/SalonAestheticsolution",
   };
 

@@ -36,7 +36,7 @@ const AboutUs = () => {
     website: "https://www.facebook.com/SalonAestheticsolution",
     facebook: "https://www.facebook.com/SalonAestheticsolution",
     whatsapp: "https://wa.me/923210939988",
-    instagram: "https://www.facebook.com/SalonAestheticsolution",
+    instagram: "https://www.instagram.com/salon_aesthetics_solutions?fbclid=IwY2xjawSJaOJleHRuA2FlbQIxMABicmlkETFBdGM2Vk1rWEJncTFrNzg1c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjHl-lYGZPS-QC0adOrRIoXLZkAkh1Tv-_2yz7lfwLlQsXcag",
     tiktok: "https://www.facebook.com/SalonAestheticsolution",
     description: "Specializing in premium salon interior solutions with a focus on elegance, functionality, and timeless design.",
     yearEstablished: "1995"
