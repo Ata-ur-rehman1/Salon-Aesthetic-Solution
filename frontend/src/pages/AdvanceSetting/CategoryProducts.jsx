@@ -247,7 +247,6 @@ const PremiumFeatures = () => {
               Why Choose Us
             </span>
           </motion.div>
-
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -622,7 +621,7 @@ const DynamicCollection = ({ title, collectionKey, products }) => {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <Link to={`/shop?category=${collectionKey}`} className="group inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors font-medium">
+            <Link to={`/${collectionKey}`} className="group inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors font-medium">
               View All
               <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
