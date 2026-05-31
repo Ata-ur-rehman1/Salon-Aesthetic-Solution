@@ -35,43 +35,6 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import Massage1 from "./MassageSPABed1.jpg"
-import Massage2 from "./MassageSPABed2.jpg"
-import Massage6 from "./MassageSPABed6.jpg"
-import Massage4 from "./MassageSPABed4.jpg"
-import Massage3 from "./MassageSPABed3.jpg"
-import Massage5 from "./MassageSPABed5.jpg"
-import Chairs3 from "./Chairs3.png"
-import Chairs6 from "./Chairs6.png"
-import Chairs2 from "./Chairs2.png"
-import Chairs1 from "./Chairs.png"
-import Chairs5 from "./Chairs5.png"
-import ElectronicEquipment1 from "./ElectronicEquipment1.jpg"
-import ElectronicEquipment2 from "./ElectronicEquipment2.jpg"
-import ElectronicEquipment3 from "./ElectronicEquipment3.jpg"
-import ElectronicEquipment4 from "./ElectronicEquipment4.jpg"
-import HeadWashUnit1 from "./HeadWashUnit1.jpg";
-import HeadWashUnit2 from "./HeadWashUnit2.jpg";
-import HeadWashUnit3 from "./HeadWashUnit3.jpg";
-import HeadWashUnit6 from "./HeadWashUnit6.jpg";
-import HeadWashUnit4 from "./HeadWashUnit4.jpg";
-import HeadWashUnit5 from "./HeadWashUnit5.jpg";
-import ManicurePedicure1 from "./MenicureandpedicureSofasetup1.webp";
-import ManicurePedicure2 from "./MenicureandpedicureSofasetup2.jpg";
-import ManicurePedicure5 from "./MenicureandpedicureSofasetup5.jpg";
-import ManicurePedicure6 from "./MenicureandpedicureSofasetup6.jpg";
-import Trolleys1 from "./Trolleys1.jpg"
-import Trolleys2 from "./Trolleys2.png"
-import Trolleys3 from "./Trolleys3.png"
-import Trolleys4 from "./Trolleys4.png"
-import Trolley6 from "./Trolleys6.png"
-import Trolleys5 from "./Trolleys5.jpg"
-import HydraMachines1 from "./HydraMachines1.png"
-import HydraMachines2 from "./HydraMachines2.png"
-import HydraMachines3 from "./HydraMachines3.png"
-import HydraMachines4 from "./HydraMachines4.png"
-import HydraMachines5 from "./HydraMachines5.png"
-import HydraMachines6 from "./HydraMachines6.png"
 import ProductCarousel from "../Products/ProductCarousel.jsx";
 import { NextArrow, PrevArrow } from "../Products/CustomArrows.jsx";
 import Meta from "../../components/Meta.jsx";
@@ -414,12 +377,12 @@ const AdvancedStats = () => {
 // Interactive Category Grid
 const InteractiveCategories = () => {
   const categories = [
-    { name: "Massage Beds", image: Massage3, items: 12, color: "blue", description: "Ultimate comfort & therapeutic luxury" },
-    { name: "Salon Chairs", image: Chairs5, items: 15, color: "cyan", description: "Ergonomic design meets elegance" },
-    { name: "Hydra Machines", image: HydraMachines1, items: 8, color: "indigo", description: "Advanced skincare technology" },
-    { name: "Head Wash Units", image: HeadWashUnit4, items: 10, color: "sky", description: "Relaxing wash experience" },
-    { name: "Manicure Stations", image: ManicurePedicure1, items: 7, color: "blue", description: "Precision & style combined" },
-    { name: "Trolleys", image: Trolleys5, items: 6, color: "cyan", description: "Mobile organization solutions" }
+    { name: "Massage Beds", image: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=600&q=80", items: "Explore", color: "blue", description: "Ultimate comfort & therapeutic luxury" },
+    { name: "Salon Chairs", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80", items: "Explore", color: "cyan", description: "Ergonomic design meets elegance" },
+    { name: "Hydra Machines", image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80", items: "Explore", color: "indigo", description: "Advanced skincare technology" },
+    { name: "Head Wash Units", image: "https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&q=80", items: "Explore", color: "sky", description: "Relaxing wash experience" },
+    { name: "Manicure Stations", image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80", items: "Explore", color: "blue", description: "Precision & style combined" },
+    { name: "Trolleys", image: "https://images.unsplash.com/photo-1583241800698-e8ab01830a07?w=600&q=80", items: "Explore", color: "cyan", description: "Mobile organization solutions" }
   ];
 
   return (
@@ -480,7 +443,7 @@ const InteractiveCategories = () => {
                   <p className="text-white/80 text-sm mb-3">{cat.description}</p>
                   <div className="flex items-center gap-4">
                     <span className="text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                      {cat.items} Products
+                      {cat.items}
                     </span>
                     <span className="text-sm group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                       Shop Now <FaArrowRight className="text-xs" />
@@ -550,13 +513,6 @@ const EnhancedProductCard = ({ product, collectionTitle, index }) => {
             />
           </Link>
 
-          {/* Quick action buttons */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-            <button className="w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center text-gray-600 hover:text-red-500 transition-colors">
-              <FaHeart />
-            </button>
-          </div>
-
           {/* Overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-4">
             <Link to={route} className="px-4 py-2 bg-white rounded-full text-blue-600 text-sm font-medium shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
@@ -601,26 +557,32 @@ const EnhancedProductCard = ({ product, collectionTitle, index }) => {
   );
 };
 
-// Dynamic Collection Section
+// Dynamic Collection Section - UPDATED with product limit (max 7 products)
 const DynamicCollection = ({ title, collectionKey, products }) => {
   const formattedTitle = collectionKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
 
+  // Limit products to maximum 7 (less than 8)
+  const limitedProducts = products.slice(0, 7);
+
   const sliderSettings = {
     dots: true,
-    infinite: true,
+    infinite: limitedProducts.length > 4,
     speed: 800,
-    slidesToShow: 4,
+    slidesToShow: Math.min(4, limitedProducts.length),
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
     cssEase: "ease-in-out",
     responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3 } },
-      { breakpoint: 1024, settings: { slidesToShow: 2, arrows: false } },
+      { breakpoint: 1280, settings: { slidesToShow: Math.min(3, limitedProducts.length) } },
+      { breakpoint: 1024, settings: { slidesToShow: Math.min(2, limitedProducts.length), arrows: false } },
       { breakpoint: 640, settings: { slidesToShow: 1, arrows: false } }
     ]
   };
+
+  // Don't render if no products
+  if (limitedProducts.length === 0) return null;
 
   return (
     <motion.section
@@ -648,6 +610,11 @@ const DynamicCollection = ({ title, collectionKey, products }) => {
             >
               {formattedTitle}
             </motion.h2>
+            {products.length > 7 && (
+              <p className="text-sm text-gray-500 mt-2">
+                Showing {limitedProducts.length} of {products.length} products
+              </p>
+            )}
           </div>
           <motion.div
             className="mt-4 md:mt-0"
@@ -663,8 +630,8 @@ const DynamicCollection = ({ title, collectionKey, products }) => {
         </div>
 
         <Slider {...sliderSettings}>
-          {products.map((product, idx) => (
-            <div key={`${collectionKey}-${product.id}`} className="px-2">
+          {limitedProducts.map((product, idx) => (
+            <div key={`${collectionKey}-${product.id || product._id}`} className="px-2">
               <EnhancedProductCard
                 product={product}
                 collectionTitle={formattedTitle}
@@ -847,77 +814,6 @@ const CategoryProducts = () => {
     }
   }, [categoriesQuery.data, dispatch]);
 
-  // Premium fallback mock collections to ensure at least 7 products in each category
-  const mockChairs = [
-    { id: 1, imageUrl: Chairs5, route: "/chairs", name: "Premium Salon Chair", price: 35000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 2, imageUrl: Chairs3, route: "/chairs", name: "Executive Styling Chair", price: 38000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 3, imageUrl: Chairs6, route: "/chairs", name: "Luxury Reclining Chair", price: 42000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 4, imageUrl: Chairs2, route: "/chairs", name: "Ergonomic Cutting Chair", price: 32000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 5, imageUrl: Chairs1, route: "/chairs", name: "Classic Barber Chair", price: 29000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 6, imageUrl: Chairs6, route: "/chairs", name: "Pro Hydraulic Chair", price: 45000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 7, imageUrl: Chairs5, route: "/chairs", name: "VIP Recliner Styling Chair", price: 52000, description: "Professional grade equipment with premium finish and ergonomic design" }
-  ];
-
-  const mockMassageBeds = [
-    { id: 7, imageUrl: Massage3, route: "/massage-bed", name: "Therapeutic Massage Bed", price: 65000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 8, imageUrl: Massage5, route: "/massage-bed", name: "Deluxe Spa Massage Bed", price: 72000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 6, imageUrl: Massage1, route: "/massage-bed", name: "Classic Facial Bed", price: 58000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 5, imageUrl: Massage2, route: "/massage-bed", name: "Portable Folding Bed", price: 49000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 9, imageUrl: Massage4, route: "/massage-bed", name: "Adjustable Electric Bed", price: 85000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 10, imageUrl: Massage6, route: "/massage-bed", name: "Ultra-Luxury Wellness Bed", price: 92000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 11, imageUrl: Massage3, route: "/massage-bed", name: "Pro Heated Therapy Bed", price: 98000, description: "Professional grade equipment with premium finish and ergonomic design" }
-  ];
-
-  const mockHeadWashUnits = [
-    { id: 9, imageUrl: HeadWashUnit2, route: "/head-wash-unit", name: "Ergonomic Head Wash Unit", price: 75000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 10, imageUrl: HeadWashUnit4, route: "/head-wash-unit", name: "Luxury Backwash System", price: 82000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 11, imageUrl: HeadWashUnit5, route: "/head-wash-unit", name: "Premium Shampoo Chair", price: 68000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 12, imageUrl: HeadWashUnit3, route: "/head-wash-unit", name: "Classic Wash Station", price: 79000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 13, imageUrl: HeadWashUnit6, route: "/head-wash-unit", name: "Deluxe Hydro-Therapy Unit", price: 88000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 14, imageUrl: HeadWashUnit1, route: "/head-wash-unit", name: "Comfort Backwash Station", price: 72000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 15, imageUrl: HeadWashUnit2, route: "/head-wash-unit", name: "Royal Spa Wash Unit", price: 95000, description: "Professional grade equipment with premium finish and ergonomic design" }
-  ];
-
-  const mockManicurePedicure = [
-    { id: 23, imageUrl: ManicurePedicure1, route: "/menicure-pedicure", name: "Premium Manicure Station", price: 85000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 24, imageUrl: ManicurePedicure2, route: "/menicure-pedicure", name: "Sleek Pedicure Spa Setup", price: 92000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 25, imageUrl: ManicurePedicure6, route: "/menicure-pedicure", name: "Luxury Nail Tech Table", price: 78000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 26, imageUrl: ManicurePedicure5, route: "/menicure-pedicure", name: "Comfort Pedicure Lounge", price: 88000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 27, imageUrl: ManicurePedicure1, route: "/menicure-pedicure", name: "Dual-Sided Manicure Table", price: 95000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 28, imageUrl: ManicurePedicure2, route: "/menicure-pedicure", name: "Premium Foot Bath Sofa", price: 89000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 29, imageUrl: ManicurePedicure6, route: "/menicure-pedicure", name: "VIP Pedicure Throne Chair", price: 105000, description: "Professional grade equipment with premium finish and ergonomic design" }
-  ];
-
-  const mockTrolleys = [
-    { id: 31, imageUrl: Trolleys5, route: "/trolleys", name: "Premium Salon Trolley", price: 18000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 32, imageUrl: Trolleys2, route: "/trolleys", name: "Mobile Storage Cart", price: 19500, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 33, imageUrl: Trolleys4, route: "/trolleys", name: "Sleek Utility Organizer", price: 16500, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 34, imageUrl: Trolleys1, route: "/trolleys", name: "Lockable Equipment Trolley", price: 15000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 35, imageUrl: Trolleys3, route: "/trolleys", name: "Compact Beauty Cart", price: 17500, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 36, imageUrl: Trolley6, route: "/trolleys", name: "Metal-Frame Heavy Duty Trolley", price: 21000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 37, imageUrl: Trolleys5, route: "/trolleys", name: "Executive Aluminum Trolley", price: 23500, description: "Professional grade equipment with premium finish and ergonomic design" }
-  ];
-
-  const mockHydraMachines = [
-    { id: 41, imageUrl: HydraMachines1, route: "/hydra-machines", name: "Premium Hydra Skincare Machine", price: 120000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 42, imageUrl: HydraMachines2, route: "/hydra-machines", name: "Multi-Function Facial System", price: 135000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 43, imageUrl: HydraMachines4, route: "/hydra-machines", name: "Advanced Skincare Processor", price: 110000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 44, imageUrl: HydraMachines5, route: "/hydra-machines", name: "Hydro-Dermabrasion Machine", price: 145000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 45, imageUrl: HydraMachines3, route: "/hydra-machines", name: "Professional Glow Machine", price: 125000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 46, imageUrl: HydraMachines6, route: "/hydra-machines", name: "Ultimate Spa Hydra System", price: 155000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 47, imageUrl: HydraMachines1, route: "/hydra-machines", name: "Diamond Tip Infusion Machine", price: 168000, description: "Professional grade equipment with premium finish and ergonomic design" }
-  ];
-
-  const mockElectronicEquipment = [
-    { id: 51, imageUrl: ElectronicEquipment1, route: "/electronic-equipment", name: "Premium Hair Steamer", price: 45000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 52, imageUrl: ElectronicEquipment2, route: "/electronic-equipment", name: "Electronic Sterilizer Unit", price: 55000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 53, imageUrl: ElectronicEquipment3, route: "/electronic-equipment", name: "Multi-Functional Hair Dryer", price: 38000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 54, imageUrl: ElectronicEquipment4, route: "/electronic-equipment", name: "Digital Hot Towel Cabinet", price: 49000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 55, imageUrl: ElectronicEquipment1, route: "/electronic-equipment", name: "Infrared Hair Processor", price: 42000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 56, imageUrl: ElectronicEquipment2, route: "/electronic-equipment", name: "Pro UV Sanitizer System", price: 58000, description: "Professional grade equipment with premium finish and ergonomic design" },
-    { id: 57, imageUrl: ElectronicEquipment3, route: "/electronic-equipment", name: "Smart Hair Colour Processor", price: 62000, description: "Professional grade equipment with premium finish and ergonomic design" }
-  ];
-
   // Helper to extract category name from a product
   const getProductCategoryName = (product, categoriesList) => {
     if (!product.category) return "";
@@ -963,35 +859,24 @@ const CategoryProducts = () => {
     });
   }
 
-  // Combine real-time database products with fallbacks, ensuring at least 6 products in each collection
-  // and forcing all product routes to map directly to their category page
-  const combineWithFallback = (realProducts, mockProducts, categoryRoute) => {
-    const realMapped = (realProducts || []).map(p => ({
-      ...p,
-      route: categoryRoute
-    }));
-    const mockMapped = (mockProducts || []).map(p => ({
-      ...p,
-      route: categoryRoute
-    }));
-
-    const list = [...realMapped];
-    if (list.length >= 7) {
-      return list;
-    }
-    const needed = 7 - list.length;
-    return [...list, ...mockMapped.slice(0, needed)];
-  };
+  // Map real-time products with their category routes
+  const mapWithRoute = (realProducts, categoryRoute) =>
+    (realProducts || []).map(p => ({ ...p, route: categoryRoute }));
 
   const salonEquipmentCollections = {
-    chairs: combineWithFallback(groupedRealTimeProducts.chairs, mockChairs, "/chairs"),
-    massageBeds: combineWithFallback(groupedRealTimeProducts.massageBeds, mockMassageBeds, "/massage-bed"),
-    headWashUnits: combineWithFallback(groupedRealTimeProducts.headWashUnits, mockHeadWashUnits, "/head-wash-unit"),
-    manicurePedicure: combineWithFallback(groupedRealTimeProducts.manicurePedicure, mockManicurePedicure, "/menicure-pedicure"),
-    trolleys: combineWithFallback(groupedRealTimeProducts.trolleys, mockTrolleys, "/trolleys"),
-    hydraMachines: combineWithFallback(groupedRealTimeProducts.hydraMachines, mockHydraMachines, "/hydra-machines"),
-    electronicEquipment: combineWithFallback(groupedRealTimeProducts.electronicEquipment, mockElectronicEquipment, "/electronic-equipment"),
+    chairs: mapWithRoute(groupedRealTimeProducts.chairs, "/chairs"),
+    massageBeds: mapWithRoute(groupedRealTimeProducts.massageBeds, "/massage-bed"),
+    headWashUnits: mapWithRoute(groupedRealTimeProducts.headWashUnits, "/head-wash-unit"),
+    manicurePedicure: mapWithRoute(groupedRealTimeProducts.manicurePedicure, "/menicure-pedicure"),
+    trolleys: mapWithRoute(groupedRealTimeProducts.trolleys, "/trolleys"),
+    hydraMachines: mapWithRoute(groupedRealTimeProducts.hydraMachines, "/hydra-machines"),
+    electronicEquipment: mapWithRoute(groupedRealTimeProducts.electronicEquipment, "/electronic-equipment"),
   };
+
+  // Only render collections that have at least one real product
+  const activeCollections = Object.fromEntries(
+    Object.entries(salonEquipmentCollections).filter(([, products]) => products.length > 0)
+  );
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -1018,13 +903,31 @@ const CategoryProducts = () => {
       {/* Products Collections */}
       <main className="bg-white">
         <div className="max-w-7xl mx-auto">
-          {Object.entries(salonEquipmentCollections).map(([key, products]) => (
-            <DynamicCollection
-              key={key}
-              collectionKey={key}
-              products={products}
-            />
-          ))}
+          {productsLoading ? (
+            <div className="flex flex-col items-center justify-center py-32 text-center">
+              <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-6"></div>
+              <p className="text-gray-500 text-lg">Loading products from our collection...</p>
+            </div>
+          ) : Object.keys(activeCollections).length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-32 text-center px-4">
+              <div className="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center mb-6">
+                <FaGem className="text-3xl text-blue-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">No Products Available Yet</h3>
+              <p className="text-gray-500 max-w-md">Our team is curating premium products for you. Please check back soon or browse our full shop.</p>
+              <Link to="/shop" className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors inline-flex items-center gap-2">
+                Browse Shop <FaArrowRight className="text-sm" />
+              </Link>
+            </div>
+          ) : (
+            Object.entries(activeCollections).map(([key, products]) => (
+              <DynamicCollection
+                key={key}
+                collectionKey={key}
+                products={products}
+              />
+            ))
+          )}
         </div>
       </main>
 
