@@ -31,7 +31,7 @@ const AboutUs = () => {
 
   const salonDetails = {
     businessName: "Salon Aesthetic Solution",
-    owner: "Abdullah Nadeem",
+    owner: "Salon Aesthetic",
     location: "Lahore, Pakistan",
     website: "https://www.facebook.com/SalonAestheticsolution",
     facebook: "https://www.facebook.com/SalonAestheticsolution",
