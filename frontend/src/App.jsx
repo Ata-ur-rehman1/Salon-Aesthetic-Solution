@@ -10,7 +10,6 @@ import Services from "./pages/Services";
 const App = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <TopTicker />
       <Navigation />
       <ToastContainer
         position="top-right"
