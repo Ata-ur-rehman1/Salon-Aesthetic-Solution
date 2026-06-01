@@ -434,7 +434,7 @@ const AllProducts = () => {
                           className="text-xl md:text-2xl font-light tracking-tighter mt-2"
                           style={{ color: colors.textPrimary }}
                         >
-                          Rs. {product.price.toLocaleString()}
+                          ${product.price.toLocaleString()}
                         </motion.p>
                       </motion.div>
 
@@ -506,7 +506,7 @@ const AllProducts = () => {
                     className="text-xl md:text-2xl font-light tracking-tighter ml-3"
                     style={{ color: colors.textPrimary }}
                   >
-                    Rs. {totalValue.toLocaleString()}
+                    ${totalValue.toLocaleString()}
                   </motion.span>
                 </motion.div>
               </motion.div>

@@ -304,7 +304,7 @@ const Order = () => {
                           style={{ color: colors.deepOnyx }}
                           whileHover={{ scale: 1.05 }}
                         >
-                          Rs. {(item.qty * item.price).toLocaleString()}
+                          ${(item.qty * item.price).toLocaleString()}
                         </motion.span>
                       </motion.div>
                     </motion.div>
@@ -525,7 +525,7 @@ const Order = () => {
                     style={{ color: colors.white }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    Rs. {order.itemsPrice.toLocaleString()}
+                    ${order.itemsPrice.toLocaleString()}
                   </motion.span>
                 </motion.div>
 
@@ -572,7 +572,7 @@ const Order = () => {
                   style={{ color: colors.white }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  Rs. {order.itemsPrice.toLocaleString()}
+                  ${order.itemsPrice.toLocaleString()}
                 </motion.span>
               </motion.div>
             </motion.div>

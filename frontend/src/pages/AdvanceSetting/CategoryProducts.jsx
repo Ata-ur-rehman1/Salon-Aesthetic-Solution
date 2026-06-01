@@ -330,7 +330,7 @@ const EnhancedProductCard = ({ product, collectionTitle, index }) => {
             <div>
               <span className="text-2xs text-gray-400">Starting from</span>
               <div className="text-lg font-bold text-gray-900">
-                Rs. {price.toLocaleString()}
+                ${price.toLocaleString()}
               </div>
             </div>
             <Link to={route} className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors">

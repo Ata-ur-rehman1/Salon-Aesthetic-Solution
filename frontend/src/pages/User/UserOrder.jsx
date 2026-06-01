@@ -144,7 +144,7 @@ const UserOrder = () => {
     {
       icon: FiDollarSign,
       label: "Total Spent",
-      value: `Rs. ${totalSpent.toLocaleString()}`,
+      value: `$${totalSpent.toLocaleString()}`,
     },
     {
       icon: FiCheckCircle,
@@ -483,7 +483,7 @@ const UserOrder = () => {
                               TOTAL INVESTMENT
                             </div>
                             <div className="text-2xl font-serif font-light text-black">
-                              Rs. {order.totalPrice.toLocaleString()}
+                              ${order.totalPrice.toLocaleString()}
                             </div>
                           </div>
 
@@ -532,7 +532,7 @@ const UserOrder = () => {
                 </div>
                 <div className="text-sm font-light">
                   <span className="text-gray-400 uppercase text-[11px] font-bold tracking-[0.1em] mr-2">TOTAL VALUE:</span>
-                  <span className="font-serif">Rs. {filteredOrders.reduce((sum, order) => sum + order.totalPrice, 0).toLocaleString()}</span>
+                  <span className="font-serif">${filteredOrders.reduce((sum, order) => sum + order.totalPrice, 0).toLocaleString()}</span>
                 </div>
               </div>
             </motion.div>
@@ -558,7 +558,7 @@ const UserOrder = () => {
               {[
                 {
                   label: "Avergate Order Value",
-                  value: totalOrders > 0 ? `Rs. ${(totalSpent / totalOrders).toLocaleString(undefined, { maximumFractionDigits: 0 })}` : "Rs. 0",
+                  value: totalOrders > 0 ? `$${(totalSpent / totalOrders).toLocaleString(undefined, { maximumFractionDigits: 0 })}` : "$0",
                   icon: FiTrendingUp
                 },
                 {

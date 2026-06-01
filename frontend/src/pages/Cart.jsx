@@ -308,7 +308,7 @@ const Cart = () => {
                                   className="text-xl md:text-2xl font-light tracking-tighter"
                                   style={{ color: colors.textPrimary }}
                                 >
-                                  Rs. {item.price.toLocaleString()}
+                                  ${item.price.toLocaleString()}
                                 </motion.p>
                               </div>
 
@@ -398,7 +398,7 @@ const Cart = () => {
                         Selection ({cartItems.length})
                       </span>
                       <span className="font-light tracking-tight" style={{ color: colors.textPrimary }}>
-                        Rs. {subtotal.toLocaleString()}
+                        ${subtotal.toLocaleString()}
                       </span>
                     </div>
 
@@ -424,7 +424,7 @@ const Cart = () => {
                           Total
                         </span>
                         <span className="text-2xl md:text-3xl font-light tracking-tighter" style={{ color: colors.textPrimary }}>
-                          Rs. {total.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                          ${total.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                         </span>
                       </div>
                     </div>

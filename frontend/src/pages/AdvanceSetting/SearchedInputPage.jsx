@@ -422,7 +422,7 @@ const ProductCard = ({ product, onAddToCart, colors, index }) => {
               style={{ color: colors.textPrimary }}
               whileHover={{ scale: 1.02 }}
             >
-              Rs. {product.price.toLocaleString()}
+              ${product.price.toLocaleString()}
             </motion.span>
 
             <motion.button

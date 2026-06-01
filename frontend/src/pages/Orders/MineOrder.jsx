@@ -173,11 +173,11 @@ const MineOrder = () => {
                             </div>
                           </td>
                           <td className="px-6 py-4 text-black font-light">
-                            Rs. {item.price.toLocaleString()}
+                            ${item.price.toLocaleString()}
                           </td>
                           <td className="px-6 py-4 text-stone-500 font-light">{item.qty.toString().padStart(2, '0')}</td>
                           <td className="px-6 py-4 text-black font-medium tracking-tight">
-                            Rs. {(item.qty * item.price).toLocaleString()}
+                            ${(item.qty * item.price).toLocaleString()}
                           </td>
                         </motion.tr>
                       ))}
@@ -264,7 +264,7 @@ const MineOrder = () => {
                     <div className="pt-4 mt-4 border-t border-black/5 space-y-3">
                       <div className="flex justify-between">
                         <span className="text-[10px] uppercase tracking-widest font-bold opacity-30">Selection Items</span>
-                        <span className="text-sm font-light text-black">Rs. {order.itemsPrice.toLocaleString()}</span>
+                        <span className="text-sm font-light text-black">${order.itemsPrice.toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-[10px] uppercase tracking-widest font-bold opacity-30">Logistics</span>
@@ -275,7 +275,7 @@ const MineOrder = () => {
                       <div className="flex justify-between text-xl font-light pt-4 border-t border-black/10">
                         <span className="tracking-tighter text-stone-400">Total</span>
                         <span className="tracking-tighter text-black">
-                          Rs. {order.totalPrice.toLocaleString()}
+                          ${order.totalPrice.toLocaleString()}
                         </span>
                       </div>
                     </div>

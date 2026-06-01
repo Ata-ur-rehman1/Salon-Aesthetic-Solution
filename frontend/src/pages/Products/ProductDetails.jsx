@@ -371,7 +371,7 @@ const ProductDetails = () => {
 
               {/* Thumbnails */}
               {(product.image2 || product.image3) && (
-                <motion.div 
+                <motion.div
                   className="flex gap-4 mt-6 justify-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -381,11 +381,10 @@ const ProductDetails = () => {
                     <button
                       key={index}
                       onClick={() => setSelectedImage(img)}
-                      className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[16px] overflow-hidden border-2 transition-all duration-300 ${
-                        (selectedImage || product.image) === img 
-                          ? 'border-blue-600 scale-105 shadow-md' 
+                      className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[16px] overflow-hidden border-2 transition-all duration-300 ${(selectedImage || product.image) === img
+                          ? 'border-blue-600 scale-105 shadow-md'
                           : 'border-transparent opacity-70 hover:opacity-100 hover:scale-105'
-                      }`}
+                        }`}
                     >
                       <img src={img} alt={`${product.name} view ${index + 1}`} className="w-full h-full object-cover" />
                     </button>
@@ -422,17 +421,15 @@ const ProductDetails = () => {
                   <motion.div variants={itemVariants} className="flex flex-col gap-2">
                     <div className="flex items-baseline gap-5">
                       <span className="text-3xl lg:text-[40px] font-light" style={{ color: colors.textPrimary }}>
-                        Rs. {product.price.toLocaleString()}
+                        ${product.price.toLocaleString()}
                       </span>
+
                       {product.discount > 0 && (
                         <span className="text-lg line-through font-light" style={{ color: colors.textTertiary }}>
-                          Rs. {(product.price + product.discount).toLocaleString()}
+                          ${(product.price + product.discount).toLocaleString()}
                         </span>
                       )}
                     </div>
-                    <span className="text-sm italic font-medium" style={{ color: colors.accent }}>
-                      * Price will be negotiable
-                    </span>
                   </motion.div>
                 </div>
 

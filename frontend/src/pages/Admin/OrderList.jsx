@@ -135,7 +135,7 @@ const OrderList = () => {
     {
       icon: FiDollarSign,
       label: "Total Revenue",
-      value: `Rs. ${totalRevenue.toLocaleString()}`,
+      value: `$${totalRevenue.toLocaleString()}`,
     },
     {
       icon: FiCheckCircle,
@@ -550,7 +550,7 @@ const OrderList = () => {
                                     style={{ color: colors.textPrimary }}
                                     whileHover={{ scale: 1.05 }}
                                   >
-                                    Rs. {order.totalPrice.toLocaleString()}
+                                    ${order.totalPrice.toLocaleString()}
                                   </motion.div>
                                 </motion.div>
                                 
@@ -726,7 +726,7 @@ const OrderList = () => {
                       style={{ color: colors.textPrimary }}
                       whileHover={{ scale: 1.05 }}
                     >
-                      Rs. {filteredOrders.reduce((sum, order) => sum + order.totalPrice, 0).toLocaleString()}
+                      ${filteredOrders.reduce((sum, order) => sum + order.totalPrice, 0).toLocaleString()}
                     </motion.span>
                   </motion.div>
                 </motion.div>
@@ -756,7 +756,7 @@ const OrderList = () => {
                   { 
                     icon: FiTrendingUp, 
                     title: "Average Order Value", 
-                    value: totalOrders > 0 ? `Rs. ${(totalRevenue / totalOrders).toLocaleString(undefined, { minimumFractionDigits: 2 })}` : "Rs. 0.00",
+                    value: totalOrders > 0 ? `$${(totalRevenue / totalOrders).toLocaleString(undefined, { minimumFractionDigits: 2 })}` : "$0.00",
                     sub: "Revenue per order"
                   },
                   { 

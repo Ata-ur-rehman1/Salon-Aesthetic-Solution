@@ -622,7 +622,7 @@ const ProductList = () => {
                     >
                       {[
                         { label: "Product Name *", value: name, setValue: setName, icon: FiPackage, type: "text", placeholder: "e.g., Premium Salon Chair" },
-                        { label: "Price (Rs.) *", value: price, setValue: setPrice, icon: FiDollarSign, type: "number", placeholder: "0.00" },
+                        { label: "Price ($) *", value: price, setValue: setPrice, icon: FiDollarSign, type: "number", placeholder: "0.00" },
                         { label: "Brand *", value: brand, setValue: setBrand, icon: FiTag, type: "text", placeholder: "Enter brand name" },
                         { label: "Category *", value: category, setValue: setCategory, icon: FiLayers, type: "select", placeholder: "Select Category" },
                         { label: "Quantity *", value: quantity, setValue: setQuantity, icon: FiHash, type: "number", placeholder: "Enter quantity" },

@@ -239,7 +239,7 @@ const MenicureAndPedicure = ({ categoryId }) => {
                       <div className="flex justify-between items-end">
                         <span className="text-xl md:text-2xl font-light tracking-tighter"
                           style={{ color: colors.textPrimary }}>
-                          Rs. {product.price?.toLocaleString()}
+                          ${product.price?.toLocaleString()}
                         </span>
                         <motion.button
                           onClick={() => addToCartHandler(product)}
@@ -328,7 +328,7 @@ const MenicureAndPedicure = ({ categoryId }) => {
               Starting From
             </div>
             <div className="text-sm font-medium" style={{ color: colors.textPrimary }}>
-              Rs. {products.length > 0 ? Math.min(...products.map(p => p.price || 0)).toLocaleString() : '0'}
+              ${products.length > 0 ? Math.min(...products.map(p => p.price || 0)).toLocaleString() : '0'}
             </div>
           </div>
         </div>

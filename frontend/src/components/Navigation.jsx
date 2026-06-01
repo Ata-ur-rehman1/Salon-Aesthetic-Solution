@@ -392,76 +392,10 @@ const Navigation = ({ className }) => {
     }
   }, [handleSearch]);
 
-  // User Dropdown Menu
-  const UserDropdown = () => (
-    <motion.div
-      className="absolute right-0 mt-2 z-50 w-56 bg-white border rounded-2xl shadow-xl overflow-hidden"
-      style={{ borderColor: colors.border }}
-      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 300, damping: 25 }}
-    >
-      <div className="p-4 bg-slate-50 border-b" style={{ borderColor: colors.border }}>
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden border bg-white" style={{ borderColor: colors.border }}>
-            <img
-              src={userInfo?.profileImage || "/default-avatar.png"}
-              alt="Profile"
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.target.src = "/default-avatar.png";
-              }}
-            />
-          </div>
-          <div className="min-w-0">
-            <h3 className="text-xs font-semibold truncate text-slate-800">{userInfo.username}</h3>
-            <p className="text-[10px] text-slate-500 truncate">{userInfo.email}</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="p-2 space-y-1">
-        <Link
-          to="/profile"
-          className="flex items-center gap-2.5 px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors"
-          onClick={() => setDropdownOpen(false)}
-        >
-          <FiUser size={14} />
-          <span>Profile</span>
-        </Link>
-
-        {userInfo.isAdmin && (
-          <>
-            <div className="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 px-3 pt-2 pb-1">
-              Admin Panel
-            </div>
-            {adminItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className="flex items-center gap-2.5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors"
-                onClick={() => setDropdownOpen(false)}
-              >
-                <FiChevronRight size={12} className="opacity-50" />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </>
-        )}
-
-        <div className="border-t my-1" style={{ borderColor: colors.border }} />
-
-        <button
-          onClick={logoutHandler}
-          className="flex items-center gap-2.5 w-full text-left px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-rose-600 rounded-lg hover:bg-rose-50 transition-colors"
-        >
-          <FiLogOut size={14} />
-          <span>Logout</span>
-        </button>
-      </div>
-    </motion.div>
-  );
+  // Helper to close dropdown
+  const handleDropdownItemClick = () => {
+    setDropdownOpen(false);
+  };
 
   return (
     <>
@@ -586,7 +520,79 @@ const Navigation = ({ className }) => {
                     </motion.button>
 
                     <AnimatePresence>
-                      {dropdownOpen && <UserDropdown />}
+                      {dropdownOpen && (
+                        <motion.div
+                          onClick={handleDropdownItemClick}
+                          className="absolute right-0 mt-2 z-50 w-56 bg-white border rounded-2xl shadow-xl overflow-hidden"
+                          style={{ borderColor: colors.border }}
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                        >
+                          <div className="p-4 bg-slate-50 border-b" style={{ borderColor: colors.border }}>
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full overflow-hidden border bg-white" style={{ borderColor: colors.border }}>
+                                <img
+                                  src={userInfo?.profileImage || "/default-avatar.png"}
+                                  alt="Profile"
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => {
+                                    e.target.src = "/default-avatar.png";
+                                  }}
+                                />
+                              </div>
+                              <div className="min-w-0">
+                                <h3 className="text-xs font-semibold truncate text-slate-800">{userInfo.username}</h3>
+                                <p className="text-[10px] text-slate-500 truncate">{userInfo.email}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="p-2 space-y-1">
+                            <Link
+                              to="/profile"
+                              onClick={() => setDropdownOpen(false)}
+                              className="flex items-center gap-2.5 px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                            >
+                              <FiUser size={14} />
+                              <span>Profile</span>
+                            </Link>
+
+                            {userInfo.isAdmin && (
+                              <>
+                                <div className="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 px-3 pt-2 pb-1">
+                                  Admin Panel
+                                </div>
+                                {adminItems.map((item) => (
+                                  <Link
+                                    key={item.path}
+                                    to={item.path}
+                                    onClick={() => setDropdownOpen(false)}
+                                    className="flex items-center gap-2.5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                                  >
+                                    <FiChevronRight size={12} className="opacity-50" />
+                                    <span>{item.label}</span>
+                                  </Link>
+                                ))}
+                              </>
+                            )}
+
+                            <div className="border-t my-1" style={{ borderColor: colors.border }} />
+
+                            <button
+                              onClick={() => {
+                                logoutHandler();
+                                setDropdownOpen(false);
+                              }}
+                              className="flex items-center gap-2.5 w-full text-left px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-rose-600 rounded-lg hover:bg-rose-50 transition-colors"
+                            >
+                              <FiLogOut size={14} />
+                              <span>Logout</span>
+                            </button>
+                          </div>
+                        </motion.div>
+                      )}
                     </AnimatePresence>
                   </>
                 ) : (
@@ -733,7 +739,7 @@ const Navigation = ({ className }) => {
                               </div>
                               <div className="min-w-0 flex-grow">
                                 <div className="text-xs font-semibold text-slate-800 truncate">{product.name}</div>
-                                <div className="text-[10px] text-slate-400">Rs. {product.price.toLocaleString()}</div>
+                                <div className="text-[10px] text-slate-400">${product.price.toLocaleString()}</div>
                               </div>
                               <FiChevronRight size={14} className="text-slate-300" />
                             </motion.div>
