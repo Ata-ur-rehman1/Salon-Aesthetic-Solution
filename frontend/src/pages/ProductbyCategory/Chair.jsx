@@ -43,7 +43,7 @@ const Chair = ({ categoryId }) => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/category/69e545e4f5f270d5d903c0c9/products`);
+        const response = await axios.get(`/api/category/6a1d2bc144acc5ec859591ba/products`);
         setProducts(response.data);
         setLoading(false);
       } catch (error) {

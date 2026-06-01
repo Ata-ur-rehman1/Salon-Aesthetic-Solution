@@ -34,12 +34,13 @@ const app = express();
 // ==================== CORS FIX ====================
 // Single source of truth for allowed origins
 const allowedOrigins = [
-  'https://ultra-salon-aesthetic-solution.vercel.app',
-  'https://salon-aesthetic-solution.com',
-    'http://localhost:3000',
-  'http://localhost:5000',
-  'http://localhost:5173', 
-  'http://127.0.0.1:5173',
+  'https://ultra-e-store-salon-aesthetic-solution-com.vercel.app',
+  'https://store-abdullah-nadeem.vercel.app',
+  'https://salooninterior.com',
+    'http://localhost:3000', // For local development (React dev server on some setups)
+  'http://localhost:5000', // For local development (if frontend served via backend)
+  'http://localhost:5173', // Vite dev server (default)
+  'http://127.0.0.1:5173'  // Vite on IPv4 loopback
 ];
 
 // CORS configuration - FIXED VERSION
@@ -101,11 +102,17 @@ async function connectToDatabase() {
     return dbConnectionPromise;
   }
 
-  dbConnectionPromise = connectDB().catch(err => {
-    console.error("Initial DB connection failed:", err.message);
-    dbError = err;
-    throw err;
-  });
+  dbConnectionPromise = connectDB()
+    .then((result) => {
+      dbError = null;
+      return result;
+    })
+    .catch((err) => {
+      console.error("Initial DB connection failed:", err.message);
+      dbError = err;
+      dbConnectionPromise = null; // allow retry on the next request
+      throw err;
+    });
 
   return dbConnectionPromise;
 }
