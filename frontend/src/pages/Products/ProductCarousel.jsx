@@ -79,7 +79,7 @@ const ProductCarousel = () => {
   // Define slides array with explicit routing and text overlays
   const slides = [
     { id: 1, image: Saloon1, route: "/chairs", title: "Premium Styling Chairs" },
-    { id: 1, image: Saloon2, route: "/", title: "Saloon Interior Store Setup" },
+    { id: 1, image: Saloon2, route: "/", title: "Salon Aesthetic Solution Store Setup" },
     { id: 3, image: Saloon3, route: "/head-wash-unit", title: "Ergonomic Wash Units" },
     { id: 7, image: Saloon7, route: "/electronic-equipment", title: "High-Tech Electronics" },
     { id: 9, image: Saloon9, route: "/", title: "Discover Complete Setup" },
@@ -97,14 +97,14 @@ const ProductCarousel = () => {
           <div className="flex justify-center items-center w-full mb-6">
             <img
               src={Logo}
-              alt="Saloon Interior Logo"
+              alt="Salon Aesthetic Solution Logo"
               className="w-[180px] md:w-[240px] lg:w-[320px] h-auto object-contain"
             />
           </div>
           <motion.h1
             className="text-lg md:text-4xl lg:text-5xl font-light mb-4 md:mb-6 tracking-tight text-gray-800"
           >
-            The Complete Saloon, Aesthetic &amp; Electronic Equipment
+            The Complete Salon, Aesthetic &amp; Electronic Equipment
           </motion.h1>
           <motion.div
             className="h-1 w-12 md:w-20 lg:w-32 mx-auto mb-6 md:mb-8 bg-blue-600"
@@ -118,7 +118,7 @@ const ProductCarousel = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Elevate your workspace with meticulously crafted professional equipment designed for the modern saloon interior.
+            Elevate your workspace with meticulously crafted professional equipment designed for the modern salon aesthetic solution.
           </motion.p>
         </motion.div>
 

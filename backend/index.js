@@ -36,7 +36,7 @@ const app = express();
 const allowedOrigins = [
   'https://e-store-salon-aesthetic-solution.vercel.app',
   'https://store-abdullah-nadeem.vercel.app',
-  'https://salooninterior.com',
+  'https://salonaestheticsolution.com',
   'http://localhost:3000',
   'http://localhost:5000',
   'http://localhost:5173',

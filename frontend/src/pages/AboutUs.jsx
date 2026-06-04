@@ -162,7 +162,7 @@ const AboutUs = () => {
             className={`${getTextSize('text-3xl', 'text-5xl', 'text-7xl')} font-light tracking-tighter leading-tight mb-8`}
             style={{ color: colors.textPrimary, letterSpacing: '-0.02em' }}
           >
-            <span className="text-blue-600 font-serif italic">Saloon Interior</span> Excellence
+            <span className="text-blue-600 font-serif italic">Salon Aesthetic Solution</span> Excellence
           </motion.h1>
           <motion.div
             className="h-1 w-12 md:w-24 mx-auto mb-10"
@@ -182,12 +182,12 @@ const AboutUs = () => {
             <h2 className="text-4xl md:text-5xl font-light mb-10 tracking-tighter" style={{ color: colors.textPrimary, letterSpacing: '-0.02em' }}>Our Philosophy</h2>
             <div className="space-y-6 font-light text-xl leading-relaxed opacity-80" style={{ color: colors.textSecondary }}>
               <p>
-                At Saloon Interior, we believe that a saloon's interior should reflect its artistry.
+                At Salon Aesthetic Solution, we believe that a salon's interior should reflect its artistry.
                 Every piece we create is designed to enhance both the client experience and the stylist's workflow.
               </p>
               <p>
                 With {salonDetails.owner}'s expertise and passion for design, we've been crafting bespoke
-                saloon interiors that blend functionality with aesthetic appeal for decades.
+                salon interiors that blend functionality with aesthetic appeal for decades.
               </p>
             </div>
 
@@ -243,7 +243,7 @@ const AboutUs = () => {
             <motion.span className="text-[10px] uppercase tracking-[0.4em] text-blue-200 font-bold block mb-6 opacity-80">
               OUR CORE VALUES
             </motion.span>
-            <h2 className="text-4xl md:text-6xl font-light tracking-tighter mb-16" style={{ letterSpacing: '-0.02em' }}>The Saloon Interior Standard</h2>
+            <h2 className="text-4xl md:text-6xl font-light tracking-tighter mb-16" style={{ letterSpacing: '-0.02em' }}>The Salon Aesthetic Solution Standard</h2>
 
             <div className="grid md:grid-cols-3 gap-12">
               {values.map((v, i) => (
@@ -306,7 +306,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div className="text-[10px] uppercase tracking-widest font-bold" style={{ color: colors.textSecondary }}>
-            © {new Date().getFullYear()} SALOON INTERIOR. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} SALON AESTHETIC SOLUTION. ALL RIGHTS RESERVED.
           </div>
         </motion.div>
       </div>

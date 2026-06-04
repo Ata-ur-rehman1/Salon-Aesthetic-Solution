@@ -177,7 +177,7 @@ const PrivacyPolicy = () => {
       icon: Users,
       title: "How We Use Your Information",
       content: [
-        "To process and fulfill your saloon interior orders",
+        "To process and fulfill your salon aesthetic solution orders",
         "To provide personalized design consultations",
         "To coordinate shipments and delivery",
         "To communicate about your order status",

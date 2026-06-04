@@ -224,7 +224,7 @@ const OrderList = () => {
             Client Orders
           </motion.h1>
           <motion.p className={`${getTextSize('text-sm', 'text-base', 'text-base')} text-gray-600 mt-2`}>
-            Manage saloon interior product orders and deliveries
+            Manage salon aesthetic solution product orders and deliveries
           </motion.p>
         </motion.div>
 
@@ -277,7 +277,7 @@ const OrderList = () => {
                 className="text-xs text-gray-500"
                 variants={itemVariants}
               >
-                Saloon Interior
+                Salon Aesthetic Solution
               </motion.div>
             </motion.div>
           ))}
@@ -416,7 +416,7 @@ const OrderList = () => {
                   </motion.h3>
                   <motion.p className="text-sm mb-8" style={{ color: colors.textSecondary }}>
                     {filter === "all" 
-                      ? "No orders have been placed for saloon interior products yet."
+                      ? "No orders have been placed for salon aesthetic solution products yet."
                       : `No ${filter} orders found.`
                     }
                   </motion.p>

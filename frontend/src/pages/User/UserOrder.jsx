@@ -228,7 +228,7 @@ const UserOrder = () => {
             My Purchases
           </motion.h1>
           <motion.p className={`${getTextSize('text-sm', 'text-base', 'text-base')} text-gray-600 mt-4 max-w-2xl mx-auto font-light`}>
-            Track and manage your saloon furniture and interior orders from Ultra Saloon Interior
+            Track and manage your salon furniture and interior orders from Ultra Salon Aesthetic Solution
           </motion.p>
         </motion.div>
 
@@ -373,7 +373,7 @@ const UserOrder = () => {
                 </motion.h3>
                 <motion.p className="text-sm text-gray-500 mb-10 max-w-sm mx-auto font-light">
                   {filter === "all"
-                    ? "You haven't placed any orders yet. Explore our luxury saloon furniture collection."
+                    ? "You haven't placed any orders yet. Explore our luxury salon furniture collection."
                     : `We couldn't find any ${filter} orders in your history.`
                   }
                 </motion.p>
@@ -550,7 +550,7 @@ const UserOrder = () => {
                 Order Insights
               </h3>
               <p className="text-sm text-gray-500 font-light leading-relaxed">
-                Take a look at your purchasing patterns and account activity. We strive to provide the best saloon interior equipment for your business growth.
+                Take a look at your purchasing patterns and account activity. We strive to provide the best salon aesthetic solution equipment for your business growth.
               </p>
             </div>
 

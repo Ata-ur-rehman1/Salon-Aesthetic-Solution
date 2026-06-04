@@ -27,9 +27,9 @@ const Meta = ({ title, description, keywords }) => {
 };
 
 Meta.defaultProps = {
-  title: "Saloon Interior | Premium Salon Equipment",
-  description: "High-quality saloon interior equipment, aesthetic machines, and electronic equipment for professional saloons.",
-  keywords: "saloon equipment, saloon interior, aesthetic machines, professional saloon furniture",
+  title: "Salon Aesthetic Solution | Premium Salon Equipment",
+  description: "High-quality salon aesthetic solutions, aesthetic machines, and electronic equipment for professional salons.",
+  keywords: "salon equipment, salon aesthetic solution, aesthetic machines, professional salon furniture",
 };
 
 export default Meta;

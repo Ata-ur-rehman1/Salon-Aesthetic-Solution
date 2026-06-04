@@ -296,7 +296,7 @@ const ProductList = () => {
             Add New Product
           </motion.span>
           <motion.h1 className={`${getTextSize('text-2xl', 'text-4xl', 'text-6xl')} font-light tracking-tighter text-black`}>
-            Create Saloon Interior Product
+            Create Salon Aesthetic Solution Product
           </motion.h1>
           <motion.p className={`${getTextSize('text-sm', 'text-base', 'text-base')} text-gray-600 mt-2`}>
             Add a new product to your premium collection
@@ -693,7 +693,7 @@ const ProductList = () => {
                         backgroundColor: colors.surface,
                         color: colors.textPrimary
                       }}
-                      placeholder="Describe the product features, benefits, and saloon applications..."
+                      placeholder="Describe the product features, benefits, and salon applications..."
                       required
                       whileFocus={{ scale: 1.01, borderColor: colors.accent }}
                     />
@@ -874,7 +874,7 @@ const ProductList = () => {
                 >
                   {[
                     { title: "Specifications", desc: "Appear in product detail section", icon: FiTruck },
-                    { title: "Custom Names", desc: "Tailor to saloon interior needs", icon: FiTag },
+                    { title: "Custom Names", desc: "Tailor to salon aesthetic solution needs", icon: FiTag },
                     { title: "Complete Details", desc: "Help customers make informed decisions", icon: FiCheckCircle }
                   ].map((item, index) => (
                     <motion.div

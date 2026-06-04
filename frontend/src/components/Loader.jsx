@@ -117,7 +117,7 @@ const Loader = ({ loadingText = "Loading..." }) => {
           className={`${textSize} uppercase tracking-wider text-gray-500 block mb-1`}
           whileHover={{ scale: 1.02 }}
         >
-          Saloon Studio
+          Salon Aesthetic Solution
         </motion.span>
         <motion.h2 
           className={`${headingSize} font-medium text-black`}

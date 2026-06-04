@@ -6,7 +6,7 @@ import { useAllProductsQuery } from "../../redux/api/productApiSlice";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import Loader from "../../components/Loader";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaSearch, FaSlidersH, FaStar, FaShoppingCart, FaChevronRight, FaTimes } from "react-icons/fa";
+import { FaSearch, FaSlidersH, FaStar, FaShoppingCart, FaChevronRight, FaTimes, FaEye } from "react-icons/fa";
 
   const itemVariants = {
     hidden: { y: 40, opacity: 0 },
@@ -359,18 +359,30 @@ const ProductCard = ({ product, onAddToCart, colors, index }) => {
             />
           </Link>
 
-          {/* Quick Add Overlay */}
+          {/* Quick Add / View Overlay */}
           <AnimatePresence>
             {isHovered && (
               <motion.div
-                className="absolute inset-0 bg-black/5 flex items-center justify-center backdrop-blur-[2px]"
+                className="absolute inset-0 bg-black/5 flex items-center justify-center gap-3 backdrop-blur-[2px]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
+                {/* View Product Button */}
+                <Link to={`/product/${product._id}`}>
+                  <motion.button
+                    className="w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center border border-blue-200 text-gray-700 hover:text-white"
+                    whileHover={{ scale: 1.1, backgroundColor: colors.accent }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FaEye className="text-lg" />
+                  </motion.button>
+                </Link>
+
+                {/* Add to Cart Button */}
                 <motion.button
-                  className="w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center border border-blue-200"
-                  whileHover={{ scale: 1.1, backgroundColor: colors.accent, color: "#fff" }}
+                  className="w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center border border-blue-200 text-gray-700 hover:text-white"
+                  whileHover={{ scale: 1.1, backgroundColor: colors.accent }}
                   whileTap={{ scale: 0.9 }}
                   onClick={(e) => {
                     e.preventDefault();

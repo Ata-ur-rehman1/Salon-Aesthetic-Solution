@@ -258,8 +258,8 @@ const ProductDetails = () => {
 
       <div className="relative z-10">
         <Meta
-          title={product ? `${product.name} | Saloon Interior` : "Product Details | Saloon Interior"}
-          description={product ? product.description : "Premium saloon interior equipment."}
+          title={product ? `${product.name} | Salon Aesthetic Solution` : "Product Details | Salon Aesthetic Solution"}
+          description={product ? product.description : "Premium salon aesthetic solution equipment."}
         />
 
         {/* Zoom Overlay - Rendered via Portal */}
@@ -536,7 +536,7 @@ const ProductDetails = () => {
                     <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-rose-300 rounded-full mb-8" />
 
                     <p className="text-base leading-relaxed max-w-sm font-light" style={{ color: colors.textSecondary }}>
-                      Discover the meticulous craftsmanship and precision engineering that makes this piece a cornerstone of any high-end saloon environment. Every detail is optimized for professional performance and enduring luxury.
+                      Discover the meticulous craftsmanship and precision engineering that makes this piece a cornerstone of any high-end salon environment. Every detail is optimized for professional performance and enduring luxury.
                     </p>
                   </motion.div>
                 </div>

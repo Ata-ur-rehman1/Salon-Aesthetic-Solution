@@ -303,7 +303,7 @@ const ContactUs = () => {
           variants={headerVariants}
         >
           <div className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">
-            © {new Date().getFullYear()} SALOON INTERIOR STUDIO. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} SALON AESTHETIC SOLUTION. ALL RIGHTS RESERVED.
           </div>
           <div className="flex gap-8">
             <Globe className="w-5 h-5 text-gray-200" />

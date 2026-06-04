@@ -433,67 +433,7 @@ const DynamicCollection = ({ title, collectionKey, products }) => {
 
 
 
-// Powerful CTA Banner
-const PowerfulCTA = () => {
-  return (
-    <div className="relative py-24 md:py-32 overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900">
-        <div className="absolute inset-0 opacity-50" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")` }}></div>
-      </div>
 
-      <div className="max-w-5xl mx-auto text-center px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Ready to Elevate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Salon Experience?</span>
-          </h2>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          viewport={{ once: true }}
-          className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
-        >
-          Get expert consultation and exclusive deals tailored for your salon's needs
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          viewport={{ once: true }}
-          className="flex flex-col sm:flex-row gap-5 justify-center"
-        >
-          <Link to="/contact" className="group px-8 py-4 bg-white text-blue-900 rounded-full font-semibold text-lg shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 inline-flex items-center gap-2 justify-center">
-            Get Free Consultation
-            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link to="/shop" className="px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300">
-            Browse Collection
-          </Link>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-10 flex items-center justify-center gap-6 text-sm text-blue-200"
-        >
-          <span className="flex items-center gap-2"><FaCheckCircle /> Free Shipping</span>
-          <span className="flex items-center gap-2"><FaCheckCircle /> 1 Year Warranty</span>
-          <span className="flex items-center gap-2"><FaCheckCircle /> Expert Support</span>
-        </motion.div>
-      </div>
-    </div >
-  );
-};
 
 const CategoryProducts = () => {
   const { data: realTimeProducts, isLoading: productsLoading } = useAllProductsQuery();
@@ -630,9 +570,6 @@ const CategoryProducts = () => {
           )}
         </div>
       </main>
-
-      {/* CTA Banner */}
-      <PowerfulCTA />
 
       {/* Add required styles for animations */}
       <style jsx global>{`

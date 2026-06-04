@@ -10,6 +10,7 @@ import {
   FiChevronDown,
 } from "react-icons/fi";
 import { useState, useEffect, useRef, useCallback, memo } from "react";
+import { flushSync } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -95,7 +96,7 @@ const CartIconWithBadge = memo(({ size = 20 }) => {
   );
 });
 
-const SaloonLogo = () => (
+const SalonLogo = () => (
   <Link to="/" className="flex items-center">
     <motion.div
       className="font-serif font-bold"
@@ -105,12 +106,28 @@ const SaloonLogo = () => (
     >
       <img
         src={Logo1}
-        alt="Saloon Logo"
+        alt="Salon Logo"
         className="h-7 sm:h-9 md:h-12 w-auto object-contain"
       />
     </motion.div>
   </Link>
 );
+
+// Stable module-level constant — must NOT be inside the component
+// (inside the component it creates a new array reference every render,
+//  which causes the useEffect([location.pathname, categories]) to fire
+//  on every render and instantly close the dropdown)
+const DEFAULT_CATEGORIES = [
+  { name: "Chairs" },
+  { name: "Massage Bed" },
+  { name: "Head wash unit" },
+  { name: "Menicure and Pedicure" },
+  { name: "Trolleys" },
+  { name: "Hydra Machines" },
+  { name: "Steamers" },
+  { name: "Bar Stools" },
+  { name: "Electronic Equipment" },
+];
 
 const Navigation = ({ className }) => {
   const location = useLocation();
@@ -134,23 +151,11 @@ const Navigation = ({ className }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("");
 
-  // Predefined Categories Fallback if backend API has none
-  const defaultCategories = [
-    { name: "Chairs" },
-    { name: "Massage Bed" },
-    { name: "Head wash unit" },
-    { name: "Menicure and Pedicure" },
-    { name: "Trolleys" },
-    { name: "Hydra Machines" },
-    { name: "Steamers" },
-    { name: "Bar Stools" },
-    { name: "Electronic Equipment" },
-  ];
 
   // Resolve dynamic categories combined with fallbacks
   const categories = backendCategories && backendCategories.length > 0
     ? backendCategories
-    : defaultCategories;
+    : DEFAULT_CATEGORIES;
 
   // Auto-close all menus on route change
   useEffect(() => {
@@ -205,8 +210,10 @@ const Navigation = ({ className }) => {
 
   const mobileMenuVariants = {
     closed: { x: "100%", opacity: 0 },
-    open: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 350, damping: 30 } }
+    open: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 350, damping: 30 } },
   };
+
+  const mobileExitTransition = { duration: 0.15, ease: "easeOut" };
 
   // Refs
   const inputRef = useRef(null);
@@ -294,12 +301,26 @@ const Navigation = ({ className }) => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }, [isMobileMenuOpen]);
 
+  // Close mobile menu synchronously then navigate
   const handleMobileNavigation = useCallback((link, categoryName) => {
+    flushSync(() => {
+      setActiveCategory(categoryName);
+      setIsMobileMenuOpen(false);
+      setIsSearchModalOpen(false);
+      setShowDropdown(false);
+    });
     navigate(link);
-    setActiveCategory(categoryName);
-    closeMobileMenu();
-    closeSearchModal();
-  }, [navigate, closeMobileMenu, closeSearchModal]);
+  }, [navigate]);
+
+  // Generic mobile nav (for non-category links)
+  const handleMobileNav = useCallback((path) => {
+    flushSync(() => {
+      setIsMobileMenuOpen(false);
+      setIsSearchModalOpen(false);
+      setShowDropdown(false);
+    });
+    navigate(path);
+  }, [navigate]);
 
   // Click outside listener
   useEffect(() => {
@@ -392,16 +413,19 @@ const Navigation = ({ className }) => {
     }
   }, [handleSearch]);
 
-  // Helper to close dropdown
-  const handleDropdownItemClick = () => {
-    setDropdownOpen(false);
-  };
+  // Navigate and close dropdown — flushSync forces DOM update before navigation
+  const handleDropdownNav = useCallback((path) => {
+    flushSync(() => {
+      setDropdownOpen(false);
+    });
+    navigate(path);
+  }, [navigate]);
 
   return (
     <>
       <motion.nav
         ref={navRef}
-        className={`fixed top-[35px] left-0 right-0 h-[50px] md:h-[90px] z-[50] w-full border-b backdrop-blur-lg flex items-center ${className || ""}`}
+        className={`fixed left-0 right-0 h-[50px] md:h-[90px] z-[50] w-full border-b backdrop-blur-lg flex items-center ${className || ""}`}
         style={{
           backgroundColor: colors.glassBg,
           borderColor: colors.border,
@@ -416,7 +440,7 @@ const Navigation = ({ className }) => {
 
             {/* Logo */}
             <div className="flex-shrink-0">
-              <SaloonLogo />
+              <SalonLogo />
             </div>
 
             {/* Categories - Desktop Only */}
@@ -436,6 +460,10 @@ const Navigation = ({ className }) => {
                       to={route}
                       key={category.name}
                       className="flex-shrink-0 relative py-2"
+                      onClick={() => {
+                        setDropdownOpen(false);
+                        setActiveCategory(category.name);
+                      }}
                     >
                       <motion.div
                         className="px-2.5 lg:px-3 py-1.5 rounded-full transition-all duration-300"
@@ -522,13 +550,12 @@ const Navigation = ({ className }) => {
                     <AnimatePresence>
                       {dropdownOpen && (
                         <motion.div
-                          onClick={handleDropdownItemClick}
                           className="absolute right-0 mt-2 z-50 w-56 bg-white border rounded-2xl shadow-xl overflow-hidden"
                           style={{ borderColor: colors.border }}
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                          transition={{ duration: 0.12, ease: "easeOut" }}
                         >
                           <div className="p-4 bg-slate-50 border-b" style={{ borderColor: colors.border }}>
                             <div className="flex items-center gap-3">
@@ -550,14 +577,13 @@ const Navigation = ({ className }) => {
                           </div>
 
                           <div className="p-2 space-y-1">
-                            <Link
-                              to="/profile"
-                              onClick={() => setDropdownOpen(false)}
-                              className="flex items-center gap-2.5 px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                            <button
+                              onClick={() => handleDropdownNav("/profile")}
+                              className="flex items-center gap-2.5 w-full text-left px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors"
                             >
                               <FiUser size={14} />
                               <span>Profile</span>
-                            </Link>
+                            </button>
 
                             {userInfo.isAdmin && (
                               <>
@@ -565,15 +591,14 @@ const Navigation = ({ className }) => {
                                   Admin Panel
                                 </div>
                                 {adminItems.map((item) => (
-                                  <Link
+                                  <button
                                     key={item.path}
-                                    to={item.path}
-                                    onClick={() => setDropdownOpen(false)}
-                                    className="flex items-center gap-2.5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                                    onClick={() => handleDropdownNav(item.path)}
+                                    className="flex items-center gap-2.5 w-full text-left px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-600 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors"
                                   >
                                     <FiChevronRight size={12} className="opacity-50" />
                                     <span>{item.label}</span>
-                                  </Link>
+                                  </button>
                                 ))}
                               </>
                             )}
@@ -582,8 +607,8 @@ const Navigation = ({ className }) => {
 
                             <button
                               onClick={() => {
-                                logoutHandler();
                                 setDropdownOpen(false);
+                                logoutHandler();
                               }}
                               className="flex items-center gap-2.5 w-full text-left px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-rose-600 rounded-lg hover:bg-rose-50 transition-colors"
                             >
@@ -787,14 +812,13 @@ const Navigation = ({ className }) => {
             <motion.div
               ref={mobileMenuRef}
               className="fixed inset-y-0 right-0 w-72 max-w-sm z-[100] bg-white shadow-2xl flex flex-col h-full overflow-hidden"
-              variants={mobileMenuVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1, transition: { type: "spring", stiffness: 350, damping: 30 } }}
+              exit={{ x: "100%", opacity: 0, transition: mobileExitTransition }}
             >
               {/* Header */}
               <div className="p-4 flex items-center justify-between border-b" style={{ borderColor: colors.border }}>
-                <SaloonLogo />
+                <SalonLogo />
                 <motion.button
                   onClick={closeMobileMenu}
                   className="p-2 border rounded-full hover:bg-slate-50 transition-colors"
@@ -832,14 +856,13 @@ const Navigation = ({ className }) => {
                 )}
 
                 {/* Cart Access */}
-                <Link
-                  to="/cart"
-                  className="flex items-center justify-between p-3 border.5 rounded-xl hover:bg-slate-50 transition-colors"
+                <button
+                  onClick={() => handleMobileNav("/cart")}
+                  className="flex items-center justify-between w-full p-3 border.5 rounded-xl hover:bg-slate-50 transition-colors text-left"
                   style={{
                     backgroundColor: colors.accentLight,
                     borderColor: "rgba(37, 99, 235, 0.15)"
                   }}
-                  onClick={closeMobileMenu}
                 >
                   <div className="flex items-center gap-3">
                     <FiShoppingCart size={16} className="text-blue-600" />
@@ -848,7 +871,7 @@ const Navigation = ({ className }) => {
                   <div className="text-[10px] font-bold text-white px-2 py-0.5 rounded-full" style={{ backgroundColor: colors.accent }}>
                     {cartItemCount}
                   </div>
-                </Link>
+                </button>
 
                 {/* Categories */}
                 <div className="space-y-2">
@@ -889,14 +912,13 @@ const Navigation = ({ className }) => {
                 <div className="space-y-1">
                   {userInfo ? (
                     <>
-                      <Link
-                        to="/profile"
-                        className="flex items-center gap-3 p-2.5 text-xs font-bold uppercase tracking-wider text-slate-700 rounded-xl hover:bg-slate-50 transition-colors"
-                        onClick={closeMobileMenu}
+                      <button
+                        onClick={() => handleMobileNav("/profile")}
+                        className="flex items-center gap-3 w-full text-left p-2.5 text-xs font-bold uppercase tracking-wider text-slate-700 rounded-xl hover:bg-slate-50 transition-colors"
                       >
                         <FiUser size={16} />
                         <span>Profile Settings</span>
-                      </Link>
+                      </button>
 
                       {userInfo.isAdmin && (
                         <>
@@ -904,21 +926,23 @@ const Navigation = ({ className }) => {
                             Management Controls
                           </div>
                           {adminItems.map((item) => (
-                            <Link
+                            <button
                               key={item.path}
-                              to={item.path}
-                              className="flex items-center gap-3 p-2.5 text-xs font-semibold uppercase tracking-wider text-slate-700 rounded-xl hover:bg-slate-50 transition-colors"
-                              onClick={closeMobileMenu}
+                              onClick={() => handleMobileNav(item.path)}
+                              className="flex items-center gap-3 w-full text-left p-2.5 text-xs font-semibold uppercase tracking-wider text-slate-700 rounded-xl hover:bg-slate-50 transition-colors"
                             >
                               <FiChevronRight size={14} className="opacity-50" />
                               <span>{item.label}</span>
-                            </Link>
+                            </button>
                           ))}
                         </>
                       )}
 
                       <button
-                        onClick={logoutHandler}
+                        onClick={() => {
+                          flushSync(() => setIsMobileMenuOpen(false));
+                          logoutHandler();
+                        }}
                         className="flex items-center gap-3 p-2.5 w-full text-left text-xs font-bold uppercase tracking-wider text-rose-600 rounded-xl hover:bg-rose-50 transition-colors mt-4"
                       >
                         <FiLogOut size={16} />
@@ -927,29 +951,27 @@ const Navigation = ({ className }) => {
                     </>
                   ) : (
                     <div className="grid grid-cols-1 gap-2 pt-2">
-                      <Link
-                        to="/login"
-                        className="flex items-center justify-center gap-2 p-3 text-xs font-bold uppercase tracking-wider border rounded-xl hover:bg-slate-50 transition-all text-center"
+                      <button
+                        onClick={() => handleMobileNav("/login")}
+                        className="flex items-center justify-center gap-2 w-full p-3 text-xs font-bold uppercase tracking-wider border rounded-xl hover:bg-slate-50 transition-all text-center"
                         style={{
                           borderColor: colors.accent,
                           color: colors.accent
                         }}
-                        onClick={closeMobileMenu}
                       >
                         <FiUser size={14} />
                         <span>Login</span>
-                      </Link>
+                      </button>
 
-                      <Link
-                        to="/register"
-                        className="p-3 text-xs font-bold uppercase tracking-wider text-white text-center rounded-xl hover:shadow-md transition-all"
+                      <button
+                        onClick={() => handleMobileNav("/register")}
+                        className="p-3 w-full text-xs font-bold uppercase tracking-wider text-white text-center rounded-xl hover:shadow-md transition-all"
                         style={{
                           backgroundColor: colors.accent
                         }}
-                        onClick={closeMobileMenu}
                       >
                         Create Account
-                      </Link>
+                      </button>
                     </div>
                   )}
                 </div>

@@ -226,7 +226,7 @@ const MobileServices = memo(() => {
             className="text-[6px] uppercase tracking-[0.2em] opacity-40 mb-0.5"
             style={{ color: colors.textSecondary }}
           >
-            &copy; 2025 Saloon Studio
+            &copy; 2025 Salon Aesthetic Solution
           </motion.p>
           <motion.p
             className="text-[5px] uppercase tracking-[0.3em] opacity-30"
@@ -452,7 +452,7 @@ const TabletServices = memo(() => {
         >
           <motion.div variants={itemVariants}>
             <h4 className="text-[9px] uppercase tracking-[0.3em] font-bold mb-4 lg:mb-6 opacity-60" style={{ color: colors.accent }}>
-              Saloon Studio
+              Salon Aesthetic Solution
             </h4>
             <p className="text-sm leading-relaxed" style={{ color: colors.textSecondary }}>
               Curating high-end interiors for the modern professional since 2024.
@@ -534,7 +534,7 @@ const TabletServices = memo(() => {
             className="text-[7px] uppercase tracking-[0.3em] opacity-40 mb-0.5"
             style={{ color: colors.textSecondary }}
           >
-            &copy; 2025 Saloon Studio
+            &copy; 2025 Salon Aesthetic Solution
           </motion.p>
           <motion.p
             className="text-[6px] uppercase tracking-[0.4em] opacity-30"
@@ -761,7 +761,7 @@ const DesktopServices = memo(() => {
         >
           <motion.div variants={itemVariants}>
             <h4 className="text-[9px] uppercase tracking-[0.3em] font-bold mb-6 opacity-60" style={{ color: colors.accent }}>
-              Saloon Studio
+              Salon Aesthetic Solution
             </h4>
             <p className="text-sm leading-relaxed" style={{ color: colors.textSecondary }}>
               Curating high-end interiors for the modern professional since 2024.
@@ -838,7 +838,7 @@ const DesktopServices = memo(() => {
             className="text-[8px] uppercase tracking-[0.3em] opacity-40 mb-1"
             style={{ color: colors.textSecondary }}
           >
-            &copy; 2025 Saloon Studio
+            &copy; 2025 Salon Aesthetic Solution
           </motion.p>
           <motion.p
             className="text-[7px] uppercase tracking-[0.4em] opacity-30"
