@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaWhatsapp, FaShieldAlt, FaCreditCard, FaLock, FaCheckCircle, FaMapMarkerAlt, FaPhone, FaEnvelope, FaInstagram, FaTiktok } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
@@ -96,6 +96,98 @@ const SecurityBadge = ({ icon, title, subtitle }) => (
   </motion.div>
 );
 
+// Unified Payment Card Component with 3D Spring tilt & Ambient Glow
+const PaymentCard = ({ icon, title, description, sizeClass = "p-8", isRecommended, extraInfo }) => {
+  const cardRef = useRef(null);
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const [glowPos, setGlowPos] = useState({ x: 0, y: 0 });
+  const [showGlow, setShowGlow] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setRotate({ x: y * 8, y: x * 8 });
+    setGlowPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setShowGlow(true);
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+    setShowGlow(false);
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      className="bg-white border relative group cursor-pointer overflow-hidden rounded-2xl"
+      style={{
+        borderColor: colors.border,
+        boxShadow: "0 2px 12px rgba(0,0,0,0.02)",
+        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+        transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)'
+      }}
+      variants={{
+        hidden: { y: 45, opacity: 0 },
+        visible: {
+          y: 0,
+          opacity: 1,
+          transition: { type: "spring", stiffness: 80, damping: 20 }
+        }
+      }}
+      whileHover={{
+        y: -10,
+        boxShadow: "0 30px 60px rgba(0,0,0,0.12)"
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {showGlow && (
+        <div
+          className="absolute pointer-events-none rounded-2xl opacity-40 transition-opacity duration-300 mix-blend-screen"
+          style={{
+            inset: 0,
+            background: `radial-gradient(350px circle at ${glowPos.x}px ${glowPos.y}px, rgba(37, 99, 235, 0.12), transparent 85%)`,
+            zIndex: 1
+          }}
+        />
+      )}
+      
+      {isRecommended && (
+        <motion.div
+          className="absolute top-0 right-0 text-white text-[8px] tracking-[0.3em] px-4 py-2 uppercase z-10"
+          style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          Recommended
+        </motion.div>
+      )}
+
+      <div className={sizeClass}>
+        <motion.div
+          className="text-3xl mb-6 inline-block"
+          style={{ color: colors.accent }}
+          whileHover={{ rotate: 360, scale: 1.15 }}
+          transition={{ duration: 0.6, type: "spring" }}
+        >
+          {icon}
+        </motion.div>
+        <h3 className={sizeClass.includes("p-6") ? "text-base font-light tracking-tight mb-2" : "text-2xl font-light mb-4"} style={{ color: colors.textPrimary }}>
+          {title}
+        </h3>
+        <p className="text-sm leading-relaxed mb-6" style={{ color: colors.textSecondary }}>
+          {description}
+        </p>
+        {extraInfo}
+      </div>
+    </motion.div>
+  );
+};
+
+
 // Mobile View Component
 const MobileServices = memo(() => {
 
@@ -187,10 +279,10 @@ const MobileServices = memo(() => {
               className="flex gap-4 mt-2"
               variants={itemVariants}
             >
-              <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/salon_aesthetics_solutions?fbclid=IwY2xjawSQ-6VleHRuA2FlbQIxMABicmlkETEwdUhUNEliRko4bklCRUw0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjWtNVmCIk3HR56mtNRrk6R9taTvacs604AFw0CcHfx8LaYijgoLdLfWeyHs_aem_vryg6dDjTSM3fHbCkVXYWw" target="_blank" rel="noopener noreferrer">
                 <FaInstagram style={{ color: colors.accent, fontSize: '16px' }} />
               </a>
-              <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.tiktok.com/@drzia1592?fbclid=IwY2xjawSQ-6tleHRuA2FlbQIxMABicmlkETEwdUhUNEliRko4bklCRUw0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHueeX6AAydZuGPJNtGwcF9v6W6ypK6xanqdHWDBueW2Ezcmt5muhRjx3q02-_aem_ivumRHsKSdaogDX9mtDoLQ" target="_blank" rel="noopener noreferrer">
                 <FaTiktok style={{ color: colors.accent, fontSize: '16px' }} />
               </a>
             </motion.div>
@@ -265,169 +357,58 @@ const TabletServices = memo(() => {
             }
           }}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
         >
           {/* WhatsApp Card */}
-          <motion.div
-            className="bg-white border p-6 relative group"
-            style={{
-              borderColor: colors.border,
-              boxShadow: "0 2px 12px rgba(0,0,0,0.02)"
-            }}
-            variants={{
-              hidden: { y: 40, opacity: 0 },
-              visible: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20
-                }
-              }
-            }}
-            whileHover={{
-              y: -8,
-              boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
-              transition: { duration: 0.3, ease: "easeOut" }
-            }}
-          >
-            <motion.div
-              className="absolute top-0 right-0 text-white text-[8px] tracking-[0.2em] px-3 py-1.5 uppercase"
-              style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              Recommended
-            </motion.div>
-            <motion.div
-              className="text-2xl mb-4"
-              style={{ color: colors.accent }}
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-            >
-              <FaWhatsapp />
-            </motion.div>
-            <h3 className="text-base font-light tracking-tight mb-2" style={{ color: colors.textPrimary }}>WhatsApp Transfer</h3>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: colors.textSecondary }}>
-              Complete your transaction via secure chat with instant verification.
-            </p>
-            <motion.div
-              className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] font-medium"
-              style={{ color: colors.success }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <motion.div
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: colors.success }}
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              Official Business
-            </motion.div>
-          </motion.div>
+          <PaymentCard
+            icon={<FaWhatsapp />}
+            title="WhatsApp Transfer"
+            description="Complete your transaction via secure chat with instant verification."
+            sizeClass="p-6"
+            isRecommended={true}
+            extraInfo={
+              <div
+                className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] font-medium"
+                style={{ color: colors.success }}
+              >
+                <motion.div
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: colors.success }}
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                Official Business
+              </div>
+            }
+          />
 
           {/* Credit Card Card */}
-          <motion.div
-            className="bg-white border p-6 group"
-            style={{
-              borderColor: colors.border,
-              boxShadow: "0 2px 12px rgba(0,0,0,0.02)"
-            }}
-            variants={{
-              hidden: { y: 40, opacity: 0 },
-              visible: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20,
-                  delay: 0.05
-                }
-              }
-            }}
-            whileHover={{
-              y: -8,
-              boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
-              transition: { duration: 0.3, ease: "easeOut" }
-            }}
-          >
-            <motion.div
-              className="text-2xl mb-4"
-              style={{ color: colors.accent }}
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-            >
-              <FaCreditCard />
-            </motion.div>
-            <h3 className="text-base font-light tracking-tight mb-2" style={{ color: colors.textPrimary }}>Credit / Debit</h3>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: colors.textSecondary }}>
-              Global acceptance including VISA and Mastercard with SSL protection.
-            </p>
-            <motion.div
-              className="flex gap-2 text-[9px] font-medium"
-              style={{ color: colors.textSecondary }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <span className="border px-2 py-0.5" style={{ borderColor: colors.border }}>VISA</span>
-              <span className="border px-2 py-0.5" style={{ borderColor: colors.border }}>MASTERCARD</span>
-            </motion.div>
-          </motion.div>
+          <PaymentCard
+            icon={<FaCreditCard />}
+            title="Credit / Debit"
+            description="Global acceptance including VISA and Mastercard with SSL protection."
+            sizeClass="p-6"
+            extraInfo={
+              <div className="flex gap-2 text-[9px] font-medium" style={{ color: colors.textSecondary }}>
+                <span className="border px-2 py-0.5" style={{ borderColor: colors.border }}>VISA</span>
+                <span className="border px-2 py-0.5" style={{ borderColor: colors.border }}>MASTERCARD</span>
+              </div>
+            }
+          />
 
           {/* Protection Card */}
-          <motion.div
-            className="bg-white border p-6 group"
-            style={{
-              borderColor: colors.border,
-              boxShadow: "0 2px 12px rgba(0,0,0,0.02)"
-            }}
-            variants={{
-              hidden: { y: 40, opacity: 0 },
-              visible: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20,
-                  delay: 0.1
-                }
-              }
-            }}
-            whileHover={{
-              y: -8,
-              boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
-              transition: { duration: 0.3, ease: "easeOut" }
-            }}
-          >
-            <motion.div
-              className="text-2xl mb-4"
-              style={{ color: colors.accent }}
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-            >
-              <FaShieldAlt />
-            </motion.div>
-            <h3 className="text-base font-light tracking-tight mb-2" style={{ color: colors.textPrimary }}>Buyer Protection</h3>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: colors.textSecondary }}>
-              Your equipment investment is safe with our secure fulfillment process.
-            </p>
-            <motion.div
-              className="text-[9px] uppercase tracking-[0.2em] font-medium"
-              style={{ color: colors.accent }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              PCI DSS Compliant
-            </motion.div>
-          </motion.div>
+          <PaymentCard
+            icon={<FaShieldAlt />}
+            title="Buyer Protection"
+            description="Your equipment investment is safe with our secure fulfillment process."
+            sizeClass="p-6"
+            extraInfo={
+              <div className="text-[9px] uppercase tracking-[0.2em] font-medium" style={{ color: colors.accent }}>
+                PCI DSS Compliant
+              </div>
+            }
+          />
         </motion.div>
 
         {/* Security Badges */}
@@ -486,10 +467,10 @@ const TabletServices = memo(() => {
                 className="flex gap-4 mt-2"
                 variants={itemVariants}
               >
-                <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/salon_aesthetics_solutions?fbclid=IwY2xjawSQ-6VleHRuA2FlbQIxMABicmlkETEwdUhUNEliRko4bklCRUw0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjWtNVmCIk3HR56mtNRrk6R9taTvacs604AFw0CcHfx8LaYijgoLdLfWeyHs_aem_vryg6dDjTSM3fHbCkVXYWw" target="_blank" rel="noopener noreferrer">
                   <FaInstagram style={{ color: colors.accent, fontSize: '18px' }} />
                 </a>
-                <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.tiktok.com/@drzia1592?fbclid=IwY2xjawSQ-6tleHRuA2FlbQIxMABicmlkETEwdUhUNEliRko4bklCRUw0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHueeX6AAydZuGPJNtGwcF9v6W6ypK6xanqdHWDBueW2Ezcmt5muhRjx3q02-_aem_ivumRHsKSdaogDX9mtDoLQ" target="_blank" rel="noopener noreferrer">
                   <FaTiktok style={{ color: colors.accent, fontSize: '18px' }} />
                 </a>
               </motion.div>
@@ -574,169 +555,58 @@ const DesktopServices = memo(() => {
             }
           }}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
         >
           {/* WhatsApp Card */}
-          <motion.div
-            className="bg-white border p-8 relative group cursor-pointer"
-            style={{
-              borderColor: colors.border,
-              boxShadow: "0 2px 12px rgba(0,0,0,0.02)"
-            }}
-            variants={{
-              hidden: { y: 60, opacity: 0 },
-              visible: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20
-                }
-              }
-            }}
-            whileHover={{
-              y: -12,
-              boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-              transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
-            }}
-          >
-            <motion.div
-              className="absolute top-0 right-0 text-white text-[8px] tracking-[0.3em] px-4 py-2 uppercase"
-              style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, type: "spring" }}
-            >
-              Recommended
-            </motion.div>
-            <motion.div
-              className="text-3xl mb-6"
-              style={{ color: colors.accent }}
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6, type: "spring" }}
-            >
-              <FaWhatsapp />
-            </motion.div>
-            <h3 className="text-2xl font-light mb-4" style={{ color: colors.textPrimary }}>WhatsApp Transfer</h3>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: colors.textSecondary }}>
-              Complete your transaction via secure chat with instant verification.
-            </p>
-            <motion.div
-              className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-medium"
-              style={{ color: colors.success }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <motion.div
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: colors.success }}
-                animate={{ scale: [1, 1.4, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              Official Business Account
-            </motion.div>
-          </motion.div>
+          <PaymentCard
+            icon={<FaWhatsapp />}
+            title="WhatsApp Transfer"
+            description="Complete your transaction via secure chat with instant verification."
+            sizeClass="p-8"
+            isRecommended={true}
+            extraInfo={
+              <div
+                className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-medium"
+                style={{ color: colors.success }}
+              >
+                <motion.div
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: colors.success }}
+                  animate={{ scale: [1, 1.4, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                Official Business Account
+              </div>
+            }
+          />
 
           {/* Credit Card Card */}
-          <motion.div
-            className="bg-white border p-8 group cursor-pointer"
-            style={{
-              borderColor: colors.border,
-              boxShadow: "0 2px 12px rgba(0,0,0,0.02)"
-            }}
-            variants={{
-              hidden: { y: 60, opacity: 0 },
-              visible: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20,
-                  delay: 0.1
-                }
-              }
-            }}
-            whileHover={{
-              y: -12,
-              boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-              transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
-            }}
-          >
-            <motion.div
-              className="text-3xl mb-6"
-              style={{ color: colors.accent }}
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6, type: "spring" }}
-            >
-              <FaCreditCard />
-            </motion.div>
-            <h3 className="text-2xl font-light mb-4" style={{ color: colors.textPrimary }}>Credit / Debit</h3>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: colors.textSecondary }}>
-              Global acceptance including VISA and Mastercard with SSL protection.
-            </p>
-            <motion.div
-              className="flex gap-3 text-[9px] font-medium"
-              style={{ color: colors.textSecondary }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <span className="border px-3 py-1" style={{ borderColor: colors.border }}>VISA</span>
-              <span className="border px-3 py-1" style={{ borderColor: colors.border }}>MASTERCARD</span>
-            </motion.div>
-          </motion.div>
+          <PaymentCard
+            icon={<FaCreditCard />}
+            title="Credit / Debit"
+            description="Global acceptance including VISA and Mastercard with SSL protection."
+            sizeClass="p-8"
+            extraInfo={
+              <div className="flex gap-3 text-[9px] font-medium" style={{ color: colors.textSecondary }}>
+                <span className="border px-3 py-1" style={{ borderColor: colors.border }}>VISA</span>
+                <span className="border px-3 py-1" style={{ borderColor: colors.border }}>MASTERCARD</span>
+              </div>
+            }
+          />
 
           {/* Protection Card */}
-          <motion.div
-            className="bg-white border p-8 group"
-            style={{
-              borderColor: colors.border,
-              boxShadow: "0 2px 12px rgba(0,0,0,0.02)"
-            }}
-            variants={{
-              hidden: { y: 60, opacity: 0 },
-              visible: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20,
-                  delay: 0.2
-                }
-              }
-            }}
-            whileHover={{
-              y: -12,
-              boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-              transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
-            }}
-          >
-            <motion.div
-              className="text-3xl mb-6"
-              style={{ color: colors.accent }}
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6, type: "spring" }}
-            >
-              <FaShieldAlt />
-            </motion.div>
-            <h3 className="text-2xl font-light mb-4" style={{ color: colors.textPrimary }}>Buyer Protection</h3>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: colors.textSecondary }}>
-              Your equipment investment is safe with our fraud monitoring and secure fulfillment process.
-            </p>
-            <motion.div
-              className="text-[10px] uppercase tracking-[0.2em] font-medium"
-              style={{ color: colors.accent }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              PCI DSS Compliant
-            </motion.div>
-          </motion.div>
+          <PaymentCard
+            icon={<FaShieldAlt />}
+            title="Buyer Protection"
+            description="Your equipment investment is safe with our fraud monitoring and secure fulfillment process."
+            sizeClass="p-8"
+            extraInfo={
+              <div className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: colors.accent }}>
+                PCI DSS Compliant
+              </div>
+            }
+          />
         </motion.div>
 
         {/* Security Badges */}
@@ -795,10 +665,10 @@ const DesktopServices = memo(() => {
                 className="flex gap-4 mt-2"
                 variants={itemVariants}
               >
-                <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/salon_aesthetics_solutions?fbclid=IwY2xjawSQ-6VleHRuA2FlbQIxMABicmlkETEwdUhUNEliRko4bklCRUw0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjWtNVmCIk3HR56mtNRrk6R9taTvacs604AFw0CcHfx8LaYijgoLdLfWeyHs_aem_vryg6dDjTSM3fHbCkVXYWw" target="_blank" rel="noopener noreferrer">
                   <FaInstagram style={{ color: colors.accent, fontSize: '20px' }} />
                 </a>
-                <a href="https://www.facebook.com/SalonAestheticsolution" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.tiktok.com/@drzia1592?fbclid=IwY2xjawSQ-6tleHRuA2FlbQIxMABicmlkETEwdUhUNEliRko4bklCRUw0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHueeX6AAydZuGPJNtGwcF9v6W6ypK6xanqdHWDBueW2Ezcmt5muhRjx3q02-_aem_ivumRHsKSdaogDX9mtDoLQ" target="_blank" rel="noopener noreferrer">
                   <FaTiktok style={{ color: colors.accent, fontSize: '20px' }} />
                 </a>
               </motion.div>

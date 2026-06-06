@@ -137,18 +137,30 @@ const PremiumFeatures = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.12 }
+            }
+          }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {features.map((f, i) => (
             <motion.div
               key={i}
               className="group relative"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              whileHover={{ y: -10 }}
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 18 } }
+              }}
+              whileHover={{ y: -12, scale: 1.02, transition: { type: "spring", stiffness: 400, damping: 10 } }}
             >
-              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 h-full">
+              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 h-full transition-all duration-300">
                 {/* Animated gradient border */}
                 <div className={`absolute inset-0 bg-gradient-to-r from-${f.color}-400 to-${f.color}-600 opacity-0 group-hover:opacity-20 transition-opacity duration-500`}></div>
 
@@ -171,7 +183,7 @@ const PremiumFeatures = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -205,20 +217,35 @@ const AdvancedStats = ({ stats, loading }) => {
             <p className="text-lg">Loading live stats...</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1 }
+              }
+            }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="text-center"
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
+                variants={{
+                  hidden: { opacity: 0, y: 30, scale: 0.9 },
+                  show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 150, damping: 18 } }
+                }}
+                className="relative group p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all duration-300 shadow-lg"
+                whileHover={{ y: -8, scale: 1.02 }}
               >
-                <div className="text-4xl text-blue-300 mb-3 flex justify-center">
+                {/* Light reflection glow on card */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="text-4xl text-blue-300 mb-3 flex justify-center group-hover:scale-110 transition-transform duration-300">
                   {stat.icon}
                 </div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2 font-serif">
                   {typeof stat.value === "number" ? (
                     <AnimatedCounter value={stat.value} />
                   ) : (
@@ -226,10 +253,10 @@ const AdvancedStats = ({ stats, loading }) => {
                   )}
                   {stat.suffix}
                 </div>
-                <div className="text-sm text-blue-200/80 tracking-wide">{stat.label}</div>
+                <div className="text-xs text-blue-200/80 tracking-wide uppercase font-semibold">{stat.label}</div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
 
@@ -248,21 +275,30 @@ const AdvancedStats = ({ stats, loading }) => {
 
 
 
-// Enhanced Product Card with 3D Tilt
+// Enhanced Product Card with 3D Tilt & Glow
 const EnhancedProductCard = ({ product, collectionTitle, index }) => {
   const cardRef = useRef(null);
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const [glowPos, setGlowPos] = useState({ x: 0, y: 0 });
+  const [showGlow, setShowGlow] = useState(false);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setRotate({ x: y * 10, y: x * 10 });
+    setRotate({ x: y * 8, y: x * 8 });
+    
+    // Calculate glow position
+    const glowX = e.clientX - rect.left;
+    const glowY = e.clientY - rect.top;
+    setGlowPos({ x: glowX, y: glowY });
+    setShowGlow(true);
   };
 
   const handleMouseLeave = () => {
     setRotate({ x: 0, y: 0 });
+    setShowGlow(false);
   };
 
   // Resolve properties for both real-time database products and mock products
@@ -276,19 +312,30 @@ const EnhancedProductCard = ({ product, collectionTitle, index }) => {
   return (
     <motion.div
       ref={cardRef}
-      className="group relative"
+      className="group relative rounded-2xl"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
+      transition={{ delay: index * 0.05, type: "spring", stiffness: 100, damping: 20 }}
       viewport={{ once: true }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
         transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
-        transition: 'transform 0.1s ease-out'
+        transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)'
       }}
     >
-      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-500">
+      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500">
+        {/* Cursor following interactive glow */}
+        {showGlow && (
+          <div
+            className="absolute pointer-events-none rounded-2xl opacity-40 transition-opacity duration-300 mix-blend-screen"
+            style={{
+              inset: 0,
+              background: `radial-gradient(400px circle at ${glowPos.x}px ${glowPos.y}px, rgba(37, 99, 235, 0.15), transparent 85%)`,
+              zIndex: 1
+            }}
+          />
+        )}
         <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50/30">
           <Link to={route}>
             <img

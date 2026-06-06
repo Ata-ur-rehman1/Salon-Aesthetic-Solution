@@ -553,16 +553,34 @@ const ProductDetails = () => {
                   {/* Subtle top glare effect */}
                   <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-50" />
 
-                  <table className="w-full text-left border-collapse relative z-10 block md:table">
-                    <tbody className="block md:table-row-group">
+                  <motion.table 
+                    className="w-full text-left border-collapse relative z-10 block md:table"
+                    variants={{
+                      hidden: { opacity: 0 },
+                      show: {
+                        opacity: 1,
+                        transition: {
+                          staggerChildren: 0.05
+                        }
+                      }
+                    }}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                  >
+                    <motion.tbody className="block md:table-row-group">
                       {Array.from({ length: 13 }, (_, i) => i + 2).map((idx) => {
                         const nameKey = `pdName${idx === 1 ? '' : idx}`;
                         const descKey = `description${idx === 1 ? '' : idx}`;
                         if (product[nameKey]) {
                           return (
-                            <tr
+                            <motion.tr
                               key={idx}
-                              className="group border-b last:border-b-0 transition-colors duration-500 flex flex-col md:table-row"
+                              variants={{
+                                hidden: { opacity: 0, x: -20 },
+                                show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, damping: 18 } }
+                              }}
+                              className="group border-b last:border-b-0 transition-all duration-500 flex flex-col md:table-row"
                               style={{ borderColor: colors.border, backgroundColor: 'transparent' }}
                               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = colors.surfaceHover}
                               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
@@ -581,13 +599,13 @@ const ProductDetails = () => {
                                   {product[descKey]}
                                 </span>
                               </td>
-                            </tr>
+                            </motion.tr>
                           );
                         }
                         return null;
                       })}
-                    </tbody>
-                  </table>
+                    </motion.tbody>
+                  </motion.table>
                 </motion.div>
               </div>
             </div>

@@ -459,33 +459,35 @@ const Navigation = ({ className }) => {
                     <Link
                       to={route}
                       key={category.name}
-                      className="flex-shrink-0 relative py-2"
+                      className="flex-shrink-0 relative py-2 px-1"
                       onClick={() => {
                         setDropdownOpen(false);
                         setActiveCategory(category.name);
                       }}
                     >
                       <motion.div
-                        className="px-2.5 lg:px-3 py-1.5 rounded-full transition-all duration-300"
+                        className="px-3.5 py-1.5 rounded-full relative transition-all duration-300"
                         variants={itemVariants}
-                        whileHover={{ scale: 1.03 }}
+                        whileHover={{ scale: 1.05 }}
                       >
+                        {/* Active Indicator Sliding Capsule Background */}
+                        {isActive && (
+                          <motion.div
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                              background: `linear-gradient(135deg, ${colors.accentLight} 0%, rgba(37, 99, 235, 0.12) 100%)`,
+                              border: `1px solid rgba(37, 99, 235, 0.2)`
+                            }}
+                            layoutId="activeTabIndicator"
+                            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                          />
+                        )}
                         <span
-                          className="text-[10px] lg:text-[12px] xl:text-[13px] font-semibold uppercase tracking-wider transition-colors duration-200"
+                          className="relative z-10 text-[10px] lg:text-[12px] xl:text-[13px] font-semibold uppercase tracking-wider transition-colors duration-300"
                           style={{ color: isActive ? colors.accent : colors.textSecondary }}
                         >
                           {category.name}
                         </span>
-
-                        {/* Active Indicator Underline */}
-                        {isActive && (
-                          <motion.div
-                            className="absolute bottom-0 left-2 right-2 h-0.75 rounded-full"
-                            style={{ backgroundColor: colors.accent }}
-                            layoutId="activeTabIndicator"
-                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                          />
-                        )}
                       </motion.div>
                     </Link>
                   );
@@ -728,19 +730,36 @@ const Navigation = ({ className }) => {
                         <span className="text-[9px] uppercase tracking-wider font-bold text-slate-400 block mb-2.5">
                           Recent Searches
                         </span>
-                        <div className="flex flex-wrap gap-2">
+                        <motion.div 
+                          className="flex flex-wrap gap-2"
+                          variants={{
+                            hidden: { opacity: 0 },
+                            show: {
+                              opacity: 1,
+                              transition: {
+                                staggerChildren: 0.04
+                              }
+                            }
+                          }}
+                          initial="hidden"
+                          animate="show"
+                        >
                           {filteredHistory.slice(0, 5).map((term, index) => (
                             <motion.button
                               key={index}
+                              variants={{
+                                hidden: { opacity: 0, scale: 0.8 },
+                                show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 300, damping: 20 } }
+                              }}
                               className="px-3.5 py-1.5 rounded-full border text-xs font-semibold text-slate-600 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition-all"
                               onClick={() => handleSuggestionClick(term)}
-                              whileHover={{ y: -1 }}
+                              whileHover={{ y: -3, scale: 1.05, boxShadow: "0 6px 15px rgba(37, 99, 235, 0.12)" }}
                               whileTap={{ scale: 0.95 }}
                             >
                               {term}
                             </motion.button>
                           ))}
-                        </div>
+                        </motion.div>
                       </div>
                     )}
 
@@ -750,14 +769,32 @@ const Navigation = ({ className }) => {
                         <span className="text-[9px] uppercase tracking-wider font-bold text-slate-400 block mb-2.5">
                           Product Suggestions ({suggestions.length})
                         </span>
-                        <div className="grid grid-cols-1 gap-2">
+                        <motion.div 
+                          className="grid grid-cols-1 gap-2"
+                          variants={{
+                            hidden: { opacity: 0 },
+                            show: {
+                              opacity: 1,
+                              transition: {
+                                staggerChildren: 0.05
+                              }
+                            }
+                          }}
+                          initial="hidden"
+                          animate="show"
+                        >
                           {suggestions.slice(0, 5).map((product) => (
                             <motion.div
                               key={product._id}
+                              variants={{
+                                hidden: { opacity: 0, y: 12, scale: 0.98 },
+                                show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 300, damping: 22 } }
+                              }}
                               className="flex items-center gap-3 p-2 border rounded-xl cursor-pointer hover:bg-slate-50 transition-all duration-200"
                               style={{ borderColor: colors.border }}
                               onClick={() => handleSuggestionClick(product.name)}
-                              whileHover={{ x: 2 }}
+                              whileHover={{ x: 6, scale: 1.01, backgroundColor: "rgba(37, 99, 235, 0.02)" }}
+                              whileTap={{ scale: 0.98 }}
                             >
                               <div className="w-10 h-10 rounded-lg overflow-hidden border bg-white flex-shrink-0" style={{ borderColor: colors.border }}>
                                 <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
@@ -769,7 +806,7 @@ const Navigation = ({ className }) => {
                               <FiChevronRight size={14} className="text-slate-300" />
                             </motion.div>
                           ))}
-                        </div>
+                        </motion.div>
                       </div>
                     )}
                   </motion.div>

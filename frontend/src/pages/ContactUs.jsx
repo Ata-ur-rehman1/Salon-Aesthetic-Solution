@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import {
-  MapPin, Phone, Mail, Clock, MessageCircle,
-  Instagram, Send, User, Home, Package,
-  CheckCircle, ArrowRight, Shield, Globe, Award
+  MessageCircle, Shield, Globe, Award
 } from "lucide-react";
-
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 const ContactUs = () => {
   // ULTRA PREMIUM WHITE & PINK DESIGN SYSTEM WITH ROSE GOLD ACCENTS
   const colors = {
@@ -29,6 +27,7 @@ const ContactUs = () => {
     success: "#10b981",
     error: "#ef4444"
   };
+
 
   const contactInfo = {
     businessName: "Salon Aesthetic Solution",
@@ -187,7 +186,7 @@ const ContactUs = () => {
           </motion.h1>
           <motion.div
             className="h-1 w-12 md:w-24 mx-auto mb-10"
-            style={{ backgroundColor: colors.accent, ...{opacity: 0.8} }}
+            style={{ backgroundColor: colors.accent, ...{ opacity: 0.8 } }}
           />
           <motion.p className={`${getTextSize('text-lg', 'text-xl', 'text-2xl')} text-gray-600 max-w-3xl mx-auto leading-relaxed font-light italic opacity-60`}>
             Planning a new salon or upgrading your space? We're here to bring your vision to life.
@@ -198,9 +197,20 @@ const ContactUs = () => {
 
       <div className={`max-w-7xl mx-auto ${getPadding('px-4 py-12', 'px-6 py-16', 'px-8 py-20')}`}>
         {/* Contact Overview Cards */}
-        <div className="grid lg:grid-cols-2 gap-16">
+        <motion.div
+          className="grid lg:grid-cols-2 gap-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.15 }
+            }
+          }}
+        >
           {/* FAQ Section */}
-          <motion.div variants={sectionVariants} custom={1}>
+          <motion.div variants={sectionVariants}>
             <motion.span className="text-[10px] uppercase tracking-[0.4em] text-gray-500 font-bold block mb-4 opacity-40">
               COMMON QUESTIONS
             </motion.span>
@@ -212,14 +222,13 @@ const ContactUs = () => {
                   key={index}
                   className="group border-b border-gray-100 pb-8"
                   variants={sectionVariants}
-                  custom={index + 2}
                 >
                   <div className="flex items-start gap-6">
                     <div className="w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all text-blue-600" style={{ borderColor: colors.border }}>
                       <span className="text-xs font-bold">0{index + 1}</span>
                     </div>
                     <div>
-                      <h4 className="text-lg md:text-xl font-light mb-3 group-hover:translate-x-1 transition-transform tracking-tight text-blue-600">{item.q}</h4>
+                      <h4 className="text-lg md:text-xl font-light mb-3 group-hover:translate-x-1.5 transition-transform tracking-tight text-blue-600">{item.q}</h4>
                       <p className="leading-relaxed font-light opacity-80" style={{ color: colors.textSecondary }}>{item.a}</p>
                     </div>
                   </div>
@@ -230,7 +239,7 @@ const ContactUs = () => {
             <motion.div
               className="mt-12 p-8 text-white rounded-[2rem] text-center shadow-xl relative overflow-hidden"
               style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 300 } }}
             >
               <h4 className="text-lg font-light mb-4 relative z-10">Still have questions?</h4>
               <p className="text-blue-200 text-sm mb-8 font-light leading-relaxed relative z-10">
@@ -249,7 +258,7 @@ const ContactUs = () => {
           </motion.div>
 
           {/* Social Presence Card */}
-          <motion.div variants={sectionVariants} custom={2} className="relative">
+          <motion.div variants={sectionVariants} className="relative">
             <div className="sticky top-24">
               <motion.div
                 className="bg-white border rounded-lg overflow-hidden"
@@ -260,17 +269,17 @@ const ContactUs = () => {
                 <div className="p-12 text-center">
                   <Award className="w-12 h-12 mx-auto mb-8 opacity-40 text-blue-500" />
                   <h2 className="text-3xl font-light mb-6 tracking-tight" style={{ color: colors.textPrimary }}>Our Digital Studio</h2>
-                    Follow our latest studio updates and design inspirations on Facebook.
+                  Follow our latest studio updates and design inspirations on Facebook.
                   <div className="grid grid-cols-2 gap-4">
                     <motion.a
                       href={contactInfo.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 p-5 border-2 font-bold text-[10px] uppercase tracking-widest hover:text-white transition-all rounded-full"
-                      style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                      className="flex items-center justify-center gap-3 p-5 border-2 font-bold hover:text-white text-[10px] uppercase tracking-widest transition-all rounded-full"
+                      style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = colors.accent; e.currentTarget.style.color = 'white'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.accent; }}
                       whileHover={{ y: -2 }}
                     >
-                      <Instagram className="w-4 h-4" /> Facebook
+                      <FaInstagram className="w-4 h-4" /> Instagram
                     </motion.a>
                     <motion.a
                       href={contactInfo.facebook}
@@ -294,7 +303,7 @@ const ContactUs = () => {
               </motion.div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Footer */}
         <motion.div

@@ -31,9 +31,12 @@ const ProductCarousel = () => {
     return (
       <motion.button
         onClick={onClick}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center z-30 bg-white/95 backdrop-blur-sm border border-blue-300 hover:border-blue-500 transition-colors"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center z-30 bg-white/95 backdrop-blur-sm border border-blue-300 hover:border-blue-500 transition-all cursor-pointer"
+        whileHover={{ scale: 1.15, rotate: 5, boxShadow: "0 8px 25px rgba(37, 99, 235, 0.15)" }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 400, damping: 15 }}
       >
-        <FaChevronRight className="text-blue-600 text-sm md:text-base hover:text-blue-700" />
+        <FaChevronRight className="text-blue-600 text-sm md:text-base" />
       </motion.button>
     );
   };
@@ -43,9 +46,12 @@ const ProductCarousel = () => {
     return (
       <motion.button
         onClick={onClick}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center z-30 bg-white/95 backdrop-blur-sm border border-blue-300 hover:border-blue-500 transition-colors"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center z-30 bg-white/95 backdrop-blur-sm border border-blue-300 hover:border-blue-500 transition-all cursor-pointer"
+        whileHover={{ scale: 1.15, rotate: -5, boxShadow: "0 8px 25px rgba(37, 99, 235, 0.15)" }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 400, damping: 15 }}
       >
-        <FaChevronLeft className="text-blue-600 text-sm md:text-base hover:text-blue-700" />
+        <FaChevronLeft className="text-blue-600 text-sm md:text-base" />
       </motion.button>
     );
   };
@@ -128,22 +134,38 @@ const ProductCarousel = () => {
               <div key={slide.id} className="w-full touch-pan-y">
                 <Link
                   to={slide.route}
-                  className="relative block w-full h-[45vh] md:h-[80vh] overflow-hidden shadow-2xl transition-all duration-700 touch-pan-y"
+                  className="relative block w-full h-[45vh] md:h-[80vh] overflow-hidden shadow-2xl transition-all duration-700 touch-pan-y group"
                 >
                   <img
                     src={slide.image}
                     alt={slide.title}
                     draggable="false"
-                    className="w-full h-full object-cover pointer-events-none"
+                    className="w-full h-full object-cover pointer-events-none transition-transform duration-[1200ms] group-hover:scale-105"
                   />
-                  <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 z-10 space-y-3 md:space-y-4">
-                    <h2 className="text-white text-2xl md:text-4xl lg:text-6xl font-light tracking-wide drop-shadow-lg">
+                  <motion.div 
+                    className="absolute bottom-8 left-8 md:bottom-16 md:left-16 z-10 space-y-3 md:space-y-4"
+                    initial={{ opacity: 0, y: 35 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                  >
+                    <motion.h2 
+                      className="text-white text-2xl md:text-4xl lg:text-6xl font-light tracking-wide drop-shadow-lg"
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1, type: "spring", stiffness: 120, damping: 18 }}
+                    >
                       {slide.title}
-                    </h2>
-                    <div className="flex items-center gap-3 text-blue-200 uppercase tracking-[0.2em] text-[10px] md:text-xs font-bold drop-shadow-md">
-                      <span>Explore Collection</span> <FaChevronRight size={12} className="text-blue-400" />
-                    </div>
-                  </div>
+                    </motion.h2>
+                    <motion.div 
+                      className="flex items-center gap-3 text-blue-200 uppercase tracking-[0.2em] text-[10px] md:text-xs font-bold drop-shadow-md"
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.25, type: "spring", stiffness: 120, damping: 18 }}
+                    >
+                      <span>Explore Collection</span> <FaChevronRight size={12} className="text-blue-400 group-hover:translate-x-1.5 transition-transform" />
+                    </motion.div>
+                  </motion.div>
                 </Link>
               </div>
             ))}

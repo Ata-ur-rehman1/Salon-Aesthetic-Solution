@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MapPin, Phone, Truck, Shield, Instagram, MessageCircle,
+  MapPin, Phone, Truck, Shield, MessageCircle,
   Star, Users, Package, Award, Clock, Heart, ArrowRight,
   TrendingUp, CheckCircle, Globe
 } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
 
 const AboutUs = () => {
   // ULTRA PREMIUM WHITE & PINK DESIGN SYSTEM WITH ROSE GOLD ACCENTS
@@ -177,8 +178,19 @@ const AboutUs = () => {
 
       <div className={`max-w-7xl mx-auto ${getPadding('px-4 py-12', 'px-6 py-16', 'px-8 py-20')}`}>
         {/* Philosophy & Focus */}
-        <div className="grid lg:grid-cols-2 gap-16 mb-24">
-          <motion.div variants={sectionVariants} custom={1}>
+        <motion.div 
+          className="grid lg:grid-cols-2 gap-16 mb-24"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.15 }
+            }
+          }}
+        >
+          <motion.div variants={sectionVariants}>
             <h2 className="text-4xl md:text-5xl font-light mb-10 tracking-tighter" style={{ color: colors.textPrimary, letterSpacing: '-0.02em' }}>Our Philosophy</h2>
             <div className="space-y-6 font-light text-xl leading-relaxed opacity-80" style={{ color: colors.textSecondary }}>
               <p>
@@ -206,7 +218,6 @@ const AboutUs = () => {
           <motion.div
             className="bg-gray-50 p-12 rounded-lg"
             variants={sectionVariants}
-            custom={2}
           >
             <h3 className="text-2xl font-light text-black mb-8 tracking-tighter" style={{ letterSpacing: '-0.02em' }}>What We Deliver</h3>
             <div className="space-y-8">
@@ -227,14 +238,16 @@ const AboutUs = () => {
               ))}
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Core Values */}
         <motion.div
           className="text-white p-12 md:p-20 rounded-[3rem] mb-24 text-center shadow-2xl relative overflow-hidden"
           style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
           variants={sectionVariants}
-          custom={3}
         >
           {/* Decorative Background Pattern */}
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
@@ -260,20 +273,30 @@ const AboutUs = () => {
         </motion.div>
 
         {/* Interaction Section */}
-        <div className="grid md:grid-cols-2 gap-8 mb-24">
+        <motion.div 
+          className="grid md:grid-cols-2 gap-8 mb-24"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.15 }
+            }
+          }}
+        >
           <motion.div
-            className="border p-12 text-center flex flex-col items-center justify-center"
+            className="border p-12 text-center flex flex-col items-center justify-center rounded-[2rem]"
             style={{ borderColor: colors.border }}
             variants={sectionVariants}
-            custom={4}
-            whileHover={{ scale: 1.01, boxShadow: "0 20px 40px rgba(0,0,0,0.04)" }}
+            whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(0,0,0,0.05)", transition: { type: "spring", stiffness: 300 } }}
           >
-            <Instagram className="w-10 h-10 mb-8 opacity-40 text-blue-500" />
+            <FaInstagram className="w-10 h-10 mb-8 opacity-40 text-blue-500" />
             <h3 className="text-2xl font-light mb-4" style={{ color: colors.textPrimary }}>Social Inspiration</h3>
             <p className="font-light mb-8 max-w-sm" style={{ color: colors.textSecondary }}>Explore our latest projects and behind-the-scenes content on Instagram and TikTok.</p>
             <div className="flex gap-4">
-              <a href={salonDetails.facebook} className="px-6 py-3 border-2 text-[10px] uppercase tracking-widest font-bold hover:text-white transition-all rounded-full" style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>Facebook</a>
-              <a href={salonDetails.facebook} className="px-6 py-3 border-2 text-[10px] uppercase tracking-widest font-bold hover:text-white transition-all rounded-full" style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => e.target.style.backgroundColor = colors.accent} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>Facebook</a>
+              <a href={salonDetails.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 border-2 text-[10px] uppercase tracking-widest font-bold transition-all rounded-full" style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = colors.accent; e.currentTarget.style.color = 'white'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.accent; }}><FaInstagram className="w-4 h-4" /> Instagram</a>
+              <a href={salonDetails.facebook} target="_blank" rel="noopener noreferrer" className="px-6 py-3 border-2 text-[10px] uppercase tracking-widest font-bold transition-all rounded-full" style={{ borderColor: colors.accent, color: colors.accent }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = colors.accent; e.currentTarget.style.color = 'white'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.accent; }}>Facebook</a>
             </div>
           </motion.div>
 
@@ -281,8 +304,7 @@ const AboutUs = () => {
             className="p-12 text-center text-white flex flex-col items-center justify-center rounded-[2rem] shadow-xl"
             style={{ backgroundImage: `linear-gradient(135deg, ${colors.accent}, #38bdf8)` }}
             variants={sectionVariants}
-            custom={5}
-            whileHover={{ scale: 1.01 }}
+            whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 300 } }}
           >
             <MessageCircle className="w-10 h-10 mb-8 opacity-80" />
             <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-tighter">Direct Consultation</h3>
@@ -291,7 +313,7 @@ const AboutUs = () => {
               <Phone className="w-4 h-4" /> Visit Facebook
             </a>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Footer */}
         <motion.div
